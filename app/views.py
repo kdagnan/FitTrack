@@ -4,24 +4,24 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse("home")
+    return render(request, 'app/home.html')
 
 
 def exercises(request):
-    return HttpResponse("exercises")
+    return render(request, 'app/exercises.html')
 
 
 def exerciselog(request):
-    return HttpResponse("exercise log")
+    return render(request, 'app/exerciselog.html')
 
 
 def foodtracker(request):
-    return HttpResponse("food tracker")
+    return render(request, 'app/foodtracker.html')
 
 
 def results(request):
-    return HttpResponse("results")
+    return render(request, 'app/results.html')
 
 
 def login(request):
-    return HttpResponse("log in")
+    return render(request, 'app/login.html')

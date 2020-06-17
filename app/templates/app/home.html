@@ -1,10 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Home</h1>
-</body>
-</html>
+{%  extends "app/base.html" %}
+{% block style %}
+    .nav{
+        display: inline-block;
+        width: 100%;
+        padding: 1%;
+    }
+    .btn-outline-secondary{
+        float: right;
+        margin: 0.5vw;
+    }
+    .title{
+        font-size: 60px;
+    }
+    .header{
+        text-align: center;
+        padding: 2vmin;
+    }
+    .mid {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .boxes{
+        padding: 5%;
+    }
+{% endblock style %}
+{% block body %}
+    <div class="nav">
+        <a href={% url 'app:login' %}>
+            <Button class="btn btn-outline-secondary">Log In</Button>
+        </a>
+        <a href={% url 'app:results' %}>
+            <Button class="btn btn-outline-secondary">Results</Button>
+        </a>
+        <a href={% url 'app:foodtracker' %}>
+            <Button class="btn btn-outline-secondary">Food Tracker</Button>
+        </a>
+        <a href={% url 'app:exerciselog' %}>
+            <Button class="btn btn-outline-secondary">Exercise Log</Button>
+        </a>
+        <a href={% url 'app:exercises' %}>
+            <Button class="btn btn-outline-secondary">Exercises</Button>
+        </a>
+    </div>
+    <div class="header">
+        <h1 class="title">Welcome to FitTrack!</h1>
+        <h2>FitTrack helps you stay motivated and stick with your workout routine and diet plan.</h2>
+    </div>
+    <div class="mid">
+        <Button class="btn btn-outline-secondary"> Get Started </Button>
+    </div>
+    <div class="boxes">
+        <div class="box1">
+            <h2>Find exercises</h2>
+            <h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </h3>
+        </div>
+        <div class="box2">
+            <h2>Track your workout routines</h2>
+            <h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </h3>
+        </div>
+        <div class="box3">
+            <h2>Track your caloric intake</h2>
+            <h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </h3>
+        </div>
+        <div class="box4">
+            <h2>See results</h2>
+            <h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </h3>
+        </div>
+    </div>
+{% endblock body %}

@@ -1,9 +1,18 @@
 {%  extends "app/base.html" %}
+
+{% block style %}
+    .boxes{
+        padding: 5%;
+    }
+{% endblock style %}
+
 {% block body %}
-    <h1>Exercise Recomendation</h1>
-    {% for exercise in exercises %}
-        <h2>{{exercise.name}}</h2>
-        <p>{{exercise.description}}</p>
-    {% endfor %}
+    <div class="boxes">
+        <h1>Exercise Recomendation</h1>
+        {% for exercise in exercises %}
+            <h2>{{exercise.name}}</h2>
+            <p>{{exercise.description}}</p>
+        {% endfor %}
+    </div>
 {% endblock body %}
 

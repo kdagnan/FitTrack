@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Exercises</title>
-</head>
-<body>
+{%  extends "app/base.html" %}
+{% block body %}
     <h1>Exercise Recomendation</h1>
     {% for exercise in exercises %}
         <h2>{{exercise.name}}</h2>
         <p>{{exercise.description}}</p>
     {% endfor %}
-</body>
-</html>
+{% endblock body %}
+

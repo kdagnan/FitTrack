@@ -1,6 +1,16 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
+exercise_list = [
+    {
+        'name': 'Push-ups',
+        'description': 'An exercise in which a person lies facing the floor and, keeping their back straight, raises their body by pressing down on their hands.'
+    },
+    {
+        'name': 'Pull-ups',
+        'description': 'An exercise involving raising oneself with both arms by pulling up against a horizontal bar fixed above the head.'
+    }
+]
 
 # Create your views here.
 def home(request):
@@ -8,7 +18,10 @@ def home(request):
 
 
 def exercises(request):
-    return render(request, 'app/exercises.html')
+    context = {
+        'exercises': exercise_list
+    }
+    return render(request, 'app/exercises.html', context)
 
 
 def exerciselog(request):

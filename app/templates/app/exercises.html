@@ -1,7 +1,14 @@
-{% extends "app/base.html" %}
-{% block style %}
-    {# insert css stylings specific to page here #}
-{% endblock style %}
-{% block body %}
-    <h1>Exercises</h1>
-{% endblock body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercises</title>
+</head>
+<body>
+    <h1>Exercise Recomendation</h1>
+    {% for exercise in exercises %}
+        <h2>{{exercise.name}}</h2>
+        <p>{{exercise.description}}</p>
+    {% endfor %}
+</body>
+</html>

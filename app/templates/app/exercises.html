@@ -7,7 +7,6 @@
     .selection-box{
         float: right;
         width: 40%;
-        background: grey;
     }
     muscle-container{
         flex-direction: row;
@@ -16,7 +15,11 @@
     .vertical-container{
         float: right;
         width: 50%;
-        background: tomato;
+    }
+    .btn-outline-secondary{
+        float: left;
+        margin: 0.5vw;
+        width: 95%;
     }
 {% endblock style %}
 
@@ -27,26 +30,22 @@
             <h5>Select a muscle from the list below:</h3>
             <div class="muscle-container">
                 <div class="vertical-container">
-                    <ul>
-                        <li>Shoulders:</li>
-                        <li>Triceps</li>
-                        <li>Biceps</li>
-                        <li>Forearms</li>
-                        <li>Trapezius</li>
-                        <li>Upper Back</li>
-                        <li>Lower Back</li>
-                    </ul>
+                    <Button class="btn btn-outline-secondary">Shoulders</Button>
+                    <Button class="btn btn-outline-secondary">Triceps</Button>
+                    <Button class="btn btn-outline-secondary">Biceps</Button>
+                    <Button class="btn btn-outline-secondary">Forearms</Button>
+                    <Button class="btn btn-outline-secondary">Trapezius</Button>
+                    <Button class="btn btn-outline-secondary">Upper Back</Button>
+                    <Button class="btn btn-outline-secondary">Lower Back</Button>
                 </div>
                 <div class="vertical-container">
-                    <ul>
-                        <li>Chest</li>
-                        <li>Abs</li>
-                        <li>Hips</li>
-                        <li>Buttocks</li>
-                        <li>Hamstrings</li>
-                        <li>Calves</li>
-                        <li>Heart: Cardio</li> 
-                    </ul>
+                    <Button class="btn btn-outline-secondary">Chest</Button>
+                    <Button class="btn btn-outline-secondary">Abs</Button>
+                    <Button class="btn btn-outline-secondary">Hips</Button>
+                    <Button class="btn btn-outline-secondary">Buttocks</Button>
+                    <Button class="btn btn-outline-secondary">Hamstrings</Button>
+                    <Button class="btn btn-outline-secondary">Calves</Button>
+                    <Button class="btn btn-outline-secondary">Heart: Cardio</Button>
                 </div>
             </div>
         </div>

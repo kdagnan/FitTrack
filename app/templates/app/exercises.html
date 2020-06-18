@@ -4,11 +4,52 @@
     .boxes{
         padding: 5%;
     }
+    .selection-box{
+        float: right;
+        width: 40%;
+        background: grey;
+    }
+    muscle-container{
+        flex-direction: row;
+        padding: 2%;
+    }
+    .vertical-container{
+        float: right;
+        width: 50%;
+        background: tomato;
+    }
 {% endblock style %}
 
 {% block body %}
     <div class="boxes">
         <h1>Exercise Recomendation</h1>
+        <div class="selection-box">
+            <h5>Select a muscle from the list below:</h3>
+            <div class="muscle-container">
+                <div class="vertical-container">
+                    <ul>
+                        <li>Shoulders:</li>
+                        <li>Triceps</li>
+                        <li>Biceps</li>
+                        <li>Forearms</li>
+                        <li>Trapezius</li>
+                        <li>Upper Back</li>
+                        <li>Lower Back</li>
+                    </ul>
+                </div>
+                <div class="vertical-container">
+                    <ul>
+                        <li>Chest</li>
+                        <li>Abs</li>
+                        <li>Hips</li>
+                        <li>Buttocks</li>
+                        <li>Hamstrings</li>
+                        <li>Calves</li>
+                        <li>Heart: Cardio</li> 
+                    </ul>
+                </div>
+            </div>
+        </div>
         {% for exercise in exercises %}
             <h2>{{exercise.name}}</h2>
             <p>{{exercise.description}}</p>

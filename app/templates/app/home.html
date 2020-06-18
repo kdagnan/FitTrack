@@ -1,20 +1,26 @@
 {%  extends "app/base.html" %}
+{% load static %}
 {% block style %}
     .nav{
         display: inline-block;
         width: 100%;
         padding: 1%;
     }
+    .logo{
+        margin: 0.5vw;
+    }
     .btn-outline-secondary{
         float: right;
         margin: 0.5vw;
     }
     .title{
-        font-size: 60px;
+        font-size: 5vmax;
     }
     .header{
+        position: relative;
         text-align: center;
         padding: 2vmin;
+        margin: auto;
     }
     .mid {
         width: 100%;
@@ -24,9 +30,112 @@
     .boxes{
         padding: 5%;
     }
+    .header-img{
+        filter: brightness(30%);
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .header-text{
+        color: white;
+        position: absolute;
+        max-width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .subtitle{
+        font-size: 2vmax;
+    }
+    .box1 {
+        display: inline-block;
+        background-color: #e7e7e9;
+        padding: 2%;
+        margin-bottom: 1%;
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    .box1-img{
+        display: flex;
+        float: left;
+        margin-right: 10%;
+    }
+    .box2-img{
+        display: flex;
+        float: right;
+        margin-left: 10%;
+    }
+    .box2{
+        background-color: #9cf3fd;
+        display: inline-block;
+        padding: 2%;
+        margin-bottom: 1%;
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    .box3{
+        display: inline-block;
+        background-color: #e7e7e9;
+        padding: 2%;
+        margin-bottom: 1%;
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    .box4{
+        background-color: #9cf3fd;
+        display: inline-block;
+        padding: 2%;
+        margin-bottom: 1%;
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    .logo{
+        display: block;
+        height: 56px;
+        width: auto;
+        float: left;
+    }
+    .box-img{
+        height: 184px;
+        width: 274px;
+    }
+    @media screen and (max-width: 630px){
+        .btn-outline-secondary{
+            width: 100%;
+        }
+        .logo-div {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.5vw;
+        }
+        .box1-img{
+            float: none;
+            margin-right: 0;
+            justify-content: center;
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+        .box2-img{
+            float: none;
+            margin-left: 0;
+            justify-content: center;
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+    }
 {% endblock style %}
 {% block body %}
     <div class="nav">
+        <div class="logo-div">
+            <img src="{% static 'logo.png' %}" class="logo">
+        </div>
         <a href={% url 'app:login' %}>
             <Button class="btn btn-outline-secondary">Log In</Button>
         </a>
@@ -44,40 +153,48 @@
         </a>
     </div>
     <div class="header">
-        <h1 class="title">Welcome to FitTrack!</h1>
-        <h2>FitTrack helps you stay motivated and stick with your workout routine and diet plan.</h2>
-    </div>
-    <div class="mid">
-        <Button class="btn btn-outline-secondary"> Get Started </Button>
+        <img src="{% static 'fitness.jpg' %}" class="header-img">
+        <div class="header-text">
+            <h1 class="title">Welcome to FitTrack!</h1>
+            <h3 class="subtitle">FitTrack helps you stay motivated and stick with your workout routine and diet plan.</h3>
+        </div>
     </div>
     <div class="boxes">
         <div class="box1">
-            <h2>Find exercises</h2>
-            <h3>
+            <div class="box1-img">
+                <img src="{%  static 'box1img.png' %}" class="box-img">
+            </div>
+            <h2>Find Exercises</h2>
+            <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </h3>
+            </p>
         </div>
         <div class="box2">
-            <h2>Track your workout routines</h2>
-            <h3>
+            <p>
+                <div class="box2-img">
+                    <img src="{%  static 'box2img.png' %}" class="box-img">
+                </div>
+                <h2>Track Workout Routines</h2>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </h3>
+            </p>
         </div>
         <div class="box3">
-            <h2>Track your caloric intake</h2>
-            <h3>
+            <div class="box1-img">
+                <img src="{%  static 'box3img.png' %}" class="box-img">
+            </div>
+            <h2>Track Caloric Intake</h2>
+            <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </h3>
+            </p>
         </div>
         <div class="box4">
-            <h2>See results</h2>
-            <h3>
+            <p>
+                <div class="box2-img">
+                    <img src="{%  static 'box4img.png' %}" class="box-img">
+                </div>
+                <h2>See Results</h2>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </h3>
+            </p>
         </div>
     </div>
 {% endblock body %}

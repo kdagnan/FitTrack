@@ -11,8 +11,8 @@
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ exlogs.user }}</a>
-                    <small class="text-muted">{{ exlogs.date }}</small>
+                    <a class="mr-2" href="#">{{ exlogs.date | date:"F d, Y"}}</a>
+                    <small class="text-muted">{{ exlogs.user }}</small>
                 </div>
                     <ul>
                         {% for exercise in exercises%}

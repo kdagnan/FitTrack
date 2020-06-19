@@ -33,8 +33,14 @@
                 </div>
                 <!-- Navbar Right Side -->
                 <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Login</a>
-                <a class="nav-item nav-link" href="#">Register</a>
+                
+                <!-- Need to fix in future to test for current logged in user-->
+                {% if user_name %}
+                  <a class="nav-item nav-link" href="#">Welcome {{user_name}}</a>
+                {% else %}
+                  <a class="nav-item nav-link" href="#">Login</a>
+                {% endif %}
+
                 </div>
             </div>
             </div>

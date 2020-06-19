@@ -7,21 +7,24 @@
 
 {% block content%}
 
-    {% for exlogs in exercise_logs %}
+    {% for exlog in exercise_logs %}
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ exlogs.date | date:"F d, Y"}}</a>
-                    <small class="text-muted">{{ exlogs.user }}</small>
+                    <a class="mr-2" href="#">{{ exlog.date | date:"F d, Y"}}</a>
+                    <small class="text-muted">{{ exlog.user }}</small>
                 </div>
                     <ul>
+                        <!-- Terribly unoptimized but it works for now-->>
                         {% for exercise in exercises%}
-                            <li class="unordered-list_item"> 
-                                {{ exercise.exercise_name }}:&nbsp;
-                                {{ exercise.num_sets }}x
-                                {{ exercise.num_reps }}&nbsp;
-                                {{ exercise.exercise_weight }} lbs
-                            </li>
+                            {% if exercise.exercise_log == exlog %}
+                                <li class="unordered-list_item"> 
+                                    {{ exercise.exercise_name }}:&nbsp;
+                                    {{ exercise.num_sets }}x
+                                    {{ exercise.num_reps }}&nbsp;
+                                    {{ exercise.exercise_weight }} lbs
+                                </li>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 <!--

@@ -26,10 +26,12 @@ exlog_test_data = [
 # Create your views here.
 def home(request):
     context = {
+
+        # By default, the home page loads all the workout logs in existence
         'exercise_logs' : ExerciseLog.objects.all(),
         'exercises' : Exercise.objects.all(),
         'title' : 'Exercise Log',
-        'user_name' : 'John'
+        'user_name' : User.objects.first().username,
     }
     return render(request, 'exlog_app/home.html', context)
 

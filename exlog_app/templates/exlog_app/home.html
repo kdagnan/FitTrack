@@ -1,0 +1,16 @@
+{% extends "exlog_app/base.html" %}
+{% block content%}
+
+    {% for exlogs in exercise_logs %}
+        <article class="media content-section">
+            <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ exlogs.exercise }}</a>
+                <small class="text-muted">{{ exlogs.sets }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ exlogs.reps }}</a></h2>
+            <p class="article-content">{{ exlogs.weight }}</p>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

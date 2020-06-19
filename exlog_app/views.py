@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-#from .models import ExerciseLog, Exercise
+from models import ExerciseLog, Exercise
 
 exlog_test_data = [
     {

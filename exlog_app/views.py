@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from models import ExerciseLog, Exercise
+from exlog_app.models import ExerciseLog, Exercise
 
 exlog_test_data = [
     {
@@ -26,7 +26,8 @@ exlog_test_data = [
 # Create your views here.
 def home(request):
     context = {
-        'exercise_logs' : exlog_test_data,
+        'exercise_logs' : ExerciseLog.objects.all(),
+        'exercises' : Exercise.objects.all(),
         'title' : 'Exercise Log',
         'user_name' : 'John'
     }

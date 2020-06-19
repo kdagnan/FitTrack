@@ -1,15 +1,34 @@
 {% extends "exlog_app/base.html" %}
+{% load static %}
+
+{% block stylesheet%}
+    <link rel="stylesheet" type="text/css" href="{% static 'exlog_app/home.css' %}">
+{% endblock stylesheet%}
+
 {% block content%}
 
     {% for exlogs in exercise_logs %}
         <article class="media content-section">
             <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="#">{{ exlogs.exercise }}</a>
-                <small class="text-muted">{{ exlogs.sets }}</small>
-            </div>
-            <h2><a class="article-title" href="#">{{ exlogs.reps }}</a></h2>
-            <p class="article-content">{{ exlogs.weight }}</p>
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ exlogs.user }}</a>
+                    <small class="text-muted">{{ exlogs.date }}</small>
+                </div>
+                    <ul>
+                        {% for exercise in exercises%}
+                            <li class="unordered-list_item"> 
+                                {{ exercise.exercise_name }}:&nbsp;
+                                {{ exercise.num_sets }}x
+                                {{ exercise.num_reps }}&nbsp;
+                                {{ exercise.exercise_weight }} lbs
+                            </li>
+                        {% endfor %}
+                    </ul>
+                <!--
+                    <h2><a class="article-title" href="#">{{ exercise.exercise_name }}</a></h2>
+                    <p class="article-content">{{ exercise.exercise_weight }}</p>
+                -->
+
             </div>
         </article>
     {% endfor %}

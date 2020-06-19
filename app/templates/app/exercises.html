@@ -1,12 +1,40 @@
 {%  extends "app/base.html" %}
+{% load static %}
 
 {% block style %}
     .boxes{
-        padding: 5%;
+        padding: 2% 5% 5% 5%;
     }
     .selection-box{
+        padding: 10px 0 10px 30px;
         float: right;
         width: 40%;
+    }
+    .exercises-box{
+        padding: 10px 30px 10px 10px;
+        border: 1px;
+        float: left;
+        width: 60%;
+        height: 625px;
+        overflow-y: scroll;
+    }
+    .exercise{
+        background: none;
+        flex-direction: row;
+        margin-bottom: 10px;
+        border-bottom-style: solid;
+        border-width: 1px;
+        border-color: #6c757d;
+        width: 100%;
+    }
+    .exercise-image{
+        width: 100px;
+        height: auto;
+        float:left;
+        padding: 10px;
+    }
+    .exercise-text{
+        padding: 10px 10px 0px 10px;
     }
     muscle-container{
         flex-direction: row;
@@ -14,12 +42,16 @@
     }
     .vertical-container{
         float: right;
-        width: 50%;
+        width: 33%;
     }
     .btn-outline-secondary{
         float: left;
         margin: 0.5vw;
         width: 95%;
+    }
+    .body-map{
+        width: 100%;
+        height: auto;
     }
 {% endblock style %}
 
@@ -27,32 +59,44 @@
     <div class="boxes">
         <h1>Exercise Recomendation</h1>
         <div class="selection-box">
-            <h5>Select a muscle from the list below:</h3>
+            <h5 style="padding-left: 10px;">Select a muscle from the list below:</h5>
             <div class="muscle-container">
                 <div class="vertical-container">
-                    <Button class="btn btn-outline-secondary">Shoulders</Button>
-                    <Button class="btn btn-outline-secondary">Triceps</Button>
-                    <Button class="btn btn-outline-secondary">Biceps</Button>
-                    <Button class="btn btn-outline-secondary">Forearms</Button>
-                    <Button class="btn btn-outline-secondary">Trapezius</Button>
-                    <Button class="btn btn-outline-secondary">Upper Back</Button>
-                    <Button class="btn btn-outline-secondary">Lower Back</Button>
-                </div>
-                <div class="vertical-container">
-                    <Button class="btn btn-outline-secondary">Chest</Button>
-                    <Button class="btn btn-outline-secondary">Abs</Button>
                     <Button class="btn btn-outline-secondary">Hips</Button>
                     <Button class="btn btn-outline-secondary">Buttocks</Button>
                     <Button class="btn btn-outline-secondary">Hamstrings</Button>
                     <Button class="btn btn-outline-secondary">Calves</Button>
-                    <Button class="btn btn-outline-secondary">Heart: Cardio</Button>
+                </div>
+                <div class="vertical-container">
+                    <Button class="btn btn-outline-secondary">Shoulders</Button>
+                    <Button class="btn btn-outline-secondary">Triceps</Button>
+                    <Button class="btn btn-outline-secondary">Biceps</Button>
+                    <Button class="btn btn-outline-secondary">Forearms</Button>                    
+                </div>
+                <div class="vertical-container">
+                    <Button class="btn btn-outline-secondary">Chest</Button>
+                    <Button class="btn btn-outline-secondary">Back</Button>
+                    <Button class="btn btn-outline-secondary">Abs</Button>
+                    <Button class="btn btn-outline-secondary">Trapezius</Button>
                 </div>
             </div>
+            <img src="{%  static 'bodyDiagram/bodyDiagram.png' %}" class="body-map">
         </div>
-        {% for exercise in exercises %}
-            <h2>{{exercise.name}}</h2>
-            <p>{{exercise.description}}</p>
-        {% endfor %}
+        <div class="exercises-box">
+            <h5 style="padding-left: 10px;">Exercise List:</h5>
+            {% for muscle_group in exercises %}
+                {% for exercise in muscle_group %}
+                    <div class="exercise">                        
+                        <img src="{{exercise.image}}" class="exercise-image">
+                        <p class="exercise-text">
+                            <strong>{{exercise.name}}</strong></br>
+                            <em style="font-size: 80%;">Muscle: {{exercise.group}}</em></br>
+                            {{exercise.description}}
+                        </p>                        
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock body %}
 

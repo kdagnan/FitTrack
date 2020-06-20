@@ -1,6 +1,9 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
+from .models import WeightLog
+from .forms import WeightLogForm
+
 exercise_list = [
     {
         'name': 'Push-ups',
@@ -40,6 +43,23 @@ def foodtracker(request):
         'title': 'Food Tracker'
     }
     return render(request, 'app/foodtracker.html', context)
+
+def weightlog(request):
+    form = WeightLogForm()
+    context = {
+        'title': 'Weight Log',
+        'weight_logs': WeightLog.objects.filter(user=request.user).order_by('-timestamp'),
+        'form': form
+    }
+    if request.method == 'POST':
+        form = WeightLogForm(request.POST)
+        if form.is_valid():
+            w = WeightLog(weight=form.cleaned_data['weight'], user=request.user)
+            w.save()
+            return render(request, 'app/weightlog.html', context)
+    else: 
+        return render(request, 'app/weightlog.html', context)
+
 
 
 def results(request):

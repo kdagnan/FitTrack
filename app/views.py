@@ -41,6 +41,12 @@ def foodtracker(request):
     }
     return render(request, 'app/foodtracker.html', context)
 
+def weighttracker(request):
+    context = {
+        'title': 'Weight Tracker'
+    }
+    return render(request, 'app/weighttracker.html', context)
+
 
 def results(request):
     context = {

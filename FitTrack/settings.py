@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['192.168.1.45', 'localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'exlog_app.apps.ExlogAppConfig',
     'app.apps.AppConfig',
     'django.contrib.admin',
     'django.contrib.auth',

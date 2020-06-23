@@ -1,7 +1,154 @@
 {% extends "app/base.html" %}
+{% load static %}
+
 {% block style %}
-    {# insert css stylings specific to page here #}
+    .nav{
+        display: inline-block;
+        width: 100%;
+        padding: 1%;
+    }
+    .btn-outline-secondary{
+        float: right;
+        margin: 0.5vw;
+    }
+    .btn-outline-primary {
+        float: right;
+        margin: 0.5vw;
+    }
+    .logo{
+        display: block;
+        height: 56px;
+        width: auto;
+        float: left;
+    }
+    .boxes{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .add {
+        float: right;
+    }
+    .date {
+        float: left;
+    }
+    .table {
+        margin-bottom: 50px;
+    }
+    @media screen and (max-width: 630px){
+        .btn-outline-secondary{
+            width: 100%;
+        }
+        .btn-outline-primary {
+            width: 100%;
+        }
+        .logo-div {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.5vw;
+        }
+        .box1-img{
+            float: none;
+            margin-right: 0;
+            justify-content: center;
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+        .box2-img{
+            float: none;
+            margin-left: 0;
+            justify-content: center;
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+    }
 {% endblock style %}
+
 {% block body %}
-    <h1>Food Tracker</h1>
+    <div class="nav">
+        <div class="logo-div">
+            <a href={% url 'app:home' %}>
+                <img src="{% static 'logo.png' %}" class="logo">
+            </a>
+        </div>
+        <a href={% url 'app:login' %}>
+            <Button class="btn btn-outline-secondary">Log In</Button>
+        </a>
+        <a href={% url 'app:results' %}>
+            <Button class="btn btn-outline-secondary">Results</Button>
+        </a>
+        <a href={% url 'app:foodtracker' %}>
+            <Button class="btn btn-outline-primary">Food Tracker</Button>
+        </a>
+        <a href={% url 'app:exerciselog' %}>
+            <Button class="btn btn-outline-secondary">Exercise Log</Button>
+        </a>
+        <a href={% url 'app:exercises' %}>
+            <Button class="btn btn-outline-secondary">Exercises</Button>
+        </a>
+    </div>
+
+    <div class ="boxes">
+       {% for date, foods in storage.items %}
+            <div class="date">
+                <h2>{{ date }}</h2>
+            </div>
+            <div class="add">
+                <button class="btn btn-outline-danger">Add</button>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <th style="text-align: center" scope="col">Time</th>
+                    <th style="text-align: center" scope="col">Description</th>
+                    <th style="text-align: center" scope="col">Calories</th>
+                </thead>
+                <tbody>
+                    {% for f in foods %}
+                        <tr>
+                            <td style="text-align: center">{{ f.time }}</td>
+                            <td style="text-align: center">{{ f.description }}</td>
+                            <td style="text-align: center">{{ f.calories }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <!-- <tfoot>
+                    <tr>
+                        <th style="text-align: center" colspan="2">Total Calories:</th>
+                        <th style="text-align: center">{{ d.total_calories }}</th>
+                    </tr>
+                </tfoot> -->
+            </table>
+       {% endfor %}
+
+
+        <!-- {% for d in data %}
+            <div class="date">
+                <h2>{{ d.date }}</h2>
+            </div>
+            <div class="add">
+                <button class="btn btn-outline-danger">Add</button> 
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <th style="text-align: center" scope="col">Time</th>
+                    <th style="text-align: center" scope="col">Description</th>
+                    <th style="text-align: center" scope="col">Calories</th>
+                </thead>
+                <tbody>
+                    {% for f in d.food %}
+                        <tr>
+                            <td style="text-align: center">{{ f.time }}</td>
+                            <td style="text-align: center">{{ f.description }}</td>
+                            <td style="text-align: center">{{ f.calories }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th style="text-align: center" colspan="2">Total Calories:</th>
+                        <th style="text-align: center">{{ d.total_calories }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        {% endfor %} -->
+    </div>
 {% endblock body %}

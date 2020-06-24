@@ -106,7 +106,7 @@
         height: 184px;
         width: 274px;
     }
-    @media screen and (max-width: 630px){
+    @media screen and (max-width: 780px){
         .btn-outline-secondary{
             width: 100%;
         }
@@ -136,6 +136,9 @@
         <div class="logo-div">
             <img src="{% static 'logo.png' %}" class="logo">
         </div>
+        <a href={% url 'app:signup' %}>
+            <Button class="btn btn-outline-secondary">Sign Up</Button>
+        </a>
         <a href={% url 'app:login' %}>
             <Button class="btn btn-outline-secondary">Log In</Button>
         </a>
@@ -150,6 +153,9 @@
         </a>
         <a href={% url 'app:exercises' %}>
             <Button class="btn btn-outline-secondary">Exercises</Button>
+        </a>
+        <a href={% url 'app:home' %}>
+            <Button class="btn btn-outline-secondary">Home</Button>
         </a>
     </div>
     <div class="header">

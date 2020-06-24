@@ -44,3 +44,10 @@ def login(request):
         'title': 'Login'
     }
     return render(request, 'app/login.html', context)
+
+
+def signup(request):
+    context = {
+        'title': 'Sign Up'
+    }
+    return render(request, 'app/signup.html', context)

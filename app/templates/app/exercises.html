@@ -56,6 +56,7 @@
 {% endblock style %}
 
 {% block body %}
+    
     <div class="boxes">
         <h1>Exercise Recommendation</h1>
         <div class="selection-box">
@@ -84,8 +85,8 @@
         </div>
         <div class="exercises-box">
             <h5 style="padding-left: 10px;">Exercise List:</h5>
-            {% for muscle_group in exercises %}
-                {% for exercise in muscle_group %}
+            {% for exercise in exercises %}
+                
                     <div class="exercise">                        
                         <img src="{{exercise.image}}" class="exercise-image">
                         <p class="exercise-text">
@@ -94,7 +95,7 @@
                             {{exercise.description}}
                         </p>                        
                     </div>
-                {% endfor %}
+                
             {% endfor %}
         </div>
     </div>

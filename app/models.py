@@ -3,11 +3,13 @@ from django.db import models
 
 class Exercise(models.Model):
     name = models.CharField(max_length=100)
-    code = models.IntegerField()
     group = models.CharField(max_length=100)
     group_code = models.IntegerField()
     description = models.TextField()
     image_link = models.TextField()
+
+    def __str__(self):
+        return self.name
 
 
 

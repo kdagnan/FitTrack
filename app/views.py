@@ -47,6 +47,9 @@ def login(request):
 
 
 def signup(request):
+    if request.method == "POST":
+        return redirect("app:home")
+
     context = {
         'title': 'Sign Up'
     }

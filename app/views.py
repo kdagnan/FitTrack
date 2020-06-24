@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Exercise
-from app.mockData import mockExercises
+#from app.mockData import mockExercises
 
 # Create your views here.
 def home(request):
@@ -11,11 +11,11 @@ def home(request):
     return render(request, 'app/home.html', context)
 
 
-def exercises(request):
+def exercises(request, exercises_id=0):
     context = {
-        #'exercises': mockExercises.exercise_list,
-        'exercises': Exercise.objects.all(),
-        'title': 'Exercises'
+        'exercises': Exercise.objects.filter(group_code=exercises_id),
+        'title': 'Exercises',
+        'exercises_id': exercises_id,
     }
     return render(request, 'app/exercises.html', context)
 

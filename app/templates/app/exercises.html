@@ -86,16 +86,14 @@
         <div class="exercises-box">
             <h5 style="padding-left: 10px;">Exercise List:</h5>
             {% for exercise in exercises %}
-                
-                    <div class="exercise">                        
-                        <img src="{{exercise.image}}" class="exercise-image">
-                        <p class="exercise-text">
-                            <strong>{{exercise.name}}</strong></br>
-                            <em style="font-size: 80%;">Muscle: {{exercise.group}}</em></br>
-                            {{exercise.description}}
-                        </p>                        
-                    </div>
-                
+                <div class="exercise">                        
+                    <img src="{{exercise.image_link}}" class="exercise-image">
+                    <p class="exercise-text">
+                        <strong>{{exercise.name}}</strong></br>
+                        <em style="font-size: 80%;">Muscle: {{exercise.group}}</em></br>
+                        {{exercise.description}}
+                    </p>                        
+                </div>
             {% endfor %}
         </div>
     </div>

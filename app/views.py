@@ -11,11 +11,17 @@ def home(request):
     return render(request, 'app/home.html', context)
 
 
-def exercises(request, exercises_id=0):
+def exercises(request, active_exercises=1234):
+    master_list = []
+
+    for x in str(active_exercises):
+        group = Exercise.objects.filter(group_code=int(x))
+        master_list.extend(group)
+
     context = {
-        'exercises': Exercise.objects.filter(group_code=exercises_id),
+        'exercises': master_list,
         'title': 'Exercises',
-        'exercises_id': exercises_id,
+        'exercises_id': active_exercises,
     }
     return render(request, 'app/exercises.html', context)
 

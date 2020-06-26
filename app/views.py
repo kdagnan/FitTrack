@@ -36,79 +36,50 @@ def exerciselog(request):
     return render(request, 'app/exerciselog.html', context)
 
 # Placeholder data
-food_list_old = [
-    {
-        'date': date.today(),
-        'food': [
-            {
-                'time': '1:00',
-                'description': 'ham sandwich',
-                'calories': 500
-            },
-            {
-                'time': '14:05',
-                'description': 'coke',
-                'calories': 360
-            }
-        ]
-    },
-    {
-        'date': date.today() - timedelta(days=1),
-        'food': [
-            {
-                'time': '14:00',
-                'description': 'ice cream',
-                'calories': 1000
-            },
-            {
-                'time': '11:50',
-                'description': 'peanut butter',
-                'calories': 360
-            }
-        ]
-    }
-]
-
 food_list = [
     {
+        'datetime': datetime.now(),
         'date': datetime.now().strftime('%-m/%-d/%y'),
         'time': datetime.now().time().strftime('%H:%M'),
         'description': 'ham sandwich',
         'calories': 500
     },
     {
+        'datetime': datetime.now(),
         'date': datetime.now().strftime('%-m/%-d/%y'),
         'time': datetime.now().time().strftime('%H:%M'),
         'description': 'coke',
         'calories': 360
     },
     {
+        'datetime': datetime.now(),
         'date': (datetime.now() - timedelta(days = 1)).date().strftime('%-m/%-d/%y'),
         'time': datetime.now().time().strftime('%H:%M'),
         'description': 'ice cream',
         'calories': 1000
+    },
+    {
+        'datetime': datetime.now(),
+        'date': (datetime.now() - timedelta(days = 5)).date().strftime('%-m/%-d/%y'),
+        'time': datetime.now().time().strftime('%H:%M'),
+        'description': 'oatmeal',
+        'calories': 200
     }
 ]
 
 def foodtracker(request):
-    for d in food_list_old:
-        sum = 0
-        for f in d['food']:
-            sum = sum + f['calories']
-        d.update({"total_calories": sum})
-    
-    storage = {}
+    data = {}
     for d in food_list:
-        if d['date'] in storage:
-            storage[d['date']].append(d)
+        if d['date'] in data:
+            data[d['date']].append(d)
         else:
-            storage[d['date']] = [d]
-
+            data[d['date']] = [d]
+    
+    # TODO: Get totals
     context = {
         'title': 'Food Tracker',
-        'data': food_list_old,
-        'new_data': food_list,
-        'storage': storage
+        'data': data,
+        'test_cond': True
     }
     return render(request, 'app/foodtracker.html', context)
 

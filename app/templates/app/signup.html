@@ -12,8 +12,10 @@
                         <img src="{% static 'user.png' %}" class="img">
                     </span>
                 </div>
-                <input class="form-control" placeholder="First Name" required>
-                <input class="form-control" placeholder="Last Name" required>
+               {# <input class="form-control" placeholder="First Name"> #}
+                {# <input class="form-control" placeholder="Last Name"> #}
+                {{ form.first_name }}
+                {{ form.last_name }}
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -21,7 +23,8 @@
                         <img src="{% static 'group.png' %}" class="img">
                     </span>
                 </div>
-                <input class="form-control" placeholder="Username" required>
+                {#<input class="form-control" placeholder="Username">#}
+                {{ form.username }}
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -29,7 +32,8 @@
                         <img src="{% static 'mail.png' %}" class="img">
                     </span>
                 </div>
-                <input class="form-control" placeholder="Email" required>
+                {# <input class="form-control" placeholder="Email"> #}
+                {{ form.email }}
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -37,7 +41,17 @@
                         <img src="{% static 'password.png' %}" class="img">
                     </span>
                 </div>
-                <input class="form-control" placeholder="Password" type="password" required>
+                {# <input class="form-control" placeholder="Password" type="password"> #}
+                {{ form.password1 }}
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <img src="{% static 'tick.png' %}" class="img">
+                    </span>
+                </div>
+                {# <input class="form-control" placeholder="Confirm Password" type="password"> #}
+                {{ form.password2 }}
             </div>
             <Button class="btn btn-secondary" type="submit">Sign Up</Button>
         </form>

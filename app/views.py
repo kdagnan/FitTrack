@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from app.mockData import mockExercises
+from . import forms
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 def home(request):
@@ -39,7 +41,7 @@ def results(request):
     return render(request, 'app/results.html', context)
 
 
-def login(request):
+def login_view(request):
     context = {
         'title': 'Login'
     }
@@ -48,9 +50,15 @@ def login(request):
 
 def signup(request):
     if request.method == "POST":
-        return redirect("app:home")
+        form = forms.UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app:login')
+    else:
+        form = forms.UserRegistrationForm()
 
     context = {
-        'title': 'Sign Up'
+        'title': 'Sign Up',
+        'form': form
     }
     return render(request, 'app/signup.html', context)

@@ -2,16 +2,18 @@
 {% load static %}
 {% block body %}
     <div class="window">
-        <form class="shadow bg-white rounded">
+        <form class="shadow bg-white rounded" method="POST">
+            {% csrf_token %}
             <img src="{% static 'logo.png' %}" class="logo">
             <h1 class="text">Log In</h1>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
-                        <img src="{% static 'mail.png' %}" class="img">
+                        <img src="{% static 'user.png' %}" class="img">
                     </span>
                 </div>
-                <input class="form-control" placeholder="Email" required>
+                {# <input class="form-control" placeholder="Email" required> #}
+                {{ form.username }}
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -19,9 +21,10 @@
                         <img src="{% static 'password.png' %}" class="img">
                     </span>
                 </div>
-                <input class="form-control" placeholder="Password" type="password" required>
+                {# <input class="form-control" placeholder="Password" type="password" required> #}
+                {{ form.password }}
             </div>
-            <Button class="btn btn-secondary">Sign In</Button>
+            <Button class="btn btn-secondary" type="submit">Sign In</Button>
         </form>
     </div>
 {% endblock body %}

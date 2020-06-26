@@ -44,7 +44,7 @@
         float: right;
         width: 33%;
     }
-    .btn-outline-secondary{
+    .btn-outline-primary{
         float: left;
         margin: 0.5vw;
         width: 95%;
@@ -63,22 +63,58 @@
             <h5 style="padding-left: 10px;">Select a muscle from the list below:</h5>
             <div class="muscle-container">
                 <div class="vertical-container">
-                    <Button class="btn btn-outline-secondary">Hips</Button>
-                    <Button class="btn btn-outline-secondary">Buttocks</Button>
-                    <Button class="btn btn-outline-secondary">Hamstrings</Button>
-                    <Button class="btn btn-outline-secondary">Calves</Button>
+                    <form action='9' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button9_class}}">Hips</Button>  
+                    </form>
+                    <form action='10' method='POST'>
+                        {% csrf_token %}                  
+                        <Button class="{{classes.button10_class}}">Buttocks</Button>
+                    </form>
+                    <form action='11' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button11_class}}">Hamstrings</Button>
+                    </form>
+                    <form action='12' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button12_class}}">Calves</Button>
+                    </form>
                 </div>
                 <div class="vertical-container">
-                    <Button class="btn btn-outline-secondary">Shoulders</Button>
-                    <Button class="btn btn-outline-secondary">Triceps</Button>
-                    <Button class="btn btn-outline-secondary">Biceps</Button>
-                    <Button class="btn btn-outline-secondary">Forearms</Button>                    
+                    <form action='5' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button5_class}}">Shoulders</Button>
+                    </form>
+                    <form action='6' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button6_class}}">Triceps</Button>
+                    </form>
+                    <form action='7' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button7_class}}">Biceps</Button>
+                    </form>
+                    <form action='8' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button8_class}}">Forearms</Button> 
+                </form>                   
                 </div>
                 <div class="vertical-container">
-                    <Button class="btn btn-outline-secondary">Chest</Button>
-                    <Button class="btn btn-outline-secondary">Back</Button>
-                    <Button class="btn btn-outline-secondary">Abs</Button>
-                    <Button class="btn btn-outline-secondary">Trapezius</Button>
+                    <form action='1' method='POST'>
+                        {% csrf_token %}
+                        <Button name='1' class="{{classes.button1_class}}">Chest</Button>
+                    </form>
+                    <form action='2' method='POST'>
+                        {% csrf_token %}
+                        <button name='2' class="{{classes.button2_class}}">Back</Button>
+                    </form>
+                    <form action='3' method='POST'>
+                        {% csrf_token %}
+                        <Button name='3' class="{{classes.button3_class}}">Abs</Button>
+                    </form>
+                    <form action='4' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button4_class}}">Trapezius</Button>
+                    </form>
                 </div>
             </div>
             <img src="{%  static 'bodyDiagram/bodyDiagram.png' %}" class="body-map">
@@ -87,7 +123,7 @@
             <h5 style="padding-left: 10px;">Exercise List:</h5>
             <h5>{{active_exercises}}</h5>
             {% for exercise in exercises %}
-                <div class="exercise">                        
+                <div class="exercise">                     
                     <img src="{{exercise.image_link}}" class="exercise-image">
                     <p class="exercise-text">
                         <strong>{{exercise.name}}</strong></br>

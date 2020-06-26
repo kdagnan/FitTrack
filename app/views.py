@@ -1,7 +1,12 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Exercise
-#from app.mockData import mockExercises
+
+def button_class(active_exercise, button):
+    if (active_exercise ==  button):
+        return 'btn btn-outline-primary btn-sm active'
+    else:
+        return 'btn btn-outline-primary btn-sm'
 
 # Create your views here.
 def home(request):
@@ -11,18 +16,29 @@ def home(request):
     return render(request, 'app/home.html', context)
 
 
-def exercises(request, active_exercises=1234):
-    master_list = []
-
-    for x in str(active_exercises):
-        group = Exercise.objects.filter(group_code=int(x))
-        master_list.extend(group)
+def exercises(request, active_exercises=0):
+    classes = {
+        'button1_class': button_class(active_exercises, 1),
+        'button2_class': button_class(active_exercises, 2),
+        'button3_class': button_class(active_exercises, 3),
+        'button4_class': button_class(active_exercises, 4),
+        'button5_class': button_class(active_exercises, 5),
+        'button6_class': button_class(active_exercises, 6),
+        'button7_class': button_class(active_exercises, 7),
+        'button8_class': button_class(active_exercises, 8),
+        'button9_class': button_class(active_exercises, 9),
+        'button10_class': button_class(active_exercises, 10),
+        'button11_class': button_class(active_exercises, 11),
+        'button12_class': button_class(active_exercises, 12),
+    }
 
     context = {
-        'exercises': master_list,
+        'exercises': Exercise.objects.filter(group_code=active_exercises),
         'title': 'Exercises',
-        'exercises_id': active_exercises,
+        'active_exercises': active_exercises,
+        'classes': classes
     }
+
     return render(request, 'app/exercises.html', context)
 
 

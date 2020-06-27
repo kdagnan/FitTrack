@@ -32,11 +32,14 @@ def exercises(request, active_exercises=0):
         'button12_class': button_class(active_exercises, 12),
     }
 
+    body_diagram = "/static/bodyDiagram/bodyDiagram" + str(active_exercises) + ".png"
+
     context = {
         'exercises': Exercise.objects.filter(group_code=active_exercises),
         'title': 'Exercises',
         'active_exercises': active_exercises,
-        'classes': classes
+        'classes': classes,
+        'body_diagram': body_diagram,
     }
 
     return render(request, 'app/exercises.html', context)

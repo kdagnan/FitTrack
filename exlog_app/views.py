@@ -1,27 +1,7 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 from django.contrib.auth.models import User
-from exlog_app.models import ExerciseLog, Exercise
-
-exlog_test_data = [
-    {
-        'exercise' : 'deadlift',
-        'sets' : '4',
-        'reps' : '8',
-        'weight' : '135'
-    },
-    {
-        'exercise' : 'squat',
-        'sets' : '4',
-        'reps' : '8',
-        'weight' : '130'
-    },
-        {
-        'exercise' : 'leg press',
-        'sets' : '4',
-        'reps' : '10',
-        'weight' : '160'
-    }
-]
+from .models import ExerciseLog, Exercise
 
 # Create your views here.
 def home(request):
@@ -32,8 +12,13 @@ def home(request):
         'exercises' : Exercise.objects.all(),
         'title' : 'Exercise Log',
         'user_name' : User.objects.first().username,
+        'today_workout' : True,
     }
     return render(request, 'exlog_app/home.html', context)
+
+class ExlogListView(ListView):
+    model = ExerciseLog
+    template_name = "exlog/"
 
 def template_test(request):
     return render(request, 'exlog_app/home.html', {'title' : 'TESTING'})

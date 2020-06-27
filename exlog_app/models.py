@@ -12,6 +12,8 @@ class ExerciseLog(models.Model):
 
 class Exercise(models.Model):
     exercise_log = models.ForeignKey(ExerciseLog, on_delete=models.CASCADE)
+
+    # In the future, exercise should ideally be a foreign key which can be tied together to track progress
     exercise_name = models.CharField(max_length=32)
     num_sets = models.IntegerField()
     num_reps = models.IntegerField()

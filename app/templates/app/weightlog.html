@@ -1,0 +1,32 @@
+{% extends "app/base.html" %}
+{% block style %}
+    {# insert css stylings specific to page here #}
+{% endblock style %}
+{% block body %}
+    <div class="container">
+
+        <h1>Weight History</h1>
+        <form class="form-inline" action="" method="post">          
+            {% csrf_token %}
+            {{ form }}
+          
+            <button type="submit" class="btn btn-primary mb-2">Log</button>
+        </form>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for weight in weight_logs %}
+                    <tr>
+                        <th scope="row">{{weight.timestamp}}</th>
+                        <td>{{weight.weight}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}

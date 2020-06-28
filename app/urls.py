@@ -9,6 +9,7 @@ urlpatterns = [
     path('exercises/', views.exercises, name='exercises'),
     path('exerciselog/', views.exerciselog, name='exerciselog'),
     path('foodtracker/', views.foodtracker, name='foodtracker'),
+    path('weightlog/', views.weightlog, name='weightlog'),
     path('results/', views.results, name='results'),
     path('login/', django_views.LoginView.as_view(template_name='app/login.html',
                                                   authentication_form=forms.UserAuthenticationForm), name='login'),

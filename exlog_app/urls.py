@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import ExlogListView
+from .views import ExlogDetailView
 from . import views
 
 urlpatterns = [
     path('', views.home, name='exlog_home'),
-    path('listview/', ExlogListView.as_view(), name='exlog_listview'),
+    path('log/<int:pk>', ExlogDetailView.as_view(), name='exlog-detail')
 ]

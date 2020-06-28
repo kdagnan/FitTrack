@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import DetailView
 from django.contrib.auth.models import User
 from .models import ExerciseLog, Exercise
 
@@ -14,10 +14,8 @@ def home(request):
     return render(request, 'exlog_app/home.html', context)
 
 # Exlog List View too complicated using class based view
-class ExlogListView(ListView):
+class ExlogDetailView(DetailView):
     model = ExerciseLog
-    template_name = "exlog_app/home.html"
-    context_object_name = "exercise_logs"
-    queryset = ExerciseLog.objects.all()
+    context_object_name = "exlog"
 
 

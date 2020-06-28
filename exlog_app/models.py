@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # ExerciseLog contains many exercises (acts like a list of exercises)
 class ExerciseLog(models.Model):
@@ -9,6 +10,9 @@ class ExerciseLog(models.Model):
 
     def __str__(self):
         return str(self.user) + "\t" + str(self.date)
+    
+    def get_absolute_url(self):
+        return reverse('exlog-detail', kwargs={'pk': self.pk})
 
 class Exercise(models.Model):
     exercise_log = models.ForeignKey(ExerciseLog, on_delete=models.CASCADE)

@@ -1,28 +1,22 @@
 {% extends "exlog_app/base.html" %}
 {% load static %}
 
-{% block stylesheet%}
-<link rel="stylesheet" type="text/css" href="{% static 'exlog_app/home.css' %}">
-{% endblock stylesheet%}
-
 {% block content%}
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
             <h2 class="mr-2" href="#">{{ exlog.date | date:"F d, Y"}} Workout</h2>
         </div>
+
         <ul>
             <!-- Terribly unoptimized but it works for now -->
             {% for exercise in exercises%}
-            {% if exercise.exercise_log == exlog %}
             <li class="unordered-list_item">
-                detail: 
                 {{ exercise.exercise_name }}:&nbsp;
                 {{ exercise.num_sets }}x
                 {{ exercise.num_reps }}&nbsp;
                 {{ exercise.exercise_weight }} lbs
             </li>
-            {% endif %}
             {% endfor %}
         </ul>
 

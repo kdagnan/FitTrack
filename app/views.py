@@ -33,11 +33,13 @@ def exercises(request, active_exercises=0):
     }
 
     body_diagram = "/static/bodyDiagram/bodyDiagram" + str(active_exercises) + ".png"
+    exercise_list = Exercise.objects.filter(group_code=active_exercises)
 
     context = {
-        'exercises': Exercise.objects.filter(group_code=active_exercises),
+        'exercises': exercise_list,
         'title': 'Exercises',
         'active_exercises': active_exercises,
+        'active_exercise': exercise_list[0].group,
         'classes': classes,
         'body_diagram': body_diagram,
     }

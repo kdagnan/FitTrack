@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+<<<<<<< HEAD
 
 from .models import WeightLog
 from .forms import WeightLogForm
@@ -14,6 +15,11 @@ exercise_list = [
         'description': 'An exercise involving raising oneself with both arms by pulling up against a horizontal bar fixed above the head.'
     }
 ]
+=======
+from app.mockData import mockExercises
+from . import forms
+from django.contrib.auth import login, authenticate
+>>>>>>> development
 
 # Create your views here.
 def home(request):
@@ -25,7 +31,7 @@ def home(request):
 
 def exercises(request):
     context = {
-        'exercises': exercise_list,
+        'exercises': mockExercises.exercise_list,
         'title': 'Exercises'
     }
     return render(request, 'app/exercises.html', context)
@@ -69,8 +75,24 @@ def results(request):
     return render(request, 'app/results.html', context)
 
 
-def login(request):
+def login_view(request):
     context = {
         'title': 'Login'
     }
     return render(request, 'app/login.html', context)
+
+
+def signup(request):
+    if request.method == "POST":
+        form = forms.UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app:login')
+    else:
+        form = forms.UserRegistrationForm()
+
+    context = {
+        'title': 'Sign Up',
+        'form': form
+    }
+    return render(request, 'app/signup.html', context)

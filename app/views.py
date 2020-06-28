@@ -1,6 +1,11 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from datetime import date, datetime, timedelta
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+
+from .models import Food_Entry
+from .forms import FoodForm
 
 exercise_list = [
     {
@@ -35,51 +40,34 @@ def exerciselog(request):
     }
     return render(request, 'app/exerciselog.html', context)
 
-# Placeholder data
-food_list = [
-    {
-        'datetime': datetime.now(),
-        'date': datetime.now().strftime('%-m/%-d/%y'),
-        'time': datetime.now().time().strftime('%H:%M'),
-        'description': 'ham sandwich',
-        'calories': 500
-    },
-    {
-        'datetime': datetime.now(),
-        'date': datetime.now().strftime('%-m/%-d/%y'),
-        'time': datetime.now().time().strftime('%H:%M'),
-        'description': 'coke',
-        'calories': 360
-    },
-    {
-        'datetime': datetime.now(),
-        'date': (datetime.now() - timedelta(days = 1)).date().strftime('%-m/%-d/%y'),
-        'time': datetime.now().time().strftime('%H:%M'),
-        'description': 'ice cream',
-        'calories': 1000
-    },
-    {
-        'datetime': datetime.now(),
-        'date': (datetime.now() - timedelta(days = 5)).date().strftime('%-m/%-d/%y'),
-        'time': datetime.now().time().strftime('%H:%M'),
-        'description': 'oatmeal',
-        'calories': 200
-    }
-]
-
+@login_required
 def foodtracker(request):
+    if request.method == 'POST':
+        form_sub = FoodForm(request.POST)
+        if form_sub.is_valid():
+            f = Food_Entry(date=form_sub.cleaned_data['date'], description=form_sub.cleaned_data['description'], calories=form_sub.cleaned_data['calories'], user=request.user)
+            f.save()
+    form = FoodForm()
+    entries = Food_Entry.objects.filter(user=request.user).order_by('-date')
     data = {}
-    for d in food_list:
-        if d['date'] in data:
-            data[d['date']].append(d)
+    for e in entries:
+        if e.date in data:
+            data[e.date].append(e)
         else:
-            data[d['date']] = [d]
-    
-    # TODO: Get totals
+            data[e.date] = [e]
+    total_calories = {}
+    for date in data:
+        sum = 0
+        for foods in data[date]:
+            sum = sum + foods.calories
+        total_calories[date] = sum
     context = {
         'title': 'Food Tracker',
         'data': data,
-        'test_cond': True
+        'form': form,
+        'total_calories': total_calories,
+        'today_date': timezone.now().date(),
+        'yesterday_date': timezone.now().date() - timedelta(days=1)
     }
     return render(request, 'app/foodtracker.html', context)
 

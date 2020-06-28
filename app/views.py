@@ -1,9 +1,11 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-<<<<<<< HEAD
-
 from .models import WeightLog
 from .forms import WeightLogForm
+from app.mockData import mockExercises
+from . import forms
+from django.contrib.auth import login, authenticate
+
 
 exercise_list = [
     {
@@ -15,11 +17,7 @@ exercise_list = [
         'description': 'An exercise involving raising oneself with both arms by pulling up against a horizontal bar fixed above the head.'
     }
 ]
-=======
-from app.mockData import mockExercises
-from . import forms
-from django.contrib.auth import login, authenticate
->>>>>>> development
+
 
 # Create your views here.
 def home(request):
@@ -50,6 +48,7 @@ def foodtracker(request):
     }
     return render(request, 'app/foodtracker.html', context)
 
+
 def weightlog(request):
     form = WeightLogForm()
     context = {
@@ -65,7 +64,6 @@ def weightlog(request):
             return render(request, 'app/weightlog.html', context)
     else: 
         return render(request, 'app/weightlog.html', context)
-
 
 
 def results(request):

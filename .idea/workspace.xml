@@ -27,16 +27,15 @@
   <component name="ChangeListManager">
     <list default="true" id="e3544a18-60ca-4d1a-9b36-94b65986a1d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FitTrack/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FitTrack/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/app/authbase.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/authbase.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/app/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/app/exercises.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/exercises.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/app/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/app/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/app/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asgi.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wsgi.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,6 +124,7 @@
       <workItem from="1591997059343" duration="6701000" />
       <workItem from="1592293251424" duration="25351000" />
       <workItem from="1592804749524" duration="26264000" />
+      <workItem from="1593318201510" duration="1571000" />
     </task>
     <servers />
   </component>
@@ -141,12 +141,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="739" y="295" key="FileChooserDialogImpl" timestamp="1591852965826">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="739" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1591852965826" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1593318216290">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1080@0.0.1920.1080" timestamp="1593318216290" />
     <state x="461" y="185" key="SettingsEditor" timestamp="1591837043877">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

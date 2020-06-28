@@ -1,18 +1,6 @@
 {%  extends "app/base.html" %}
 {% load static %}
 {% block style %}
-    .nav{
-        display: inline-block;
-        width: 100%;
-        padding: 1%;
-    }
-    .logo{
-        margin: 0.5vw;
-    }
-    .btn-outline-secondary{
-        float: right;
-        margin: 0.5vw;
-    }
     .title{
         font-size: 5vmax;
     }
@@ -96,25 +84,11 @@
         width: 100%;
         max-width: 100%;
     }
-    .logo{
-        display: block;
-        height: 56px;
-        width: auto;
-        float: left;
-    }
     .box-img{
         height: 184px;
         width: 274px;
     }
-    @media screen and (max-width: 630px){
-        .btn-outline-secondary{
-            width: 100%;
-        }
-        .logo-div {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0.5vw;
-        }
+    @media screen and (max-width: 780px){
         .box1-img{
             float: none;
             margin-right: 0;
@@ -132,26 +106,6 @@
     }
 {% endblock style %}
 {% block body %}
-    <div class="nav">
-        <div class="logo-div">
-            <img src="{% static 'logo.png' %}" class="logo">
-        </div>
-        <a href={% url 'app:login' %}>
-            <Button class="btn btn-outline-secondary">Log In</Button>
-        </a>
-        <a href={% url 'app:results' %}>
-            <Button class="btn btn-outline-secondary">Results</Button>
-        </a>
-        <a href={% url 'app:foodtracker' %}>
-            <Button class="btn btn-outline-secondary">Food Tracker</Button>
-        </a>
-        <a href="./exlog/">
-            <Button class="btn btn-outline-secondary">Exercise Log</Button>
-        </a>
-        <a href={% url 'app:exercises' %}>
-            <Button class="btn btn-outline-secondary">Exercises</Button>
-        </a>
-    </div>
     <div class="header">
         <img src="{% static 'fitness.jpg' %}" class="header-img">
         <div class="header-text">

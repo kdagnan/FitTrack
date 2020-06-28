@@ -27,7 +27,7 @@
             float: right;
             margin: 0.5vw;
         }
-        @media screen and (max-width: 780px){
+        @media screen and (max-width: 910px){
             .nav-btn{
                 width: 100%;
             }
@@ -51,6 +51,21 @@
             <a href={% url 'app:logout' %}>
                 <Button class="btn btn-outline-secondary nav-btn">Logout</Button>
             </a>
+            <a href={% url 'app:results' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Results</Button>
+            </a>
+            <a href={% url 'app:foodtracker' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Food Tracker</Button>
+            </a>
+            <a href={% url 'app:weightlog' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Weight Log</Button>
+            </a>
+            <a href={% url 'exlog_home' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Exercise Log</Button>
+            </a>
+            <a href={% url 'app:exercises' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Exercises</Button>
+            </a>
         {% else %}
             <a href={% url 'app:signup' %}>
                 <Button class="btn btn-outline-secondary nav-btn">Sign Up</Button>
@@ -59,21 +74,6 @@
                 <Button class="btn btn-outline-secondary nav-btn">Log In</Button>
             </a>
         {% endif %}
-        <a href={% url 'app:results' %}>
-            <Button class="btn btn-outline-secondary nav-btn">Results</Button>
-        </a>
-        <a href={% url 'app:foodtracker' %}>
-            <Button class="btn btn-outline-secondary nav-btn">Food Tracker</Button>
-        </a>
-        <a href={% url 'app:weightlog' %}>
-            <Button class="btn btn-outline-secondary nav-btn">Weight Log</Button>
-        </a>
-        <a href={% url 'exlog_home' %}>
-            <Button class="btn btn-outline-secondary nav-btn">Exercise Log</Button>
-        </a>
-        <a href={% url 'app:exercises' %}>
-            <Button class="btn btn-outline-secondary nav-btn">Exercises</Button>
-        </a>
         <a href={% url 'app:home' %}>
             <Button class="btn btn-outline-secondary nav-btn">Home</Button>
         </a>

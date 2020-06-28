@@ -6,20 +6,18 @@ from .models import ExerciseLog, Exercise
 # Create your views here.
 def home(request):
     context = {
-
-        # By default, the home page loads all the workout logs in existence
-        'exercise_logs' : ExerciseLog.objects.all(),
+        'exercise_logs' : ExerciseLog.objects.filter(user=request.user.id),
         'exercises' : Exercise.objects.all(),
         'title' : 'Exercise Log',
-        'user_name' : User.objects.first().username,
-        'today_workout' : True,
+        'user_id' : request.user.id,
     }
     return render(request, 'exlog_app/home.html', context)
 
+# Exlog List View too complicated using class based view
 class ExlogListView(ListView):
     model = ExerciseLog
-    template_name = "exlog/"
+    template_name = "exlog_app/home.html"
+    context_object_name = "exercise_logs"
+    queryset = ExerciseLog.objects.all()
 
-def template_test(request):
-    return render(request, 'exlog_app/home.html', {'title' : 'TESTING'})
 

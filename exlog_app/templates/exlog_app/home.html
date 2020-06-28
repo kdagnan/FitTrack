@@ -2,37 +2,33 @@
 {% load static %}
 
 {% block stylesheet%}
-    <link rel="stylesheet" type="text/css" href="{% static 'exlog_app/home.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'exlog_app/home.css' %}">
 {% endblock stylesheet%}
 
 {% block content%}
 
-    {% for exlog in exercise_logs %}
-        <article class="media content-section">
-            <div class="media-body">
-                <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ exlog.date | date:"F d, Y"}}</a>
-                    <small class="text-muted">{{ exlog.user }}</small>
-                </div>
-                    <ul>
-                        <!-- Terribly unoptimized but it works for now -->
-                        {% for exercise in exercises%}
-                            {% if exercise.exercise_log == exlog %}
-                                <li class="unordered-list_item"> 
-                                    {{ exercise.exercise_name }}:&nbsp;
-                                    {{ exercise.num_sets }}x
-                                    {{ exercise.num_reps }}&nbsp;
-                                    {{ exercise.exercise_weight }} lbs
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                <!--
-                    <h2><a class="article-title" href="#">{{ exercise.exercise_name }}</a></h2>
-                    <p class="article-content">{{ exercise.exercise_weight }}</p>
-                -->
+{% for exlog in exercise_logs %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ exlog.date | date:"F d, Y"}}</a>
+            <small class="text-muted">{{ exlog.user }}</small>
+        </div>
+        <ul>
+            <!-- Terribly unoptimized but it works for now -->
+            {% for exercise in exercises%}
+            {% if exercise.exercise_log == exlog %}
+            <li class="unordered-list_item">
+                {{ exercise.exercise_name }}:&nbsp;
+                {{ exercise.num_sets }}x
+                {{ exercise.num_reps }}&nbsp;
+                {{ exercise.exercise_weight }} lbs
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
 
-            </div>
-        </article>
-    {% endfor %}
+    </div>
+</article>
+{% endfor %}
 {% endblock content %}

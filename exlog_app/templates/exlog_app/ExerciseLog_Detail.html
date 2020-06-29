@@ -8,7 +8,6 @@
         <div class="article-metadata">
 
             <div class="row">
-
                 <div class="col-sm-8 col-12">
                     <h2 class="mt-1 mb-2">{{ exlog.date | date:"F d, Y"}} Workout</h2>
                 </div>
@@ -24,18 +23,27 @@
             </div>
         </div>
 
-            <ul>
-                <!-- Terribly unoptimized but it works for now -->
-                {% for exercise in exercises%}
-                <li class="unordered-list_item">
-                    {{ exercise.exercise_name }}:&nbsp;
-                    {{ exercise.num_sets }}x
-                    {{ exercise.num_reps }}&nbsp;
-                    {{ exercise.exercise_weight }} lbs
-                </li>
-                {% endfor %}
-            </ul>
+        <ul>
+            <!-- Passed in QuerySet only contains relevant Exercise objects-->
+            {% for exercise in exercises%}
+            <li class="unordered-list_item">
+                {{ exercise.exercise_name }}:&nbsp;
+                {{ exercise.num_sets }}x
+                {{ exercise.num_reps }}&nbsp;
+                {{ exercise.exercise_weight }} lbs
+            </li>
+            {% endfor %}
+        </ul>
 
+        <!-- If the current user is the owener of the Exercise Log, allow them to add Exercises-->
+        {% if exlog.user == user %}
+        <div class="row">
+            <div class="col-sm-4 col-12">
+                <a class="btn btn-success btn-ms mb-1" href="{% url 'exlog-add-exercise' exlog.id %}">Add Exercise</a>
+            </div>
         </div>
+        {% endif %}
+
+    </div>
 </article>
 {% endblock content %}

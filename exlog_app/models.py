@@ -25,5 +25,8 @@ class Exercise(models.Model):
     
     def __str__(self):
         return str(self.exercise_log) + "\t" + str(self.exercise_name) + "\t" + str(self.num_sets) + "x" + str(self.num_reps) + "\t" + str(self.exercise_weight)
+
+    def get_absolute_url(self):
+        return reverse('exlog-detail', kwargs={'pk': self.exercise_log.id})
     
 

@@ -73,4 +73,13 @@ class ExlogDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == exlog.user:
             return True
         return False
+
+# Class based view for Create
+class ExerciseCreateView(LoginRequiredMixin, CreateView):
+    model = Exercise
+    fields = ['exercise_name', 'num_sets', 'num_reps', 'exercise_weight']
+
+    def form_valid(self, form):
+        form.instance.exercise_log = ExerciseLog.objects.get(id=self.kwargs['pk'])
+        return super().form_valid(form)
         

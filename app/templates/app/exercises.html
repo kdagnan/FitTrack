@@ -8,13 +8,13 @@
     .selection-box{
         padding: 10px 0 10px 30px;
         float: right;
-        width: 40%;
+        width: 35%;
     }
     .exercises-box{
         padding: 10px 30px 10px 10px;
         border: 1px;
         float: left;
-        width: 60%;
+        width: 65%;
         height: 625px;
         overflow-y: scroll;
     }
@@ -26,12 +26,14 @@
         border-width: 1px;
         border-color: #6c757d;
         width: 100%;
+        height: auto;
     }
     .exercise-image{
-        width: 100px;
+        width: 150px;
         height: auto;
         float:left;
         padding: 10px;
+        margin-right: 50px;
     }
     .exercise-text{
         padding: 10px 10px 0px 10px;
@@ -44,10 +46,13 @@
         float: right;
         width: 33%;
     }
-    .muscle-btn{
+    .btn-outline-primary{
         float: left;
-        margin: 0.5vw;
+        margin: 0.2vw;
         width: 95%;
+        padding: .25rem .4rem;
+        font-size: .870rem;
+        line-height: 1.1;
     }
     .body-map{
         width: 100%;
@@ -56,45 +61,80 @@
 {% endblock style %}
 
 {% block body %}
+    
     <div class="boxes">
-        <h1>Exercise Recomendation</h1>
         <div class="selection-box">
             <h5 style="padding-left: 10px;">Select a muscle from the list below:</h5>
             <div class="muscle-container">
                 <div class="vertical-container">
-                    <Button class="btn btn-outline-secondary muscle-btn">Hips</Button>
-                    <Button class="btn btn-outline-secondary muscle-btn">Buttocks</Button>
-                    <Button class="btn btn-outline-secondary muscle-btn">Hamstrings</Button>
-                    <Button class="btn btn-outline-secondary muscle-btn">Calves</Button>
+                    <form action='117' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button9_class}}">Hips</Button>  
+                    </form>
+                    <form action='118' method='POST'>
+                        {% csrf_token %}                  
+                        <Button class="{{classes.button10_class}}">Buttocks</Button>
+                    </form>
+                    <form action='120' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button11_class}}">Hamstrings</Button>
+                    </form>
+                    <form action='121' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button12_class}}">Calves</Button>
+                    </form>
                 </div>
                 <div class="vertical-container">
-                    <Button class="btn btn-outline-secondary muscle-btn">Shoulders</Button>
-                    <Button class="btn btn-outline-secondary muscle-btn">Triceps</Button>
-                    <Button class="btn btn-outline-secondary muscle-btn">Biceps</Button>
-                    <Button class="btn btn-outline-secondary muscle-btn">Forearms</Button>
+                    <form action='111' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button5_class}}">Shoulders</Button>
+                    </form>
+                    <form action='112' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button6_class}}">Triceps</Button>
+                    </form>
+                    <form action='113' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button7_class}}">Biceps</Button>
+                    </form>
+                    <form action='114' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button8_class}}">Forearms</Button> 
+                </form>                   
                 </div>
                 <div class="vertical-container">
-                    <Button class="btn btn-outline-secondary muscle-btn">Chest</Button>
-                    <Button class="btn btn-outline-secondary muscle-btn">Back</Button>
-                    <Button class="btn btn-outline-secondary muscle-btn">Abs</Button>
-                    <Button class="btn btn-outline-secondary muscle-btn">Trapezius</Button>
+                    <form action='102' method='POST'>
+                        {% csrf_token %}
+                        <Button name='1' class="{{classes.button1_class}}">Chest</Button>
+                    </form>
+                    <form action='106' method='POST'>
+                        {% csrf_token %}
+                        <button name='2' class="{{classes.button2_class}}">Back</Button>
+                    </form>
+                    <form action='103' method='POST'>
+                        {% csrf_token %}
+                        <Button name='3' class="{{classes.button3_class}}">Abs</Button>
+                    </form>
+                    <form action='110' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button4_class}}">Trapezius</Button>
+                    </form>
                 </div>
             </div>
-            <img src="{%  static 'bodyDiagram/bodyDiagram.png' %}" class="body-map">
+            <img src="{{body_diagram}}" class="body-map">
         </div>
         <div class="exercises-box">
-            <h5 style="padding-left: 10px;">Exercise List:</h5>
-            {% for muscle_group in exercises %}
-                {% for exercise in muscle_group %}
-                    <div class="exercise">                        
-                        <img src="{{exercise.image}}" class="exercise-image">
-                        <p class="exercise-text">
-                            <strong>{{exercise.name}}</strong></br>
-                            <em style="font-size: 80%;">Muscle: {{exercise.group}}</em></br>
-                            {{exercise.description}}
-                        </p>                        
-                    </div>
-                {% endfor %}
+            <h5 style="padding-left: 10px;">Recommended exercises:</h5>
+            {% for exercise in exercises %}
+                <div class="exercise">                     
+                    <img src="/static/exerciseImages/{{exercise.image_link}}" class="exercise-image">
+                    <!--<img src="https://cdn1.iconfinder.com/data/icons/business-353/660/Weight_Lifting_Person_Exercise_lifting_person_weight-512.png" class="exercise-image">-->
+                    <p class="exercise-text">
+                        <strong>{{exercise.name}}</strong></br>
+                        <em style="font-size: 80%;">Muscle: {{exercise.group}}</em></br>
+                        {{exercise.description}}
+                    </p>                        
+                </div>
             {% endfor %}
         </div>
     </div>

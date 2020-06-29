@@ -1,5 +1,6 @@
 .vscode/
-app/__pycache__/
+db.sqlite3
+*/__pycache__/
 # Default ignored files
 /shelf/
 /workspace.xml

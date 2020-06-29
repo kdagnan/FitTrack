@@ -22,3 +22,7 @@ class UserAuthenticationForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
     password = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Password',
                                                              'type': 'password'}))
+
+
+class WeightLogForm(forms.Form):
+    weight = forms.CharField(label='Enter Weight', max_length=5)

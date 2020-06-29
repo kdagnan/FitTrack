@@ -26,13 +26,14 @@
         border-width: 1px;
         border-color: #6c757d;
         width: 100%;
-        height: 160px;
+        height: auto;
     }
     .exercise-image{
-        width: 170px;
+        width: 150px;
         height: auto;
         float:left;
         padding: 10px;
+        margin-right: 50px;
     }
     .exercise-text{
         padding: 10px 10px 0px 10px;
@@ -132,10 +133,7 @@
                     <p class="exercise-text">
                         <strong>{{exercise.name}}</strong></br>
                         <em style="font-size: 80%;">Muscle: {{exercise.group}}</em></br>
-                        <!--{{exercise.description}}-->
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        {{exercise.description}}
                     </p>                        
                 </div>
             {% endfor %}

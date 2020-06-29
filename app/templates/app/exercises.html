@@ -107,11 +107,11 @@
                         {% csrf_token %}
                         <Button name='1' class="{{classes.button1_class}}">Chest</Button>
                     </form>
-                    <form action='2' method='POST'>
+                    <form action='106' method='POST'>
                         {% csrf_token %}
                         <button name='2' class="{{classes.button2_class}}">Back</Button>
                     </form>
-                    <form action='3' method='POST'>
+                    <form action='103' method='POST'>
                         {% csrf_token %}
                         <Button name='3' class="{{classes.button3_class}}">Abs</Button>
                     </form>
@@ -125,11 +125,10 @@
         </div>
         <div class="exercises-box">
             <h5 style="padding-left: 10px;">Recommended exercises for {{active_exercise}}:</h5>
-            <h5>{{active_exercises}}</h5>
             {% for exercise in exercises %}
                 <div class="exercise">                     
-                    <!--<img src="{{exercise.image_link}}" class="exercise-image">-->
-                    <img src="https://cdn1.iconfinder.com/data/icons/business-353/660/Weight_Lifting_Person_Exercise_lifting_person_weight-512.png" class="exercise-image">
+                    <img src="/static/exerciseImages/{{exercise.image_link}}" class="exercise-image">
+                    <!--<img src="https://cdn1.iconfinder.com/data/icons/business-353/660/Weight_Lifting_Person_Exercise_lifting_person_weight-512.png" class="exercise-image">-->
                     <p class="exercise-text">
                         <strong>{{exercise.name}}</strong></br>
                         <em style="font-size: 80%;">Muscle: {{exercise.group}}</em></br>

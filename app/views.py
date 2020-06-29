@@ -38,7 +38,6 @@ def exercises(request, active_exercises=0):
     context = {
         'exercises': exercise_list,
         'title': 'Exercises',
-        'active_exercises': active_exercises,
         'active_exercise': exercise_list[0].group,
         'classes': classes,
         'body_diagram': body_diagram,

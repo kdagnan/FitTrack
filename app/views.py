@@ -10,7 +10,7 @@ from .models import WeightLog
 from .forms import WeightLogForm
 from . import forms
 from django.contrib.auth import login, authenticate
-
+import json, os
 
 def button_class(active_exercise, button):
     if active_exercise == button:
@@ -44,7 +44,16 @@ def exercises(request, active_exercises=0):
     }
 
     body_diagram = "/static/bodyDiagram/bodyDiagram" + str(active_exercises) + ".png"
-    exercise_list = Exercise.objects.filter(group_code=active_exercises)
+    #exercise_list = Exercise.objects.filter(group_code=active_exercises)
+
+    exercise_list = []
+
+    with open(os.path.dirname(os.path.realpath(__file__)) + '/Exercises.json') as f:
+        data = json.load(f)
+
+    for item in data:
+        if item["group_code"] == active_exercises:
+            exercise_list.append(item)
 
     context = {
         'exercises': exercise_list,
@@ -94,6 +103,7 @@ def foodtracker(request):
         'yesterday_date': timezone.now().date() - timedelta(days=1)
     }
     return render(request, 'app/foodtracker.html', context)
+
 
 def weighttracker(request):
     context = {

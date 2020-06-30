@@ -73,29 +73,6 @@
 {% endblock style %}
 
 {% block body %}
-    <div class="nav">
-        <div class="logo-div">
-            <a href={% url 'app:home' %}>
-                <img src="{% static 'logo.png' %}" class="logo">
-            </a>
-        </div>
-        <a href={% url 'app:login' %}>
-            <Button class="btn btn-outline-secondary">Log In</Button>
-        </a>
-        <a href={% url 'app:results' %}>
-            <Button class="btn btn-outline-secondary">Results</Button>
-        </a>
-        <a href={% url 'app:foodtracker' %}>
-            <Button class="btn btn-outline-primary">Food Tracker</Button>
-        </a>
-        <a href={% url 'app:exerciselog' %}>
-            <Button class="btn btn-outline-secondary">Exercise Log</Button>
-        </a>
-        <a href={% url 'app:exercises' %}>
-            <Button class="btn btn-outline-secondary">Exercises</Button>
-        </a>
-    </div>
-
     <div class="add-form">
         <form class="form-inline" action="" method="post">
             {% csrf_token %}

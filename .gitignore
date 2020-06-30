@@ -1,6 +1,8 @@
 .vscode/
 db.sqlite3
-*/__pycache__/
+FitTrack/__pycache__/
+app/__pycache__/
+app/migrations/__pycache__/
 # Default ignored files
 /shelf/
 /workspace.xml

@@ -1,4 +1,5 @@
 from django import forms
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
@@ -26,3 +27,9 @@ class UserAuthenticationForm(AuthenticationForm):
 
 class WeightLogForm(forms.Form):
     weight = forms.CharField(label='Enter Weight', max_length=5)
+
+
+class FoodForm(forms.Form):
+    date = forms.DateField(label="Date", input_formats=['%-m/%-d/%Y', '%m/%d/%Y'], initial=timezone.now().strftime('%-m/%-d/%Y'))
+    description = forms.CharField(label="Description", max_length=300)
+    calories = forms.IntegerField(label="Calories")

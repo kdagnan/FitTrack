@@ -11,11 +11,70 @@
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
+        .nav{
+            display: inline-block;
+            width: 100%;
+            padding: 1%;
+        }
+        .logo-header{
+            margin: 0.5vw;
+            display: block;
+            height: 56px;
+            width: auto;
+            float: left;
+        }
+        .nav-btn{
+            float: right;
+            margin: 0.5vw;
+        }
+        @media screen and (max-width: 910px){
+            .nav-btn{
+                width: 100%;
+            }
+            .logo-div {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 0.5vw;
+            }
+        }
         {% block style %}{% endblock %}
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=maximum-scale, shrink-to-fit=no">
 </head>
-<body>
+<body class="body">
+    <div class="nav">
+        <div class="logo-div">
+            <img src="{% static 'logo.png' %}" class="logo-header">
+        </div>
+        {% if user.is_authenticated %}
+            <Button class="btn btn-outline-secondary nav-btn">{{ user.username }}</Button>
+            <a href={% url 'app:logout' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Logout</Button>
+            </a>
+            <a href={% url 'app:foodtracker' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Food Tracker</Button>
+            </a>
+            <a href={% url 'app:weightlog' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Weight Log</Button>
+            </a>
+            <a href={% url 'exlog_home' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Exercise Log</Button>
+            </a>
+            <a href={% url 'app:exercises' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Exercises</Button>
+            </a>
+        {% else %}
+            <a href={% url 'app:signup' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Sign Up</Button>
+            </a>
+            <a href={% url 'app:login' %}>
+                <Button class="btn btn-outline-secondary nav-btn">Log In</Button>
+            </a>
+        {% endif %}
+        <a href={% url 'app:home' %}>
+            <Button class="btn btn-outline-secondary nav-btn">Home</Button>
+        </a>
+    </div>
     {% block body %}{% endblock %}
 </body>
 </html>

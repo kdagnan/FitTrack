@@ -1,0 +1,590 @@
+[
+ {
+   "name": "Running",
+   "group": "Endurance",
+   "group_code": 101,
+   "description": "Running can significantly improve physical and mental health. As a form of aerobic exercise, running can reduce stress, improve heart health, and even help alleviate symptoms of depression.",
+   "image_link": "exerciseImages101001.jpg"
+ },
+ {
+   "name": "Swimming",
+   "group": "Endurance",
+   "group_code": 101,
+   "description": "Swimming is a great form of all-round exercise. It's ideal if you want to be more active and stay healthy, whatever your age or ability. Regular swimming can reduce the risk of chronic illnesses, such as heart disease, type 2 diabetes and stroke. It can also boost your mood and keep your weight under control.",
+   "image_link": "exerciseImages101002.jpg"
+ },
+ {
+   "name": "Cycling",
+   "group": "Endurance",
+   "group_code": 101,
+   "description": "Cycling is mainly an aerobic activity, which means that your heart, blood vessels and lungs all get a workout. You will breathe deeper, perspire and experience increased body temperature, which will improve your overall fitness level. The health benefits of regular cycling include: increased cardiovascular fitness.",
+   "image_link": "exerciseImages101003.jpg"
+ },
+ {
+   "name": "Rowing",
+   "group": "Endurance",
+   "group_code": 101,
+   "description": "Rowing utilizes every major muscle group in your body. Starting with the legs, a rowing stroke also requires a strong back, hips, and arm muscles. It's easy to imagine that more weight might drag the boat down, but it's actually more important to have the bigger muscle mass.",
+   "image_link": "exerciseImages101004.jpg"
+ },
+ {
+   "name": "Jumping Rope",
+   "group": "Endurance",
+   "group_code": 101,
+   "description": "When you jump repeatedly, your body burns 800 to 1,000 calories an hour — compare that to 200 to 300 calories burned per hour while walking. Even better, jumping rope (especially high-intensity jump roping) makes your body a calorie-burning machine.",
+   "image_link": "exerciseImages101005.jpg"
+ },
+ {
+   "name": "Push-ups",
+   "group": "Chest",
+   "group_code": 102,
+   "description": "Traditional pushups are beneficial for building upper body strength. They work the triceps, pectoral muscles, and shoulders. When done with proper form, they can also strengthen the lower back and core by engaging (pulling in) the abdominal muscles. Pushups are a fast and effective exercise for building strength.",
+   "image_link": "exerciseImages102001.jpg"
+ },
+ {
+   "name": "Barbell Bench Press",
+   "group": "Chest",
+   "group_code": 102,
+   "description": "The barbell bench press is an upper body pressing drill that builds size and strength in the upper body, specifically in the chest, triceps, and shoulders. Lying flat on a bench allows for improved stability.",
+   "image_link": "exerciseImages102002.jpg"
+ },
+ {
+   "name": "Dumbbell Bench Press",
+   "group": "Chest",
+   "group_code": 102,
+   "description": "Set up a bench at an incline of 30-45° and sit with your feet flat on the floor and your back on the bench. Lift the dumbbells to chest height with your palms facing forwards. Breathe out and push the dumbbells up until your arms are fully extended, using your pecs to power the movement.",
+   "image_link": "exerciseImages102003.jpg"
+ },
+ {
+   "name": "Dumbbell Squeeze Press",
+   "group": "Chest",
+   "group_code": 102,
+   "description": "The dumbbell squeeze press is a tremendous exercise for building functional strength and hypertrophy in the chest, triceps, and shoulders. The combination of the constant tension, metabolic stress, and high levels of mechanical tension make it an effective variation for bodybuilders and strength athletes alike.",
+   "image_link": "exerciseImages102004.jpg"
+ },
+ {
+   "name": "Cable Fly",
+   "group": "Chest",
+   "group_code": 102,
+   "description": "The standing cable fly is a variation of the chest fly and an exercise used to strengthen the pushing muscles of the body including the chest, triceps, and shoulders. This movement can be included into your chest workouts, push workouts, upper body workouts, or full body workouts.",
+   "image_link": "exerciseImages102005.jpg"
+ },
+ {
+   "name": "Crunches",
+   "group": "Abdominals",
+   "group_code": 103,
+   "description": "Like situps, crunches help you build muscle. But unlike situps, they work only the abdominal muscles. This intense muscle isolation makes them a popular exercise for people trying to get six-pack abs.",
+   "image_link": "exerciseImages103001.jpg"
+ },
+ {
+   "name": "Plank",
+   "group": "Abdominals",
+   "group_code": 103,
+   "description": "Planks can help improve your posture. By strengthening your back, chest, shoulders, neck, and abs, this exercise makes it easier to keep your shoulders back and your lower back in a neutral position while sitting or standing — two vital components of good posture.",
+   "image_link": "exerciseImages103002.jpg"
+ },
+ {
+   "name": "Bicycle Crunches",
+   "group": "Abdominals",
+   "group_code": 103,
+   "description": "Lift one leg just off the ground and extend it out. Lift the other leg and bend your knee towards your chest. As you do so twist through your core so the opposite arm comes towards the raised knee. You don't need to touch elbow to knee, instead focus on moving through your core as you turn your torso.",
+   "image_link": "exerciseImages103003.jpg"
+ },
+ {
+   "name": "Reverse Crunches",
+   "group": "Abdominals",
+   "group_code": 103,
+   "description": "Raise your legs so your thighs are perpendicular to the floor and your knees are bent at a 90° angle. Breathe out and contract your abs to bring your knees up towards your chest and raise your hips off the floor. Hold for a beat in this position, then slowly lower your legs back to the starting position.",
+   "image_link": "exerciseImages103004.jpg"
+ },
+ {
+   "name": "Ab Roller",
+   "group": "Abdominals",
+   "group_code": 103,
+   "description": "The ab roller is a simple device: two handles connecting a wheel. ... The ab wheel is an advanced training tool that, when used correctly, builds strong triceps, lats and core. The ab roller helps build strong core, lats, and triceps.",
+   "image_link": "exerciseImages103005.jpg"
+ },
+ {
+   "name": "Single-Leg Side Plank",
+   "group": "Obliques",
+   "group_code": 104,
+   "description": "The Single-leg Side Plank is an advanced version of the standard side plank. While keeping your torso stable, raise your top leg upward without bending your knee. Lower the leg to the starting position and repeat.",
+   "image_link": "exerciseImages104001.jpg"
+ },
+ {
+   "name": "Rotating Side Plank",
+   "group": "Obliques",
+   "group_code": 104,
+   "description": "Place your elbows and feet shoulder width apart on the floor, with your legs and body straight in plank position. Rotate your hips, shoulders, and feet while raising your right arm so that you shift onto your left elbow. Rotate your body and arm back into the starting plank position.",
+   "image_link": "exerciseImages104002.jpg"
+ },
+ {
+   "name": "Spiderman Push-Up",
+   "group": "Obliques",
+   "group_code": 104,
+   "description": "Start in a plank position, just as you would for the spiderman pushup. Perform a pushup, bending your elbows to lower your chest to the floor. ... Hold a standard plank, but lift your right foot from the floor, and draw your right knee up and out, as though you were trying to touch it to the outside of your right elbow.",
+   "image_link": "exerciseImages104003.jpg"
+ },
+ {
+   "name": "Cross-Body Mountain Climber",
+   "group": "Obliques",
+   "group_code": 104,
+   "description": "Start in a high plank position, wrists under shoulders, core engaged so body forms a straight line from heels to ankles. Bring right knee in toward left armpit, then return to starting position. Bring left knee in toward right armpit, then return to starting position. Repeat.",
+   "image_link": "exerciseImages104004.jpg"
+ },
+ {
+   "name": "Russian Twist",
+   "group": "Obliques",
+   "group_code": 104,
+   "description": "The Russian twist is a simple and effective way to tone your core, shoulders, and hips. It's a popular exercise among athletes since it helps with twisting movements and allows you to quickly change direction.",
+   "image_link": "exerciseImages104005.jpg"
+ },
+ {
+   "name": "Resistance Rows",
+   "group": "Upper Back",
+   "group_code": 105,
+   "description": "Resistance Band Row is an exercise that strengthens the upper back muscles located around and between the shoulder blades. Training the upper back muscles are a crucial balance to the many chest exercises we have such as push-ups and chest presses.",
+   "image_link": "exerciseImages105002.jpg"
+ },
+ {
+   "name": "Rocket Launcher Row",
+   "group": "Upper Back",
+   "group_code": 105,
+   "description": "Stand holding two dumbbells at your sides and take a big step forward with your left leg, bending it to assume a deep lunge position, keeping your right leg straight. Bend forward at your hip, attempting to lay your torso on top of your left thigh.",
+   "image_link": "exerciseImages105003.jpg"
+ },
+ {
+   "name": "Pull-ups",
+   "group": "Lats",
+   "group_code": 106,
+   "description": "The pullup is one of the most effective exercises for strengthening the back muscles. Pullups work the following muscles of the back: Latissimus dorsi: largest upper back muscle that runs from the mid-back to under the armpit and shoulder blade. Trapezius: located from your neck out to both shoulders.",
+   "image_link": "exerciseImages106001.jpg"
+ },
+ {
+   "name": "Chin-ups",
+   "group": "Lats",
+   "group_code": 106,
+   "description": "Chin-ups are an effective exercise for the abs as well, especially when you add load. And you will add load. The chin-up, performed with a neutral or supinated grip, is the foundational mass-building exercise for biceps, lats, and all the supportive upper back musculature.",
+   "image_link": "exerciseImages106002.jpg"
+ },
+ {
+   "name": "One-arm row",
+   "group": "Lats",
+   "group_code": 106,
+   "description": "Single-Arm Dumbbell Rows do a great job of targeting both the back and the core. \"Every time the dumbbell is lowered, the torso has to stay stable. So you're training the core to resist rotation,\" Esser says.",
+   "image_link": "exerciseImages106003.jpg"
+ },
+ {
+   "name": "Reverse fly",
+   "group": "Lats",
+   "group_code": 106,
+   "description": "The reverse fly is a resistance exercise that targets the rear shoulders (deltoids) and major muscles of the upper back, including the trapezius. The trapezius helps with a scapular retraction or pulling your shoulder blades in toward each other.",
+   "image_link": "exerciseImages106004.jpg"
+ },
+ {
+   "name": "Dumbbell pullover",
+   "group": "Lats",
+   "group_code": 106,
+   "description": "The classic dumbbell pullover is a widely used resistance exercise that primarily strengthens the muscles in the chest (pectoralis major) and the large wing-shaped muscles in the back (latissimus dorsi). By making variations to the movement, you can also engage the core muscles and the back of the upper arm (triceps).",
+   "image_link": "exerciseImages106005.jpg"
+ },
+ {
+   "name": "Bridges",
+   "group": "Lower Back",
+   "group_code": 107,
+   "description": "",
+   "image_link": "exerciseImages107001.jpg"
+ },
+ {
+   "name": "Lateral Leg Lifts",
+   "group": "Lower Back",
+   "group_code": 107,
+   "description": "",
+   "image_link": "exerciseImages107002.jpg"
+ },
+ {
+   "name": "Supermans",
+   "group": "Lower Back",
+   "group_code": 107,
+   "description": "",
+   "image_link": "exerciseImages107003.jpg"
+ },
+ {
+   "name": "Partial Crunches",
+   "group": "Lower Back",
+   "group_code": 107,
+   "description": "",
+   "image_link": "exerciseImages107004.jpg"
+ },
+ {
+   "name": "Wall Sits",
+   "group": "Lower Back",
+   "group_code": 107,
+   "description": "",
+   "image_link": "exerciseImages107005.jpg"
+ },
+ {
+   "name": "Dumbbell Farmer's Walk",
+   "group": "Trapezius",
+   "group_code": 110,
+   "description": "Start with a dumbbell equal to a quarter of your body weight in each hand. If you weigh 200 pounds, hold a 50-pound dumbbell in each hand. Work your way up to half your body weight in each hand. So if you weigh 200 pounds, you'll work up to holding a 100-pound dumbbell in each hand.",
+   "image_link": "exerciseImages110001.jpg"
+ },
+ {
+   "name": "Heavy Barbell Shrug",
+   "group": "Trapezius",
+   "group_code": 110,
+   "description": "Barbell Shrugs. Nothing is better for building the traps than heavy weight. As long as you use good form on the movement, then the heavier the better. The primary muscles activated by the barbell shrug are the trapezius, or traps, and rhomboids. The trapezius gets its name from its trapezoid shape, and runs down the upper region of the spinal cord from the base of the skull to the middle and lower back.",
+   "image_link": "exerciseImages110002.jpg"
+ },
+ {
+   "name": "Barbell Farmer's Walk",
+   "group": "Trapezius",
+   "group_code": 110,
+   "description": "The farmer's walk strengthens your grip by working your wrists, hands, forearms, shoulders, and back in unison, as all of these muscles can have an impact and support grip strength when they are properly trained.",
+   "image_link": "exerciseImages110003.jpg"
+ },
+ {
+   "name": "Hex Bar Deadlift",
+   "group": "Trapezius",
+   "group_code": 110,
+   "description": "Indeed, research has shown that when using the hex bar, the horizontal displacement of the barbell away from the body is 75% less than with a straight barbell. These features may help the hex bar deadlift develop lower body power more effectively than the straight bar deadlift.",
+   "image_link": "exerciseImages110004.jpg"
+ },
+ {
+   "name": "Power Shrug",
+   "group": "Trapezius",
+   "group_code": 110,
+   "description": "The power shrug is also called a low-pull from the hang, or \"clean extension from the hang\" in Olympic lifting terms. ... Compared to regular shrugs, the power shrug reduces the involvement of the levator scapulae, which is a small muscle that helps the upper trapezius elevate the scapula (shrug the shoulders up).",
+   "image_link": "exerciseImages110005.jpg"
+ },
+ {
+   "name": "Barbell Overhead Shoulder Press",
+   "group": "Shoulders",
+   "group_code": 111,
+   "description": "The Overhead Press is safe for your shoulders if you use proper form. It builds stronger, more muscular and healthier shoulders. ... It also prevents muscle imbalances from the Bench Press by strengthening your rear shoulder muscles.",
+   "image_link": "exerciseImages111001.jpg"
+ },
+ {
+   "name": "Seated Dumbbell Shoulder Press",
+   "group": "Shoulders",
+   "group_code": 111,
+   "description": "Due to the sitting press often allowing for increased emphasis on the shoulders (as the lifter does not need to stabilize the core as much as in the standing), the sitting press can often be a good way to isolate the pressing muscles to develop muscle hypertrophy.",
+   "image_link": "exerciseImages111002.jpg"
+ },
+ {
+   "name": "Front Raise",
+   "group": "Shoulders",
+   "group_code": 111,
+   "description": "The front raise strengthens primarily the shoulder (deltoids) but also works the upper chest muscles (pectorals). It is an isolation exercise for shoulder flexion. This exercise will help you build strength and definition in the front and sides of your shoulder.",
+   "image_link": "exerciseImages111003.jpg"
+ },
+ {
+   "name": "Reverse Pec Deck Fly",
+   "group": "Shoulders",
+   "group_code": 111,
+   "description": "During a reverse fly, you work the rhomboid muscles in your upper back and shoulder region. Strong upper back muscles help balance your shoulder strength and help protect your shoulder from injury.",
+   "image_link": "exerciseImages111004.jpg"
+ },
+ {
+   "name": "Push Press",
+   "group": "Shoulders",
+   "group_code": 111,
+   "description": "The push press has been documented to produce greater lower extremity maximum mean power when compared to the jump squat exercise. Thus the push press exercise provides a time efficient combination of lower body power and upper extremity and trunk strengthening during the exercise performance.",
+   "image_link": "exerciseImages111005.jpg"
+ },
+ {
+   "name": "Standing Barbell Shrugs",
+   "group": "Shoulders",
+   "group_code": 111,
+   "description": "Barbell Shrugs. Nothing is better for building the traps than heavy weight. As long as you use good form on the movement, then the heavier the better. Most powerlifters have big traps because of all of the heavy deadlifts they do.",
+   "image_link": "exerciseImages111006.jpg"
+ },
+ {
+   "name": "Dumbbell Lateral Raise",
+   "group": "Shoulders",
+   "group_code": 111,
+   "description": "As well as stronger, larger shoulders, the benefits of the lateral raise extend to increased shoulder mobility. If you brace correctly throughout the lift, your core also benefits, and muscles in the upper back, arms and neck will also feel the strain after a few sets.",
+   "image_link": "exerciseImages111007.jpg"
+ },
+ {
+   "name": "Close-grip Bench Press",
+   "group": "Triceps",
+   "group_code": 112,
+   "description": "Even if you don't know, you should have guessed that this variation involves moving your hands closer together on the bar. The standard bench press works your chest, shoulders and triceps with the chest muscles doing the bulk of the work, whereas the close-grip bench press moves the focus to the triceps.",
+   "image_link": "exerciseImages112001.jpg"
+ },
+ {
+   "name": "Rope Tricep Pushdown",
+   "group": "Triceps",
+   "group_code": 112,
+   "description": "Tricep Pushdowns are one of the first exercises most lifters learn, and for good reason. Whether you perform them with a bar or a rope, Pushdowns—often called Tricep Extensions—deliver a serious pump, helping you build bulging muscles along the back of your arms.",
+   "image_link": "exerciseImages112002.jpg"
+ },
+ {
+   "name": "Tricep Dips",
+   "group": "Triceps",
+   "group_code": 112,
+   "description": "The triceps dip exercise is a great bodyweight exercise that builds arm and shoulder strength. This simple exercise can be done almost anywhere and has many variations to match your fitness level. Use it as part of an upper body strength workout.",
+   "image_link": "exerciseImages112003.jpg"
+ },
+ {
+   "name": "Skullcrushers",
+   "group": "Triceps",
+   "group_code": 112,
+   "description": "Because you can go fairly heavy with skullcrushers, they make a good second exercise in most triceps workouts. Choose a weight you can do for 3 sets of 8-10, but occasionally vary the rep target to prevent stagnation.",
+   "image_link": "exerciseImages112004.jpg"
+ },
+ {
+   "name": "Overhead Triceps",
+   "group": "Triceps",
+   "group_code": 112,
+   "description": "With feet shoulder-width apart and core tight, hold a dumbbell with both hands. ... Bending at the elbows and squeezing your triceps, slowly lower the dumbbell behind your head. Slowly return to start position and repeat.",
+   "image_link": "exerciseImages112005.jpg"
+ },
+ {
+   "name": "Dumbbell Curl",
+   "group": "Biceps",
+   "group_code": 113,
+   "description": "Curls work the biceps muscles at the front of the upper arm, and also the muscles of the lower arm—the brachialis, and brachioradialis. You use these muscles anytime you pick something up, which is common throughout daily life.",
+   "image_link": "exerciseImages113001.jpg"
+ },
+ {
+   "name": "Incline Dumbbell Curl",
+   "group": "Biceps",
+   "group_code": 113,
+   "description": "Since the long head of the biceps makes up the majority of the biceps peak and the incline dumbbell curl better targets the long head, the incline dumbbell curl is the better exercise for maximizing the biceps peak.",
+   "image_link": "exerciseImages113002.jpg"
+ },
+ {
+   "name": "Seated Alternating Hammer Curl",
+   "group": "Biceps",
+   "group_code": 113,
+   "description": "Grab a dumbbell in each hand with your palms facing inward and extend your arms out at the sides of your body. While keeping your elbows locked in at your sides, slowly lift your left arm in an arc motion towards your left shoulder, isolating the bicep and squeeze the muscle.",
+   "image_link": "exerciseImages113003.jpg"
+ },
+ {
+   "name": "Standing Cable Curl",
+   "group": "Biceps",
+   "group_code": 113,
+   "description": "Stand upright, holding a cable grip attached to a low pulley in each hand. Tuck your elbows in and grip the bar with your palms facing up. Keep your upper arms stationary, breathe out and curl up to your chest. Only your forearms should move.",
+   "image_link": "exerciseImages113003.jpg"
+ },
+ {
+   "name": "Standing Reverse Barbell Curl",
+   "group": "Biceps",
+   "group_code": 113,
+   "description": "The reverse barbell curl, a variation of the traditional barbell curl, is one of the most effective strength gaining exercises targeting your wrists and biceps. It activates and develops prominent muscles, including the brachialis of your upper arm and the brachioradialis of your forearm.",
+   "image_link": "exerciseImages113003.jpg"
+ },
+ {
+   "name": "Dumbbell Wrist Flexion",
+   "group": "Forearms",
+   "group_code": 114,
+   "description": "Wrist flexion is the action of bending your hand down at the wrist, so that your palm faces in toward your arm. It's part of the normal range of motion of your wrist. When your wrist flexion is normal, that means that the muscles, bones, and tendons that make up your wrist are working as they should.",
+   "image_link": "exerciseImages114001.jpg"
+ },
+ {
+   "name": "Dumbbell Wrist Extension",
+   "group": "Forearms",
+   "group_code": 114,
+   "description": "Grasp the dumbbell with an overhand grip (palms down) and kneel on a mat with your arm resting on a flat bench. ... Using your forearm muscles, raise the dumbbell by extending your wrists as high as possible. Slowly lower the weight to the starting position. Repeat the movement for the desired number of repetitions.",
+   "image_link": "exerciseImages114002.jpg"
+ },
+ {
+   "name": "Dumbbell Reverse Curl",
+   "group": "Forearms",
+   "group_code": 114,
+   "description": "The pronated grip that you are using will engage the brachialis muscles in order for you to be able to move the weight. Feel the tension in your forearms as you come toward the top of the curl, hold for a second or two here at then lower slowly.",
+   "image_link": "exerciseImages114003.jpg"
+ },
+ {
+   "name": "Farmer Walks",
+   "group": "Forearms",
+   "group_code": 114,
+   "description": "The farmer's walk strengthens your grip by working your wrists, hands, forearms, shoulders, and back in unison, as all of these muscles can have an impact and support grip strength when they are properly trained.",
+   "image_link": "exerciseImages114004.jpg"
+ },
+ {
+   "name": "Pull-up Bar Hang",
+   "group": "Forearms",
+   "group_code": 114,
+   "description": "If you're a serious lifter and you're not carrying excessive body fat, you should be able to hang comfortably from an overhead bar for a minimum of 60 seconds. Ideally longer. Hanging on a pull-up bar can strengthen more than just your grip and your arms. While in a straight-arm hang, shrug your shoulders to engage the hard-to-target trapezius muscles that run across the top of your shoulders to your neck.",
+   "image_link": "exerciseImages114005.jpg"
+ },
+ {
+   "name": "Bulgarian Split Squat",
+   "group": "Hips",
+   "group_code": 117,
+   "description": "The Bulgarian split squat is a version of a single-leg squat where the back leg is elevated on a bench or a sturdy chair. As a single-leg, unilateral squat, the exercise places a greater focus on the quadriceps than other, similar lower-body compound movements.",
+   "image_link": "exerciseImages117001.jpg"
+ },
+ {
+   "name": "Step Up to Reverse Lung",
+   "group": "Hips",
+   "group_code": 117,
+   "description": "Hold your arms at your sides at 90-degree angle. Place your left foot on the platform; step up, straightening your left leg and bringing your right leg to a 90-degree angle. Step back off the platform. Send your left leg behind you and and sink into a lunge. Return to starting position.",
+   "image_link": "exerciseImages117002.jpg"
+ },
+ {
+   "name": "Dumbbell Sumo Squat",
+   "group": "Hips",
+   "group_code": 117,
+   "description": "The dumbbell sumo squat is a popular lower-body movement using a single dumbbell held in front of the legs. It is performed with a wider than shoulder-width stance, which increases the demand on the glutes, hamstrings, and adductors while still benefiting the quads, core, and upper body.",
+   "image_link": "exerciseImages117003.jpg"
+ },
+ {
+   "name": "Kickstand Romanian Deadlift",
+   "group": "Hips",
+   "group_code": 117,
+   "description": "You stand on one leg, hold a load in one (or both) hands, and bend your hips back while keeping a long spine. The movement trains the whole back side of the body (called the posterior chain) while developing balance and improving mobility in the hips.",
+   "image_link": "exerciseImages117004.jpg"
+ },
+ {
+   "name": "Lateral Lunge",
+   "group": "Hips",
+   "group_code": 117,
+   "description": "Lateral Lunges. Starting Position Begin by standing with your feet shoulder width apart, hands on hips. Action INHALE: Step out to the right and shift your body weight over your right leg, squatting to a 90 degree angle at the right knee.",
+   "image_link": "exerciseImages117005.jpg"
+ },
+ {
+   "name": "Kettlebell Swing",
+   "group": "Hips",
+   "group_code": 117,
+   "description": "The kettlebell swing is an excellent power- and strength-generating exercise that targets your glutes, hamstrings, hips, core, and the stabilizing muscles of your shoulders and back.",
+   "image_link": "exerciseImages117006.jpg"
+ },
+ {
+   "name": "Dumbbell Squat to Press",
+   "group": "Buttocks",
+   "group_code": 118,
+   "description": "Both leg presses and squats primarily work your quadriceps, or quads. But they also work your hamstrings (muscles opposite your quads at the back of your thighs) and glutes (the muscles in your buttocks).",
+   "image_link": "exerciseImages118001.jpg"
+ },
+ {
+   "name": "Bulgarian Squat",
+   "group": "Buttocks",
+   "group_code": 118,
+   "description": "The Bulgarian split squat is a version of a single-leg squat where the back leg is elevated on a bench or a sturdy chair. As a single-leg, unilateral squat, the exercise places a greater focus on the quadriceps than other, similar lower-body compound movements.",
+   "image_link": "exerciseImages118002.jpg"
+ },
+ {
+   "name": "Back Squat",
+   "group": "Buttocks",
+   "group_code": 118,
+   "description": "The back squat is the most basic strength exercise in weightlifting, and one of the most commonly used exercises other than the competition lifts. Execution. Place the barbell behind your neck—retract your shoulder blades tightly and rest the bar in the meat of your upper traps.",
+   "image_link": "exerciseImages118003.jpg"
+ },
+ {
+   "name": "Lateral Pistol Squats on Rower",
+   "group": "Buttocks",
+   "group_code": 118,
+   "description": "The pistol squat is an advanced unilateral lower body exercise often done with body weight or lighter loads to increase single leg strength, balance, and improve movement mechanics of the lower body.",
+   "image_link": "exerciseImages118004.jpg"
+ },
+ {
+   "name": "Squat Jump Tap",
+   "group": "Buttocks",
+   "group_code": 118,
+   "description": "Instructions. Standing with feet wider than shoulder width, squat down, tap one hand to the floor. Explosively jump back, landing with feet at shoulder width. Repeat with opposite hand.",
+   "image_link": "exerciseImages118005.jpg"
+ },
+ {
+   "name": "Front Squat",
+   "group": "Quads",
+   "group_code": 119,
+   "description": "The Front Squat is a lower-body exercise that will strengthen your legs and hips, particularly your quads (thigh muscles) and glutes (butt muscles). Front Squats are similar to Back Squats, however the barbell is placed across the front side of your shoulders instead of your upper back.",
+   "image_link": "exerciseImages119001.jpg"
+ },
+ {
+   "name": "Bulgarian Split Squat",
+   "group": "Quads",
+   "group_code": 119,
+   "description": "As well as testing your balance to the max – which will improve core strength – the elevated split squat is a powerhouse of a leg workout, with your quads, calves and hamstrings all set to benefit your legs.",
+   "image_link": "exerciseImages119002.jpg"
+ },
+ {
+   "name": "Leg Press",
+   "group": "Quads",
+   "group_code": 119,
+   "description": "So when you build multiple lower body muscles using one exercise, your body rewards you with faster muscle gains. In addition to your quads, hamstrings, and glutes, the leg press machine is also great for your calves.",
+   "image_link": "exerciseImages119003.jpg"
+ },
+ {
+   "name": "Leg Extension",
+   "group": "Quads",
+   "group_code": 119,
+   "description": "Leg extensions are a key exercise in strengthening the patellar ligament and quadriceps attachment for the knee. It is also a good finisher exercise, as it is an isolation exercise for quadriceps that can be performed after compound exercises like squats or dead lifts.",
+   "image_link": "exerciseImages119004.jpg"
+ },
+ {
+   "name": "Hip Extension",
+   "group": "Hamstrings",
+   "group_code": 120,
+   "description": "Simply put, hip extension happens when we open our hip joint. We are extending our hip anytime we increase the angle between the thigh and the front of the pelvis and that can start from any degree of flexion. We are actually in hip extension when we are standing, and when the leg goes to the back.",
+   "image_link": "exerciseImages120001.jpg"
+ },
+ {
+   "name": "Knee Flexion",
+   "group": "Hamstrings",
+   "group_code": 120,
+   "description": "Knee Flexion-- The measurable degree in which your leg (and knee joint) is bent. Think about laying on your stomach and bending your leg toward your buttocks. This requires knee flexion. Knee Extension-- The measurable degree in which your knee is extended.",
+   "image_link": "exerciseImages120002.jpg"
+ },
+ {
+   "name": "Swiss-Ball Leg Curl",
+   "group": "Hamstrings",
+   "group_code": 120,
+   "description": "Hinge at the knees simultaneously to curl your legs in, squeezing your hamstrings to bring the ball toward your butt. Squeeze your hamstrings and core for a count, then straighten your knees and extend your legs to roll the ball back to the starting position.",
+   "image_link": "exerciseImages120003.jpg"
+ },
+ {
+   "name": "Slider Leg Curl",
+   "group": "Hamstrings",
+   "group_code": 120,
+   "description": "Lie on your back with your knees slightly bent. Place your feet on a pair of sliding discs. Slide your feet along the floor toward your body, simultaneously raising your hips. Form a straight line from your knees to your shoulders. Pause, then slowly slide your legs back to the starting position.",
+   "image_link": "exerciseImages120004.jpg"
+ },
+ {
+   "name": "Bulgarian Split Squat",
+   "group": "Hamstrings",
+   "group_code": 120,
+   "description": "As well as testing your balance to the max – which will improve core strength – the elevated split squat is a powerhouse of a leg workout, with your quads, calves and hamstrings all set to benefit. ... In the Bulgarian squat, it's all about your gluts, quads and hamstrings.",
+   "image_link": "exerciseImages120005.jpg"
+ },
+ {
+   "name": "Standing Calf Raise on Elevated Surface",
+   "group": "Calves",
+   "group_code": 121,
+   "description": "Keeping your core engaged, raise your left heel as high as possible. Slowly lower your heel down below the raised surface until you feel a stretch in your calf. Repeat and do equal reps on both legs.",
+   "image_link": "exerciseImages120001.jpg"
+ },
+ {
+   "name": "Seated Calf Raise",
+   "group": "Calves",
+   "group_code": 121,
+   "description": "Sit on a firm, sturdy chair with your feet flat on the floor. Keep your knees directly over your feet. Don't let your knees turn in or out. Lean forward with your hands on your thighs near your knees, pushing down to add resistance. Press slowly down into the balls of your feet to raise your heels as high as you can.",
+   "image_link": "exerciseImages120002.jpg"
+ },
+ {
+   "name": "Jump Rope",
+   "group": "Calves",
+   "group_code": 121,
+   "description": "Even jumping at a very moderate rate burns 10 to 16 calories a minute. Work your jump rope exercise into three 10-minute rounds and you're looking at 480 calories in half an hour. According to Science Daily, 10 minutes of skipping rope is about equivalent to running an 8-minute-mile.",
+   "image_link": "exerciseImages120003.jpg"
+ },
+ {
+   "name": "Downward Dog",
+   "group": "Calves",
+   "group_code": 121,
+   "description": "Downward Dog is one of the most common yoga postures practiced in class. ... Usually someone who cannot place their heels flat in downward dog also experiences a general tightness throughout the body manifesting as a somewhat hunched thoracic spine and tight neck and shoulders.",
+   "image_link": "exerciseImages120004.jpg"
+ },
+ {
+   "name": "Straight-Leg Calf Stretch Against Wall",
+   "group": "Calves",
+   "group_code": 121,
+   "description": "Keeping your back leg straight and your back heel on the floor, bend your front knee and gently bring your hip and chest toward the wall until you feel a stretch in the calf of your back leg. Hold the stretch for at least 15 to 30 seconds. Repeat 2 to 4 times.",
+   "image_link": "exerciseImages120005.jpg"
+ }
+]

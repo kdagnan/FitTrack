@@ -1,0 +1,49 @@
+{% extends "exlog_app/base.html" %}
+{% load static %}
+
+{% block content%}
+<article class="media content-section">
+    <div class="media-body">
+
+        <div class="article-metadata">
+
+            <div class="row">
+                <div class="col-sm-8 col-12">
+                    <h2 class="mt-1 mb-2">{{ exlog.date | date:"F d, Y"}} Workout</h2>
+                </div>
+
+                {% if exlog.user == user %}
+                <div class="col-sm-2 col-12">
+                    <a class="btn btn-secondary btn-nm mt-1 mb-2" href="{% url 'exlog-update' exlog.id %}">Update</a>
+                </div>
+                <div class="col-sm-2 col-12">
+                    <a class="btn btn-danger btn-nm mt-1 mb-2" href="{% url 'exlog-delete' exlog.id %}">Delete</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <ul>
+            <!-- Passed in QuerySet only contains relevant Exercise objects-->
+            {% for exercise in exercises%}
+            <li class="unordered-list_item">
+                {{ exercise.exercise_name }}:&nbsp;
+                {{ exercise.num_sets }}x
+                {{ exercise.num_reps }}&nbsp;
+                {{ exercise.exercise_weight }} lbs
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- If the current user is the owener of the Exercise Log, allow them to add Exercises-->
+        {% if exlog.user == user %}
+        <div class="row">
+            <div class="col-sm-4 col-12">
+                <a class="btn btn-success btn-ms mb-1" href="{% url 'exlog-add-exercise' exlog.id %}">Add Exercise</a>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</article>
+{% endblock content %}

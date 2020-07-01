@@ -2,8 +2,9 @@
 
 ## For Design Prototype
 Link to GitHub repo - https://github.com/kdagnan/FitTrack.git
-1. Execute init.py to initialize project and create sqlite database
-2. Execute run.py file to run server on localhost:8000
+1. Unarchive FitTrack.tar.gz
+2. Execute init.py to initialize project and create sqlite database
+3. Execute run.py file to run server on localhost:8000
 
 ## Setting Up Through Cloning Repo
 1. Create a venv (https://docs.python.org/3/tutorial/venv.html)

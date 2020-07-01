@@ -2,7 +2,7 @@
 
 ## For Design Prototype
 Link to GitHub repo - https://github.com/kdagnan/FitTrack.git
-1. Unarchive FitTrack.tar.gz
+1. Unarchive FitTrack.tar.gz (tar -xvzf FitTrack.tar.gz)
 2. Execute init.py to initialize project and create sqlite database
 3. Execute run.py file to run server on localhost:8000
 

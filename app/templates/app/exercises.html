@@ -18,6 +18,29 @@
         height: 625px;
         overflow-y: scroll;
     }
+    .header{
+        position: relative;
+        text-align: center;
+        padding: 2vmin;
+        margin: auto;
+    }
+    .exercises-box-img{
+        filter: brightness(50%);
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .header-text{
+        color: white;
+        position: absolute;
+        max-width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
     .exercise{
         background: none;
         flex-direction: row;
@@ -27,7 +50,6 @@
         border-color: #6c757d;
         width: 100%;
         height: auto;
-        display: inline-block;
     }
     .exercise-image{
         width: 150px;
@@ -125,18 +147,29 @@
             <img src="{{body_diagram}}" class="body-map">
         </div>
         <div class="exercises-box">
-            <h5 style="padding-left: 10px;">Recommended exercises:</h5>
-            {% for exercise in exercises %}
-                <div class="exercise">                     
-                    <img src="/static/exerciseImages/{{exercise.image_link}}" class="exercise-image">
-                    <!--<img src="https://cdn1.iconfinder.com/data/icons/business-353/660/Weight_Lifting_Person_Exercise_lifting_person_weight-512.png" class="exercise-image">-->
-                    <p class="exercise-text">
-                        <strong>{{exercise.name}}</strong></br>
-                        <em style="font-size: 80%;">Muscle: {{exercise.group}}</em></br>
-                        {{exercise.description}}
-                    </p>                        
+            {% if active_exercise == 0 %}
+                <div class="header">
+                    <img src="{% static 'getStarted.jpg' %}" class="exercises-box-img">
+                    <div class="header-text">
+                        <h1 class="title">Welcome to FitTrack!</h1>
+                        <h3 class="subtitle">FitTrack helps you stay motivated and stick with your workout routine and diet plan.</h3>
+                    </div>
                 </div>
-            {% endfor %}
+            {% else %}
+                <h5 style="padding-left: 10px;">Recommended exercises: </h5>
+                <p>{{active_exercise}}</p>
+                {% for exercise in exercises %}
+                    <div class="exercise">                     
+                        <img src="/static/exerciseImages/{{exercise.image_link}}" class="exercise-image">
+                        <!--<img src="https://cdn1.iconfinder.com/data/icons/business-353/660/Weight_Lifting_Person_Exercise_lifting_person_weight-512.png" class="exercise-image">-->
+                        <p class="exercise-text">
+                            <strong>{{exercise.name}}</strong></br>
+                            <em style="font-size: 80%;">Muscle: {{exercise.group}}</em></br>
+                            {{exercise.description}}
+                        </p>                        
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock body %}

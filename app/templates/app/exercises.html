@@ -171,7 +171,7 @@
                         <h1 class="title">On your marks... Get set... Go!</h1></br>
                         <h3 class="subtitle">Select a muscle group or exercise category to get started</h3>
                         <h6 class="subtitle">or click below to see the full list:</h3></br></br>
-                        <form action='102' method='POST'>
+                        <form action='100' method='POST'>
                             {% csrf_token %}
                             <Button class="btn btn-default btn-lg">See full list</Button>  
                         </form>
@@ -181,7 +181,6 @@
         {% else %}
             <div class="exercises-box-overflow">
                 <h5 style="padding-left: 10px;">Recommended exercises: </h5>
-                <p>{{active_exercise}}</p>
                 {% for exercise in exercises %}
                     <div class="exercise">                     
                         <img src="/static/exerciseImages/{{exercise.image_link}}" class="exercise-image">

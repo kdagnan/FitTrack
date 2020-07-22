@@ -28,7 +28,7 @@ class ExlogDetailView(DetailView):
         context['exercises'] = Exercise.objects.filter(exercise_log=self.object).iterator()
         return context
 
-# Class based view for Create
+# Class based view for Create (Exercise Log)
 class ExlogCreateView(LoginRequiredMixin, CreateView):
     model = ExerciseLog
     fields = ['date']
@@ -53,28 +53,20 @@ class ExlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
-# Class based view for Delete
+# Class based view for Delete (Exercise Log)
 class ExlogDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = ExerciseLog
     context_object_name = "exlog"
     success_url = '/exlog/'   
-
-    # Getting extra context for the class-based view
-    def get_context_data(self, **kwargs):          
-        context = super().get_context_data(**kwargs)
-             
-        # The line below literally took me hours to figure out
-        context['exercises'] = Exercise.objects.filter(exercise_log=self.object).iterator()
-        return context
     
-        # Test to see if current logged in user is the creator of the workout log
+    # Test to see if current logged in user is the creator of the workout log
     def test_func(self):
         exlog = self.get_object()
         if self.request.user == exlog.user:
             return True
         return False
 
-# Class based view for Create
+# Class based view for Create (Exercise)
 class ExerciseCreateView(LoginRequiredMixin, CreateView):
     model = Exercise
     fields = ['exercise_name', 'num_sets', 'num_reps', 'exercise_weight']
@@ -82,4 +74,31 @@ class ExerciseCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.exercise_log = ExerciseLog.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
-        
+
+# Class based view for Update (Exercise)
+class ExerciseUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Exercise
+    fields = ['num_sets', 'num_reps', 'exercise_weight']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    # Test to see if current logged in user is the creator of the workout log
+    def test_func(self):
+        exlog = self.get_object()
+        if self.request.user == exlog.exercise_log.user:
+            return True
+        return False
+
+# Class based view for Delete
+class ExerciseDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Exercise
+    success_url = '/exlog/'   
+    
+    # Test to see if current logged in user is the creator of the workout log
+    def test_func(self):
+        exlog = self.get_object()
+        if self.request.user == exlog.exercise_log.user:
+            return True
+        return False

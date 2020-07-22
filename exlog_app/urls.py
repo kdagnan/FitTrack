@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import ExlogDetailView, ExlogCreateView, ExlogUpdateView, ExlogDeleteView, ExerciseCreateView
+from .views import ExlogDetailView, ExlogCreateView, ExlogUpdateView, ExlogDeleteView
+from .views import ExerciseCreateView, ExerciseUpdateView, ExerciseDeleteView
 from . import views
 
 urlpatterns = [
@@ -9,4 +10,6 @@ urlpatterns = [
     path('log/<int:pk>/update/', ExlogUpdateView.as_view(), name='exlog-update'),
     path('log/<int:pk>/delete/', ExlogDeleteView.as_view(), name='exlog-delete'),
     path('log/<int:pk>/addexercise/', ExerciseCreateView.as_view(), name='exlog-add-exercise'),
+    path('log/<int:pk>/updateexercise/', ExerciseUpdateView.as_view(), name='exlog-update-exercise'),
+    path('log/<int:pk>/deleteexercise/', ExerciseDeleteView.as_view(), name='exlog-delete-exercise'),
 ]

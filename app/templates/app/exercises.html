@@ -110,55 +110,67 @@
                 <div class="vertical-container">
                     <form action='117' method='POST'>
                         {% csrf_token %}
-                        <Button class="{{classes.button9_class}}" style="width: 95%; margin: 0.2vw;">Hips</Button>  
+                        <Button class="{{classes.button9_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Hips</Button>  
                     </form>
                     <form action='118' method='POST'>
                         {% csrf_token %}                  
-                        <Button class="{{classes.button10_class}}" style="width: 95%; margin: 0.2vw;">Buttocks</Button>
+                        <Button class="{{classes.button10_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Buttocks</Button>
+                    </form>
+                    <form action='119' method='POST'>
+                        {% csrf_token %}                  
+                        <Button class="{{classes.button13_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Quads</Button>
                     </form>
                     <form action='120' method='POST'>
                         {% csrf_token %}
-                        <Button class="{{classes.button11_class}}" style="width: 95%; margin: 0.2vw;">Hamstrings</Button>
+                        <Button class="{{classes.button11_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Hamstrings</Button>
                     </form>
                     <form action='121' method='POST'>
                         {% csrf_token %}
-                        <Button class="{{classes.button12_class}}" style="width: 95%; margin: 0.2vw;">Calves</Button>
+                        <Button class="{{classes.button12_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Calves</Button>
                     </form>
                 </div>
                 <div class="vertical-container">
+                    <form action='110' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button4_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Trapezius</Button>
+                    </form>
                     <form action='111' method='POST'>
                         {% csrf_token %}
-                        <Button class="{{classes.button5_class}}" style="width: 95%; margin: 0.2vw;">Shoulders</Button>
+                        <Button class="{{classes.button5_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Shoulders</Button>
                     </form>
                     <form action='112' method='POST'>
                         {% csrf_token %}
-                        <Button class="{{classes.button6_class}}" style="width: 95%; margin: 0.2vw;">Triceps</Button>
+                        <Button class="{{classes.button6_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Triceps</Button>
                     </form>
                     <form action='113' method='POST'>
                         {% csrf_token %}
-                        <Button class="{{classes.button7_class}}" style="width: 95%; margin: 0.2vw;">Biceps</Button>
+                        <Button class="{{classes.button7_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Biceps</Button>
                     </form>
                     <form action='114' method='POST'>
                         {% csrf_token %}
-                        <Button class="{{classes.button8_class}}" style="width: 95%; margin: 0.2vw;">Forearms</Button> 
+                        <Button class="{{classes.button8_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Forearms</Button> 
                 </form>                   
                 </div>
                 <div class="vertical-container">
+                    <form action='101' method='POST'>
+                        {% csrf_token %}
+                        <Button class="{{classes.button14_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Cardio</Button>
+                    </form>
                     <form action='102' method='POST'>
                         {% csrf_token %}
-                        <Button name='1' class="{{classes.button1_class}}" style="width: 95%; margin: 0.2vw;">Chest</Button>
+                        <Button class="{{classes.button1_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Chest</Button>
                     </form>
                     <form action='106' method='POST'>
                         {% csrf_token %}
-                        <button name='2' class="{{classes.button2_class}}" style="width: 95%; margin: 0.2vw;">Back</Button>
+                        <button class="{{classes.button2_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Back</Button>
                     </form>
                     <form action='103' method='POST'>
                         {% csrf_token %}
-                        <Button name='3' class="{{classes.button3_class}}" style="width: 95%; margin: 0.2vw;">Abs</Button>
+                        <Button class="{{classes.button3_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Abs</Button>
                     </form>
-                    <form action='110' method='POST'>
+                    <form action='104' method='POST'>
                         {% csrf_token %}
-                        <Button class="{{classes.button4_class}}" style="width: 95%; margin: 0.2vw;">Trapezius</Button>
+                        <Button class="{{classes.button15_class}}" style="width: 95%; margin: 0.2vw; line-height: 1.2;">Obliques</Button>
                     </form>
                 </div>
             </div>
@@ -187,7 +199,7 @@
                         <img src="/static/exerciseImages/{{exercise.image_link}}" class="exercise-image">
                         <!--<img src="https://cdn1.iconfinder.com/data/icons/business-353/660/Weight_Lifting_Person_Exercise_lifting_person_weight-512.png" class="exercise-image">-->
                         <p class="exercise-text" style="margin-bottom: 5px;">
-                            <Button class="btn btn-outline-secondary btn-sm" style="float: right;">Add to Log</Button> 
+                            <Button class="btn btn-outline-secondary btn-sm" style="float: right; line-height: 1.2;">Add to Exercise Log</Button> 
                             <strong>{{exercise.name}}</strong></br>
                             <em style="font-size: 80%;">Category: {{exercise.group}}</em></br>
                         </p>   

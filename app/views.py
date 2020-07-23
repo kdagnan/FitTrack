@@ -41,6 +41,9 @@ def exercises(request, active_exercises=0):
         'button10_class': button_class(active_exercises, 118),
         'button11_class': button_class(active_exercises, 120),
         'button12_class': button_class(active_exercises, 121),
+        'button13_class': button_class(active_exercises, 119),
+        'button14_class': button_class(active_exercises, 101),
+        'button15_class': button_class(active_exercises, 104),
     }
 
     body_diagram = "/static/bodyDiagram/bodyDiagram" + str(active_exercises) + ".png"

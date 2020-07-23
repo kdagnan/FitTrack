@@ -4,8 +4,7 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from .models import ExerciseLog, Exercise
 
-
-# Create your views here.
+# List all Exercise Logs owned by the user
 def home(request):
     context = {
         'exercise_logs' : ExerciseLog.objects.filter(user=request.user.id),
@@ -13,9 +12,15 @@ def home(request):
         'title' : 'Exercise Log',
         'user_id' : request.user.id,
     }
+
+    # If the user does not have any Workout Logs
+    if not context['exercise_logs'].count():
+        return render(request,'exlog_app/get_started.html')
+
+    # Otherwise, load the list view of all Exercise Logs owned by the user
     return render(request, 'exlog_app/home.html', context)
 
-# Exlog List View too complicated using class based view
+# Detail View for Exercise Log objects
 class ExlogDetailView(DetailView):
     model = ExerciseLog
     context_object_name = "exlog"

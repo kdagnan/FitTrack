@@ -4,7 +4,58 @@
 {% endblock style %}
 {% block body %}
     <h1>Results</h1>
+    <p class="text-muted">Last 90 days</p>
     <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        -12 <span class="small">lbs</span>
+                    </h1>
+                    <p class="card-text">
+                        Weight Change
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        +5 <span class="small">%</span>
+                    </h1>
+                    <p class="card-text">
+                        Strength Change
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        2200 <span class="small">cals</span>
+                    </h1>
+                    <p class="card-text">
+                        Avg Daily Consumption
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        120 <span class="small">lbs</span>
+                    </h1>
+                    <p class="card-text">
+                        Average Weight
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
@@ -12,7 +63,7 @@
                         Weight History
                     </h4>
                     <p class="card-text">
-                        Testing 1234567890
+                        <img src="data:image/png;base64,{{ img1 }}" width="100%">
                     </p>
                 </div>
             </div>
@@ -24,7 +75,7 @@
                         Calorie Consumption
                     </h4>
                     <p class="card-text">
-                        Testing 1234567890
+                        <img src="data:image/png;base64,{{ img2 }}" width="100%">
                     </p>
                 </div>
             </div>

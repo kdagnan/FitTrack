@@ -10,6 +10,9 @@ from .models import WeightLog
 from .forms import WeightLogForm
 from . import forms
 from django.contrib.auth import login, authenticate
+import io
+import urllib, base64
+import matplotlib.pyplot as plt
 import json, os
 
 def button_class(active_exercise, button):
@@ -130,8 +133,34 @@ def weightlog(request):
 
 
 def results(request):
+    # Weight Plot
+    plt.close()
+    plt.plot([1, 2, 3, 4, 5, 6, 7, 8], marker='o', markersize=5, color='blue')
+    plt.xlabel('Date')
+    plt.ylabel('Weight (lbs)')
+    fig1 = plt.gcf()
+    buf1 = io.BytesIO()
+    fig1.savefig(buf1, format='png')
+    buf1.seek(0)
+    string = base64.b64encode(buf1.read())
+    img1 = urllib.parse.quote(string)
+
+    plt.close()
+    # Calorie Plot
+    plt.plot([5,4,3,6,8,3,7,9,4,3,2,9,3,3], marker='o', markersize=5, color='blue')
+    plt.xlabel('Date')
+    plt.ylabel('Weight (lbs)')
+    fig2 = plt.gcf()
+    buf2 = io.BytesIO()
+    fig2.savefig(buf2, format='png')
+    buf2.seek(0)
+    string = base64.b64encode(buf2.read())
+    img2 = urllib.parse.quote(string)
+
     context = {
-        'title': 'Results'
+        'title': 'Results',
+        'img1': img1,
+        'img2': img2
     }
     return render(request, 'app/results.html', context)
 

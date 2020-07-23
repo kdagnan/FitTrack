@@ -156,6 +156,7 @@ def results(request):
     buf2.seek(0)
     string = base64.b64encode(buf2.read())
     img2 = urllib.parse.quote(string)
+    plt.close()
 
     context = {
         'title': 'Results',

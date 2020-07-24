@@ -11,6 +11,7 @@ class Exercise(models.Model):
     group_code = models.IntegerField()
     description = models.TextField()
     image_link = models.TextField()
+    ex_id = models.IntegerField()
 
     def __str__(self):
         return self.name

@@ -3,14 +3,13 @@
     {# insert css stylings specific to page here #}
 {% endblock style %}
 {% block body %}
-    <div class="container">
 
-        <h1>Weight History</h1>
-        <form class="form-inline" action="" method="post">          
+        <h1>Weight Log</h1>
+        <form class="form-inline pb-3" action="" method="post">
             {% csrf_token %}
             {{ form }}
           
-            <button type="submit" class="btn btn-primary mb-2">Log</button>
+            <button type="submit" class="btn btn-primary btn-sm ml-2">Log</button>
         </form>
         <table class="table">
             <thead>
@@ -23,10 +22,9 @@
                 {% for weight in weight_logs %}
                     <tr>
                         <th scope="row">{{weight.timestamp}}</th>
-                        <td>{{weight.weight}}</td>
+                        <td>{{weight.weight}} lbs</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div>
 {% endblock body %}

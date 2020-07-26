@@ -28,8 +28,11 @@ class WeightLog(models.Model):
 class Food_Entry(models.Model):
     date = models.DateField(default=timezone.now)
     description = models.CharField(max_length=300)
-    calories = models.IntegerField()
+    calories = models.PositiveIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.description
+
+    # class Meta:
+    #     unique_together = ('user', 'description')

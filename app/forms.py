@@ -2,6 +2,7 @@ from django import forms
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from .models import Food_Entry
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -28,8 +29,23 @@ class UserAuthenticationForm(AuthenticationForm):
 class WeightLogForm(forms.Form):
     weight = forms.CharField(label='Enter Weight', max_length=5)
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class FoodForm(forms.Form):
-    date = forms.DateField(label="Date", input_formats=['%-m/%-d/%Y', '%m/%d/%Y'], initial=timezone.now().strftime('%-m/%-d/%Y'))
+    date = forms.DateField(widget=DateInput, initial=timezone.now)
     description = forms.CharField(label="Description", max_length=300)
     calories = forms.IntegerField(label="Calories")
+
+class FoodFormTheSecond(forms.Form):
+    date = forms.DateField(widget=DateInput, initial=timezone.now)
+    description = forms.ChoiceField(choices=[], required=True)
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop("request")
+        super(FoodFormTheSecond, self).__init__(*args, **kwargs)
+        # test = Food_Entry.objects.filter(user=self.request.user).order_by('description').values_list("description", flat=True).distinct()
+        # test = Food_Entry.objects.filter(user=self.request.user).order_by('description')
+        # self.fields['description'] = forms.ModelChoiceField(label="Description", queryset=test)
+        self.fields['description'].choices = Food_Entry.objects.filter(user=self.request.user).order_by('description').values_list("description", "description").distinct()
+

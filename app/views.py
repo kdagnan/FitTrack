@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render
+from django.contrib import messages
 from django.http import HttpResponse
 from datetime import date, datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Food_Entry
 from .forms import FoodForm
+from .forms import FoodFormTheSecond
 from .models import Exercise
 from .models import WeightLog
 from .forms import WeightLogForm
@@ -75,12 +77,39 @@ def exerciselog(request):
 
 @login_required
 def foodtracker(request):
-    if request.method == 'POST':
+    # Handling form submissions
+    if request.method == 'POST' and 'sub_btn_1' in request.POST:
         form_sub = FoodForm(request.POST)
         if form_sub.is_valid():
-            f = Food_Entry(date=form_sub.cleaned_data['date'], description=form_sub.cleaned_data['description'], calories=form_sub.cleaned_data['calories'], user=request.user)
+            # Ensuring calories match description if already in database
+            if Food_Entry.objects.filter(user=request.user, description=form_sub.cleaned_data['description']).exists():
+                old_entry = Food_Entry.objects.filter(user=request.user, description=form_sub.cleaned_data['description']).first()
+                if old_entry.calories != form_sub.cleaned_data['calories']:
+                    messages.error(request, "ERROR: Reused descriptions must match calories!", extra_tags='danger')
+                else:
+                    f = Food_Entry(date=form_sub.cleaned_data['date'], description=form_sub.cleaned_data['description'], calories=form_sub.cleaned_data['calories'], user=request.user)
+                    f.save()
+            # Ensuring calories are 0 or greater
+            elif form_sub.cleaned_data['calories'] < 0:
+                messages.error(request, "ERROR: Calories must be greater or equal to 0!", extra_tags='danger')
+            else:
+                f = Food_Entry(date=form_sub.cleaned_data['date'], description=form_sub.cleaned_data['description'], calories=form_sub.cleaned_data['calories'], user=request.user)
+                f.save()
+                messages.success(request, "Successfully added " + form_sub.cleaned_data['description'] + ".", extra_tags='success')
+    if request.method == 'POST' and 'sub_btn_2' in request.POST:
+        form_sub = FoodFormTheSecond(request.POST, request=request)
+        if form_sub.is_valid():
+            f = Food_Entry.objects.filter(user=request.user, description=form_sub.cleaned_data['description']).first()
+            f.pk = None
+            f.date = form_sub.cleaned_data["date"]
             f.save()
+            messages.success(request, "Successfully added " + form_sub.cleaned_data['description'] + ".")
+
+    # Creating forms
     form = FoodForm()
+    form_2 = FoodFormTheSecond(request=request)
+
+    # Getting data
     entries = Food_Entry.objects.filter(user=request.user).order_by('-date')
     data = {}
     for e in entries:
@@ -94,10 +123,13 @@ def foodtracker(request):
         for foods in data[date]:
             sum = sum + foods.calories
         total_calories[date] = sum
+
+    # Passing info
     context = {
         'title': 'Food Tracker',
         'data': data,
         'form': form,
+        'form_2': form_2,
         'total_calories': total_calories,
         'today_date': timezone.now().date(),
         'yesterday_date': timezone.now().date() - timedelta(days=1)

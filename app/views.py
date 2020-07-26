@@ -13,7 +13,7 @@ from django.contrib.auth import login, authenticate
 import io
 import urllib, base64
 import matplotlib.pyplot as plt
-import json, os
+import json, os, matplotlib
 
 def button_class(active_exercise, button):
     if active_exercise == button:
@@ -134,8 +134,9 @@ def weightlog(request):
 
 def results(request):
     # Weight Plot
+    matplotlib.use('Agg')
     plt.close()
-    plt.plot([1, 2, 3, 4, 5, 6, 7, 8], marker='o', markersize=5, color='blue')
+    plt.plot([i.timestamp.date().__format__('%-m/%-d') for i in WeightLog.objects.filter(user=request.user).order_by('timestamp')], [int(i.weight) for i in WeightLog.objects.filter(user=request.user).order_by('timestamp')], marker='o', markersize=5, color='blue')
     plt.xlabel('Date')
     plt.ylabel('Weight (lbs)')
     fig1 = plt.gcf()
@@ -144,12 +145,12 @@ def results(request):
     buf1.seek(0)
     string = base64.b64encode(buf1.read())
     img1 = urllib.parse.quote(string)
-
     plt.close()
+
     # Calorie Plot
-    plt.plot([5,4,3,6,8,3,7,9,4,3,2,9,3,3], marker='o', markersize=5, color='blue')
+    plt.plot([i.date.__format__('%-m/%-d') for i in Food_Entry.objects.filter(user=request.user).order_by('date')], [int(i.calories) for i in Food_Entry.objects.filter(user=request.user).order_by('date')], marker='o', markersize=5, color='blue')
     plt.xlabel('Date')
-    plt.ylabel('Weight (lbs)')
+    plt.ylabel('Calories Consumed')
     fig2 = plt.gcf()
     buf2 = io.BytesIO()
     fig2.savefig(buf2, format='png')
@@ -158,10 +159,24 @@ def results(request):
     img2 = urllib.parse.quote(string)
     plt.close()
 
+    sum = 0
+    for i in WeightLog.objects.filter(user=request.user):
+        sum += int(i.weight)
+
+    if len(WeightLog.objects.filter(user=request.user)) > 0:
+        average = sum / (len(WeightLog.objects.filter(user=request.user)))
+        average = '%.2f' % average
+        change = int(WeightLog.objects.filter(user=request.user)[len(WeightLog.objects.filter(user=request.user)) - 1].weight) - int(WeightLog.objects.filter(user=request.user)[0].weight)
+    else:
+        average = '--'
+        change = '--'
+
     context = {
         'title': 'Results',
         'img1': img1,
-        'img2': img2
+        'img2': img2,
+        'change': change,
+        'average': average
     }
     return render(request, 'app/results.html', context)
 

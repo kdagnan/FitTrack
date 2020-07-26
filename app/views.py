@@ -15,6 +15,8 @@ import urllib, base64
 import matplotlib.pyplot as plt
 import json, os
 
+import matplotlib
+
 def button_class(active_exercise, button):
     if active_exercise == button:
         return 'btn btn-outline-primary btn-sm active'
@@ -133,6 +135,8 @@ def weightlog(request):
 
 
 def results(request):
+
+    matplotlib.use('Agg')
     # Weight Plot
     plt.close()
     plt.plot([1, 2, 3, 4, 5, 6, 7, 8], marker='o', markersize=5, color='blue')

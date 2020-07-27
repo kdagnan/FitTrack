@@ -12,4 +12,7 @@ urlpatterns = [
     path('log/<int:pk>/addexercise/', ExerciseCreateView.as_view(), name='exlog-add-exercise'),
     path('log/<int:pk>/updateexercise/', ExerciseUpdateView.as_view(), name='exlog-update-exercise'),
     path('log/<int:pk>/deleteexercise/', ExerciseDeleteView.as_view(), name='exlog-delete-exercise'),
+
+    # Path allows an exercise to be added to the workout log
+    path('log/add_ex_to_today_log/<str:exercise_name>/', views.add_from_recommender, name='exlog-add-from-recommender')
 ]

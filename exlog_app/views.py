@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
+from django.utils import timezone
 from .models import ExerciseLog, Exercise
 
 # List all Exercise Logs owned by the user
@@ -19,6 +20,11 @@ def home(request):
 
     # Otherwise, load the list view of all Exercise Logs owned by the user
     return render(request, 'exlog_app/home.html', context)
+
+def add_from_recommender(request, exercise_name):
+    print(exercise_name)
+    return render(request, 'exlog_app/home.html')
+
 
 # Detail View for Exercise Log objects
 class ExlogDetailView(DetailView):
@@ -38,6 +44,13 @@ class ExlogCreateView(LoginRequiredMixin, CreateView):
     model = ExerciseLog
     fields = ['date']
 
+    def get_form(self):
+        form = super(ExlogCreateView, self).get_form()
+        initial_base = self.get_initial() 
+        initial_base['date'] = initial=timezone.now().strftime('%-m/%-d/%Y')
+        form.initial = initial_base
+        return form
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -46,6 +59,13 @@ class ExlogCreateView(LoginRequiredMixin, CreateView):
 class ExlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = ExerciseLog
     fields = ['date']
+
+    def get_form(self):
+        form = super(ExlogUpdateView, self).get_form()
+        initial_base = self.get_initial() 
+        initial_base['date'] = initial=timezone.now().strftime('%-m/%-d/%Y')
+        form.initial = initial_base
+        return form
 
     def form_valid(self, form):
         form.instance.user = self.request.user

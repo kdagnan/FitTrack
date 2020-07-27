@@ -19,9 +19,12 @@
             {% if exercise.exercise_log == exlog %}
             <li class="unordered-list_item">
                 {{ exercise.exercise_name }}:
-                {{ exercise.num_sets }}x
-                {{ exercise.num_reps }}
-                {{ exercise.exercise_weight }} lbs
+                {% if exercise.num_sets != 0 %}
+                    {{ exercise.exercise_name }}:
+                    {{ exercise.num_sets }}x
+                    {{ exercise.num_reps }}
+                    {{ exercise.exercise_weight }} lbs
+                {% endif %}
             </li>
             {% endif %}
             {% endfor %}

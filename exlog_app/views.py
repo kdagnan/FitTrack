@@ -4,6 +4,7 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
+from django.http import HttpResponseRedirect
 from .models import ExerciseLog, Exercise
 
 # List all Exercise Logs owned by the user
@@ -25,30 +26,34 @@ def home(request):
 def add_from_recommender(request, exercise_name):
     print(exercise_name)
 
+    today_log = None
     # Incase there has not been a workout log created for the current day
     try:
         today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[0]
-        Exercise.objects.create(
-            exercise_log=today_log,
-            exercise_name= exercise_name,
-            num_sets=0,
-            num_reps=0,
-            exercise_weight=0,
-        ).save()
-        print(today_log)
     
     # There is no exercise log created for the current day
     except IndexError:
 
         # Create a new exercise log for today for the current user
-        ExerciseLog.objects.create(
+        today_log = ExerciseLog.objects.create(
             user=request.user,
             date=datetime.date.today(),
-        ).save()
+        )
+
     except Exception as e:
         print('ERROR', e)
 
-    return render(request, 'exlog_app/home.html', context)
+    # Create the exercise
+    Exercise.objects.create(
+        exercise_log=today_log,
+        exercise_name= exercise_name,
+        num_sets=0,
+        num_reps=0,
+        exercise_weight=0,
+    )
+
+    # Redirects to today's workout log after adding the exercise
+    return HttpResponseRedirect("/exlog/log/"+str(today_log.id))
 
 # Detail View for Exercise Log objects
 class ExlogDetailView(DetailView):

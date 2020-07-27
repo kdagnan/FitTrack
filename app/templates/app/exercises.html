@@ -197,13 +197,14 @@
                 {% for exercise in exercises %}
                     <div class="exercise">                     
                         <img src="/static/exerciseImages/{{exercise.image_link}}" class="exercise-image">
-                        <!--<img src="https://cdn1.iconfinder.com/data/icons/business-353/660/Weight_Lifting_Person_Exercise_lifting_person_weight-512.png" class="exercise-image">-->
                         <p class="exercise-text" style="margin-bottom: 5px;">
-                            <a href={% url 'exlog_home' %}>
+                            <!--Pending: populate exercise log with selected exercise-->
+                            <a id={{exercise.ex_id}} href={% url 'exlog_home' %}>
                                 <Button class="btn btn-outline-secondary btn-sm" style="float: right; line-height: 1.2;">Add to Exercise Log</Button> 
                             </a>
                             <strong>{{exercise.name}}</strong></br>
                             <em style="font-size: 80%;">Category: {{exercise.group}}</em></br>
+                            {{exercise.ex_id}}
                         </p>   
                         <p class="exercise-text">
                             {{exercise.description}}

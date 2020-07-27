@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.utils import timezone
+import datetime
 from .models import ExerciseLog, Exercise
 
 # List all Exercise Logs owned by the user
@@ -23,7 +24,17 @@ def home(request):
 
 def add_from_recommender(request, exercise_name):
     print(exercise_name)
+
+    # Incase there has not been a workout log created for the current day
+    try:
+        #today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[0]
+        today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[0]
+        print(today_log)
+    except:
+        print("error")
+
     return render(request, 'exlog_app/home.html')
+    
 
 
 # Detail View for Exercise Log objects
@@ -47,7 +58,7 @@ class ExlogCreateView(LoginRequiredMixin, CreateView):
     def get_form(self):
         form = super(ExlogCreateView, self).get_form()
         initial_base = self.get_initial() 
-        initial_base['date'] = initial=timezone.now().strftime('%-m/%-d/%Y')
+        initial_base['date'] = timezone.now().strftime('%-m/%-d/%Y')
         form.initial = initial_base
         return form
 
@@ -63,7 +74,7 @@ class ExlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def get_form(self):
         form = super(ExlogUpdateView, self).get_form()
         initial_base = self.get_initial() 
-        initial_base['date'] = initial=timezone.now().strftime('%-m/%-d/%Y')
+        initial_base['date'] = timezone.now().strftime('%-m/%-d/%Y')
         form.initial = initial_base
         return form
 

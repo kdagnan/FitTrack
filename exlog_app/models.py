@@ -6,7 +6,7 @@ from django.urls import reverse
 # ExerciseLog contains many exercises (acts like a list of exercises)
 class ExerciseLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateTimeField(default=timezone.now)
+    date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return str(self.user) + "\t" + str(self.date)

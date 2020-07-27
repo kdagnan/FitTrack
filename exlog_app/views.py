@@ -27,15 +27,28 @@ def add_from_recommender(request, exercise_name):
 
     # Incase there has not been a workout log created for the current day
     try:
-        #today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[0]
         today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[0]
+        Exercise.objects.create(
+            exercise_log=today_log,
+            exercise_name= exercise_name,
+            num_sets=0,
+            num_reps=0,
+            exercise_weight=0,
+        ).save()
         print(today_log)
-    except:
-        print("error")
-
-    return render(request, 'exlog_app/home.html')
     
+    # There is no exercise log created for the current day
+    except IndexError:
 
+        # Create a new exercise log for today for the current user
+        ExerciseLog.objects.create(
+            user=request.user,
+            date=datetime.date.today(),
+        ).save()
+    except Exception as e:
+        print('ERROR', e)
+
+    return render(request, 'exlog_app/home.html', context)
 
 # Detail View for Exercise Log objects
 class ExlogDetailView(DetailView):

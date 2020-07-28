@@ -6,7 +6,7 @@ from django.utils import timezone
 from .models import Food_Entry
 from exlog_app.models import ExerciseLog, Exercise as Exercise_App
 from .forms import FoodForm
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from .models import Exercise
 from .models import WeightLog
 from .forms import WeightLogForm
@@ -156,10 +156,11 @@ def results(request):
     plt.close()
 
     list = Food_Entry.objects.filter(user=request.user).order_by('date').extra({'_date': 'Date(date)'}).values(
-         '_date').annotate(val=Avg('calories'))
+         '_date').annotate(val=Avg('calories'), count=Count('calories'))
 
     dates = []
     cals = []
+    counts = []
     avgCals = 0
     for item in list:
         print(item)
@@ -167,13 +168,14 @@ def results(request):
         date = date.split('-')
         dates.append(date[1] + '-' + date[2])
         cals.append(item.get('val'))
-        avgCals = avgCals + item.get('val')
+        counts.append(item.get('count'))
+        avgCals = avgCals + item.get('val') * item.get('count')
     if len(dates) > 0:
         avgCals = avgCals / len(dates)
 
     # Calorie Plot
     plt.plot([i for i in dates],
-             [int(i) for i in cals],
+             [int(j * counts[i]) for i,j in enumerate(cals)],
              marker='o', markersize=5, color='blue')
     plt.xlabel('Date')
     plt.ylabel('Calories Consumed')

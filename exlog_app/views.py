@@ -25,12 +25,12 @@ def home(request):
     return render(request, 'exlog_app/home.html', context)
 
 def add_from_recommender(request, exercise_name):
-    print(exercise_name)
 
     today_log = None
     # Incase there has not been a workout log created for the current day
     try:
-        today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[0]
+        exlog_count = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today()).count()
+        today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[exlog_count-1]
     
     # There is no exercise log created for the current day
     except IndexError:

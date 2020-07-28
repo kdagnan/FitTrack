@@ -25,7 +25,7 @@
                         {{ str_change }} <span class="small">%</span>
                     </h1>
                     <p class="card-text">
-                        Strength Change
+                        Strength Change {% if not request.GET.ex %} <br><span class="small text-danger">No Exercise Selected</span> {% endif %}
                     </p>
                 </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title">
-                        -- <span class="small">cals</span>
+                       {{ avg_cals }} <span class="small">cals</span>
                     </h1>
                     <p class="card-text">
                         Avg Daily Consumption
@@ -60,10 +60,19 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        Weight History
+                        Strength Increase ({{ request.GET.ex }})
                     </h4>
+                    <form action="/results/" class="form-inline">
+                        <select name="ex" id="ex" class="form-control">
+                            <option selected disabled>Select Exercise</option>
+                            {% for name in ex_names %}
+                                <option value="{{ name }}" {% if name == request.GET.ex %} selected {% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                        <Button class="btn btn-outline-secondary form-control" type="submit">Submit</Button>
+                    </form>
                     <p class="card-text">
-                        <img src="data:image/png;base64,{{ img1 }}" width="100%">
+                        <img style="padding-top:2%"src="data:image/png;base64,{{ img3 }}" width="100%">
                     </p>
                 </div>
             </div>
@@ -72,7 +81,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        Calorie Consumption
+                        Daily Calorie Consumption
                     </h4>
                     <p class="card-text">
                         <img src="data:image/png;base64,{{ img2 }}" width="100%">
@@ -80,23 +89,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+    </div>
+    <div class="row mt-5">
+                <div class="col-6">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        Strength
+                        Weight History
                     </h4>
-                    <form action="/results/">
-                        <select name="ex" id="ex">
-                            <option value="" selected disabled hidden>Select an exercise...</option>
-                            {% for name in ex_names %}
-                                <option value="{{ name }}">{{ name }}</option>
-                            {% endfor %}
-                        </select>
-                        <Button class="btn btn-outline-secondary" type="submit">Submit</Button>
-                    </form>
                     <p class="card-text">
-                        <img style="padding-top:2%"src="data:image/png;base64,{{ img3 }}" width="100%">
+                        <img src="data:image/png;base64,{{ img1 }}" width="100%">
                     </p>
                 </div>
             </div>

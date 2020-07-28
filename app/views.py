@@ -6,6 +6,7 @@ from django.utils import timezone
 from .models import Food_Entry
 from exlog_app.models import ExerciseLog, Exercise as Exercise_App
 from .forms import FoodForm
+from django.db.models import Avg
 from .models import Exercise
 from .models import WeightLog
 from .forms import WeightLogForm
@@ -124,13 +125,15 @@ def weightlog(request):
     context = {
         'title': 'Weight Log',
         'weight_logs': WeightLog.objects.filter(user=request.user).order_by('-timestamp'),
-        'form': form
+        'form': form,
+        'savedWeight': False
     }
     if request.method == 'POST':
         form = WeightLogForm(request.POST)
         if form.is_valid():
             w = WeightLog(weight=form.cleaned_data['weight'], user=request.user)
             w.save()
+            context['savedWeight'] = True
             return render(request, 'app/weightlog.html', context)
     else: 
         return render(request, 'app/weightlog.html', context)
@@ -152,8 +155,26 @@ def results(request):
     img1 = urllib.parse.quote(string)
     plt.close()
 
+    list = Food_Entry.objects.filter(user=request.user).order_by('date').extra({'_date': 'Date(date)'}).values(
+         '_date').annotate(val=Avg('calories'))
+
+    dates = []
+    cals = []
+    avgCals = 0
+    for item in list:
+        print(item)
+        date = item.get('_date')
+        date = date.split('-')
+        dates.append(date[1] + '-' + date[2])
+        cals.append(item.get('val'))
+        avgCals = avgCals + item.get('val')
+    if len(dates) > 0:
+        avgCals = avgCals / len(dates)
+
     # Calorie Plot
-    plt.plot([i.date.__format__('%-m/%-d') for i in Food_Entry.objects.filter(user=request.user).order_by('date')], [int(i.calories) for i in Food_Entry.objects.filter(user=request.user).order_by('date')], marker='o', markersize=5, color='blue')
+    plt.plot([i for i in dates],
+             [int(i) for i in cals],
+             marker='o', markersize=5, color='blue')
     plt.xlabel('Date')
     plt.ylabel('Calories Consumed')
     fig2 = plt.gcf()
@@ -203,12 +224,12 @@ def results(request):
     img3 = urllib.parse.quote(string)
     plt.close()
 
-    sum = 0
+    weightSum = 0
     for i in WeightLog.objects.filter(user=request.user):
-        sum += int(i.weight)
+        weightSum += int(i.weight)
 
     if len(WeightLog.objects.filter(user=request.user)) > 0:
-        average = sum / (len(WeightLog.objects.filter(user=request.user)))
+        average = weightSum / (len(WeightLog.objects.filter(user=request.user)))
         average = '%.2f' % average
         change = int(WeightLog.objects.filter(user=request.user)[len(WeightLog.objects.filter(user=request.user)) - 1].weight) - int(WeightLog.objects.filter(user=request.user)[0].weight)
     else:
@@ -221,6 +242,7 @@ def results(request):
     else:
         str_change = '--'
 
+    print(cals)
     context = {
         'title': 'Results',
         'img1': img1,
@@ -229,7 +251,8 @@ def results(request):
         'change': change,
         'average': average,
         'ex_names': np.unique(np.array(ex_names)),
-        'str_change': str_change
+        'str_change': str_change,
+        'avg_cals': avgCals
     }
     return render(request, 'app/results.html', context)
 

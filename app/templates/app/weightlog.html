@@ -3,7 +3,9 @@
     {# insert css stylings specific to page here #}
 {% endblock style %}
 {% block body %}
-
+        {% if savedWeight %}
+            <div class="alert alert-success">Logged Weight. Great job!</div>
+        {% endif %}
         <h1>Weight Log</h1>
         <form class="form-inline pb-3" action="" method="post">
             {% csrf_token %}

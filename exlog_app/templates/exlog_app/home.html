@@ -14,7 +14,6 @@
             <h2><a class="mr-2" href="{% url 'exlog-detail' exlog.id %}">{{ exlog.date | date:"F d, Y"}} Workout</a></h2>
         </div>
         <ul>
-            <!-- Terribly unoptimized but it works for now -->
             {% for exercise in exercises%}
             {% if exercise.exercise_log == exlog %}
             <li class="unordered-list_item">

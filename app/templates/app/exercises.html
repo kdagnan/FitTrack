@@ -199,7 +199,7 @@
                         <img src="/static/exerciseImages/{{exercise.image_link}}" class="exercise-image">
                         <p class="exercise-text" style="margin-bottom: 5px;">
                             <!--Pending: populate exercise log with selected exercise-->
-                            <a id={{exercise.ex_id}} href={% url 'exlog_home' %}>
+                            <a id={{exercise.ex_id}} href="{% url 'exlog-add-from-recommender' exercise.name %}">
                                 <Button class="btn btn-outline-secondary btn-sm" style="float: right; line-height: 1.2;">Add to Exercise Log</Button> 
                             </a>
                             <strong>{{exercise.name}}</strong></br>

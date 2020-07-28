@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.core.validators import RegexValidator
 
 # ExerciseLog contains many exercises (acts like a list of exercises)
 class ExerciseLog(models.Model):
@@ -18,7 +19,8 @@ class Exercise(models.Model):
     exercise_log = models.ForeignKey(ExerciseLog, on_delete=models.CASCADE)
 
     # In the future, exercise should ideally be a foreign key which can be tied together to track progress
-    exercise_name = models.CharField(max_length=32)
+    alpha_num_dash = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters and dashes are allowed.')
+    exercise_name = models.CharField(max_length=32, validators=[alpha_num_dash])
     num_sets = models.IntegerField()
     num_reps = models.IntegerField()
     exercise_weight = models.IntegerField()

@@ -55,7 +55,11 @@
         border: 1px solid #dddddd;
         border-radius: 3px;
         margin-bottom: 20px;
-      }
+    }
+    .delete-btn {
+        display: block;
+        margin: auto;
+    }
     @keyframes fadeinout {
         0% { opacity: 0; }
         100% { opacity: 1; }
@@ -166,6 +170,13 @@
                                 <!-- <td style="text-align: center">{{ f.time }}</td> -->
                                 <td width="75%"style="text-align: center">{{ f.description }}</td>
                                 <td style="text-align: center">{{ f.calories }}</td>
+                                <td>
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <input type ="hidden" value="{{ f.pk }}" name="pk">
+                                        <input type="submit" class="btn btn-danger btn-sm delete-btn" value="Delete">
+                                    </form>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

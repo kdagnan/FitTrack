@@ -82,29 +82,37 @@ def foodtracker(request):
         form_sub = FoodForm(request.POST)
         if form_sub.is_valid():
             # Ensuring calories match description if already in database
+            val = True
             if Food_Entry.objects.filter(user=request.user, description=form_sub.cleaned_data['description']).exists():
                 old_entry = Food_Entry.objects.filter(user=request.user, description=form_sub.cleaned_data['description']).first()
                 if old_entry.calories != form_sub.cleaned_data['calories']:
                     messages.error(request, "ERROR: Reused descriptions must match calories!", extra_tags='danger')
+                    val = False
                 else:
                     f = Food_Entry(date=form_sub.cleaned_data['date'], description=form_sub.cleaned_data['description'], calories=form_sub.cleaned_data['calories'], user=request.user)
                     f.save()
             # Ensuring calories are 0 or greater
-            elif form_sub.cleaned_data['calories'] < 0:
+            if form_sub.cleaned_data['calories'] < 0:
                 messages.error(request, "ERROR: Calories must be greater or equal to 0!", extra_tags='danger')
-            else:
+                val = False
+            if val == True:
                 f = Food_Entry(date=form_sub.cleaned_data['date'], description=form_sub.cleaned_data['description'], calories=form_sub.cleaned_data['calories'], user=request.user)
                 f.save()
                 messages.success(request, "Successfully added " + form_sub.cleaned_data['description'] + ".", extra_tags='success')
-    if request.method == 'POST' and 'sub_btn_2' in request.POST:
+        else:
+            messages.error(request, "ERROR: Description may only contain alphanumerics, end stops, commas, and parentheses!", extra_tags='danger')
+    elif request.method == 'POST' and 'sub_btn_2' in request.POST:
         form_sub = FoodFormTheSecond(request.POST, request=request)
         if form_sub.is_valid():
             f = Food_Entry.objects.filter(user=request.user, description=form_sub.cleaned_data['description']).first()
             f.pk = None
             f.date = form_sub.cleaned_data["date"]
             f.save()
-            messages.success(request, "Successfully added " + form_sub.cleaned_data['description'] + ".")
-
+            messages.success(request, "Successfully added " + form_sub.cleaned_data['description'] + ".", extra_tags='success')
+    elif request.method == 'POST':
+        f = Food_Entry.objects.filter(user=request.user, pk=request.POST['pk']).first()
+        Food_Entry.objects.filter(user=request.user, pk=request.POST['pk']).delete()
+        messages.success(request, "Successfully deleted " + f.description + ".", extra_tags='success')
     # Creating forms
     form = FoodForm()
     form_2 = FoodFormTheSecond(request=request)

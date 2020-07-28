@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
 from django import forms
+from django.contrib import messages
 from django.http import *
 from .models import ExerciseLog, Exercise
 
@@ -21,9 +22,15 @@ def home(request):
     if not context['exercise_logs'].count():
         return render(request,'exlog_app/get_started.html')
 
+    messages.success(request, "Workout Log successfully created", extra_tags='success')
+    messages.success(request, "Workout Log successfully created", extra_tags='warning')
+    messages.success(request, "Workout Log successfully created", extra_tags='info')
+    messages.success(request, "Workout Log successfully created", extra_tags='danger')
+
     # Otherwise, load the list view of all Exercise Logs owned by the user
     return render(request, 'exlog_app/home.html', context)
 
+# Add Exercise to database, creating a ExerciseLog if necessary, stays on Exercise recommender page
 def add_from_recommender(request, exercise_name):
 
     today_log = None

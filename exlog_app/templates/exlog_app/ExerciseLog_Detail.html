@@ -35,6 +35,8 @@
                     {{ exercise.num_reps }}
                     {{ exercise.exercise_weight }} lbs
                 {% endif %}
+                <a href="{% url 'exlog-update-exercise' exercise.id %}">Edit</a>
+                <a href="{% url 'exlog-delete-exercise' exercise.id %}">Delete</a>
             </li>
             {% endif %}
             {% endfor %}

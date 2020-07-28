@@ -11,7 +11,7 @@ from .models import ExerciseLog, Exercise
 # List all Exercise Logs owned by the user
 def home(request):
     context = {
-        'exercise_logs' : ExerciseLog.objects.filter(user=request.user.id),
+        'exercise_logs' : ExerciseLog.objects.filter(user=request.user.id).order_by('-date', '-id'),
         'exercises' : Exercise.objects.all(),
         'title' : 'Exercise Log',
         'user_id' : request.user.id,
@@ -29,17 +29,23 @@ def add_from_recommender(request, exercise_name):
     today_log = None
     # Incase there has not been a workout log created for the current day
     try:
+        
         exlog_count = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today()).count()
-        today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[exlog_count-1]
-    
-    # There is no exercise log created for the current day
-    except IndexError:
-
+        
+        if exlog_count == 0:
         # Create a new exercise log for today for the current user
-        today_log = ExerciseLog.objects.create(
-            user=request.user,
-            date=datetime.date.today(),
-        )
+            today_log = ExerciseLog.objects.create(
+                user=request.user,
+                date=datetime.date.today(),
+            )
+        
+        # There already is an existing exercise log for the current day
+        else:
+            today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[exlog_count-1]
+    
+    
+    except IndexError:
+        pass
 
     except Exception as e:
         print('ERROR', e)

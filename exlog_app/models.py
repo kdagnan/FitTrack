@@ -19,7 +19,7 @@ class Exercise(models.Model):
     exercise_log = models.ForeignKey(ExerciseLog, on_delete=models.CASCADE)
 
     # In the future, exercise should ideally be a foreign key which can be tied together to track progress
-    alpha_num_dash = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters and dashes are allowed.')
+    alpha_num_dash = RegexValidator(r'^[0-9a-zA-Z\s]*$', 'Only alphanumeric characters and dashes are allowed.')
     exercise_name = models.CharField(max_length=32, validators=[alpha_num_dash])
     num_sets = models.PositiveIntegerField()
     num_reps = models.PositiveIntegerField()

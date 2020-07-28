@@ -1,0 +1,22 @@
+{% extends "exlog_app/base.html" %}
+
+{% block content %}
+<div class="content-section">
+
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Delete Exercise?</legend>
+            <h5>Are you sure you want to remove the following exercise from the 
+                <b>{{exercise.exercise_log.date | date:"F d, Y" }} Workout Log</b>?
+            </h5>
+        </fieldset>
+        <p>{{exercise.exercise_name}}: {{exercise.num_sets}}x{{exercise.num_reps}} {{exercise.exercise_weight}}</p>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Yes, Delete This Exercise</button>
+            <a class="btn btn-outline-secondary" href="{% url 'exlog-detail' object.exercise_log.id %}">No, Cancel</a>
+        </div>
+    </form>
+
+</div>
+{% endblock content %}

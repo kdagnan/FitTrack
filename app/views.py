@@ -44,21 +44,25 @@ def exercises(request, active_exercises=0):
     }
 
     body_diagram = "/static/bodyDiagram/bodyDiagram" + str(active_exercises) + ".png"
-    #exercise_list = Exercise.objects.filter(group_code=active_exercises)
+    
 
     exercise_list = []
 
-    with open(os.path.dirname(os.path.realpath(__file__)) + '/Exercises.json') as f:
-        data = json.load(f)
+    #with open(os.path.dirname(os.path.realpath(__file__)) + '/Exercises.json') as f:
+    #    data = json.load(f)
 
-    for item in data:
-        if item["group_code"] == active_exercises:
-            exercise_list.append(item)
+    if (active_exercises == 100):
+        exercise_list = Exercise.objects.all()
+    else:
+        exercise_list = Exercise.objects.filter(group_code=active_exercises)
+        #for item in data:
+        #    if item["group_code"] == active_exercises:
+        #        exercise_list.append(item)
 
     context = {
         'exercises': exercise_list,
         'title': 'Exercises',
-        'active_exercise': active_exercises,#exercise_list[0].group,
+        'active_exercise': active_exercises, #exercise_list[0].group,
         'classes': classes,
         'body_diagram': body_diagram,
     }

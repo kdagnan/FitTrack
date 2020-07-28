@@ -1,0 +1,29 @@
+{%  extends "app/base.html" %}
+
+{% load static %}
+
+{% block body %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'exlog_app/base.css' %}">
+{% block stylesheets %}{% endblock stylesheets %}
+
+<main role="main" class="container">
+  <div class="row justify-content-md-center">
+
+    <!-- Sidebar -->
+    <div class="col-md-8">
+      <div class="content-section">
+        <h2 class="mt-1 text-center"><b>Welcome to FitTrack's Exercise Log!</b></h2>
+        <h5 class="mt-3 text-center">Click the button below to add your first Exercise Log</h5>
+          
+          <!-- ListView for all workout logs under the current logged in user-->
+        <div class="col text-center">
+            <a href="/exlog/log/new/">
+                <Button class="mt-3 btn btn-success btn-lg ">Start tracking your workouts!</Button>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock body %}

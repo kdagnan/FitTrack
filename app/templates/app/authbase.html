@@ -10,9 +10,13 @@
     .btn-secondary {
         width: 100%;
     }
-    form {
+    .signup {
         padding: 2%;
         max-width: 75%;
+    }
+    .login {
+        padding: 2%;
+        max-width: 300px;
     }
     .body {
         background-color: #f2f2f2;
@@ -34,6 +38,22 @@
     }
     .text {
         margin-bottom: 10%;
+    }
+    ul {
+        list-style: none;
+        padding-inline-start: 0px;
+    }
+    li {
+        color: red;
+    }
+    a {
+        max-width: 100%;
+    }
+    @media screen and (max-width: 300px){
+        .login {
+            padding: 2%;
+            max-width: 75%;
+        }
     }
 {% endblock style %}
 {% block body %}{% endblock body %}

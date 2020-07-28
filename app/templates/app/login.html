@@ -2,10 +2,20 @@
 {% load static %}
 {% block body %}
     <div class="window">
-        <form class="shadow bg-white rounded" method="POST">
+        <form class="shadow bg-white rounded login" method="POST">
             {% csrf_token %}
             <img src="{% static 'logo.png' %}" class="logo">
             <h1 class="text">Log In</h1>
+            {% if form.errors %}
+                <div class="errors">
+                    {{ form.non_field_errors }}
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <a style="color:red">{{ field.errors }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">

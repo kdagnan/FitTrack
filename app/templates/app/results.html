@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title">
-                        -- <span class="small">%</span>
+                        {{ str_change }} <span class="small">%</span>
                     </h1>
                     <p class="card-text">
                         Strength Change
@@ -76,6 +76,27 @@
                     </h4>
                     <p class="card-text">
                         <img src="data:image/png;base64,{{ img2 }}" width="100%">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        Strength
+                    </h4>
+                    <form action="/results/">
+                        <select name="ex" id="ex">
+                            <option value="" selected disabled hidden>Select an exercise...</option>
+                            {% for name in ex_names %}
+                                <option value="{{ name }}">{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                        <Button class="btn btn-outline-secondary" type="submit">Submit</Button>
+                    </form>
+                    <p class="card-text">
+                        <img style="padding-top:2%"src="data:image/png;base64,{{ img3 }}" width="100%">
                     </p>
                 </div>
             </div>

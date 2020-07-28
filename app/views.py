@@ -4,6 +4,7 @@ from datetime import date, datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Food_Entry
+from exlog_app.models import ExerciseLog, Exercise as Exercise_App
 from .forms import FoodForm
 from .models import Exercise
 from .models import WeightLog
@@ -14,6 +15,7 @@ import io
 import urllib, base64
 import matplotlib.pyplot as plt
 import json, os, matplotlib
+import numpy as np
 
 import matplotlib
 
@@ -136,7 +138,6 @@ def weightlog(request):
 
 def results(request):
 
-    matplotlib.use('Agg')
     # Weight Plot
     matplotlib.use('Agg')
     plt.close()
@@ -163,6 +164,45 @@ def results(request):
     img2 = urllib.parse.quote(string)
     plt.close()
 
+    ex_names = []
+    for i in ExerciseLog.objects.filter(user=request.user):
+        for j in Exercise_App.objects.filter(exercise_log=i):
+            ex_names.append(j.exercise_name)
+
+    weights = []
+    reps = []
+    dates = []
+    rep_max = []
+    for i in ExerciseLog.objects.filter(user=request.user).order_by('date'):
+        for j in Exercise_App.objects.filter(exercise_log=i):
+            if j.exercise_name == request.GET.get('ex', ''):
+                weights.append(j.exercise_weight)
+                reps.append(j.num_reps)
+                dates.append(i.date)
+
+                # Epley formula for 1RM calculation
+                rep_max.append(int(j.exercise_weight * (1 + j.num_reps / 30)))
+
+    # Strength Plot
+    plt.plot([i.__format__('%-m/%-d') for i in dates], [i for i in rep_max], marker='o', markersize=5, color='blue')
+    plt.title(request.GET.get('ex', 'Select an exercise'))
+    plt.xlabel('Date')
+    plt.ylabel(request.GET.get('ex', '') + ' (1 Repetition Maximum)')
+
+    if len(rep_max) > 0:
+        plt.ylim(min(rep_max) - 10, max(rep_max) + 10)
+
+    for i in range(0, len(dates)):
+        plt.annotate(int(rep_max[i]), (dates[i].__format__('%-m/%-d'), rep_max[i]+2), ha="center")
+
+    fig3 = plt.gcf()
+    buf3 = io.BytesIO()
+    fig3.savefig(buf3, format='png')
+    buf3.seek(0)
+    string = base64.b64encode(buf3.read())
+    img3 = urllib.parse.quote(string)
+    plt.close()
+
     sum = 0
     for i in WeightLog.objects.filter(user=request.user):
         sum += int(i.weight)
@@ -175,12 +215,21 @@ def results(request):
         average = '--'
         change = '--'
 
+    if len(rep_max) > 0:
+        str_change = ((rep_max[len(rep_max) - 1] - rep_max[0]) / rep_max[0]) * 100
+        str_change = '%.2f' % str_change
+    else:
+        str_change = '--'
+
     context = {
         'title': 'Results',
         'img1': img1,
         'img2': img2,
+        'img3': img3,
         'change': change,
-        'average': average
+        'average': average,
+        'ex_names': np.unique(np.array(ex_names)),
+        'str_change': str_change
     }
     return render(request, 'app/results.html', context)
 

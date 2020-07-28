@@ -1,5 +1,5 @@
 #create new super user
-python3 manage.py createsuperuser
+#python3 manage.py createsuperuser
 #enter username
 #enter Email
 #enter Password
@@ -12,7 +12,7 @@ python3 manage.py shell
 ...     exer_json = json.load(f)
 ...
 >>> for exe in exer_json:
-...     exercise = Exercise(name=exe['name'], group=exe['group'], group_code=exe['group_code'], description=exe['description'], image_link=exe['image_link'])
+...     exercise = Exercise(name=exe['name'], group=exe['group'], group_code=exe['group_code'], description=exe['description'], image_link=exe['image_link'], ex_id=exe['ex_id'])
 ...     exercise.save()
 ...
 >>> exit()

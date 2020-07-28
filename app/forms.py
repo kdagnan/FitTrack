@@ -26,7 +26,7 @@ class UserAuthenticationForm(AuthenticationForm):
 
 
 class WeightLogForm(forms.Form):
-    weight = forms.CharField(label='Enter Weight', max_length=5)
+    weight = forms.CharField(label='Log New Weight', max_length=5)
 
 
 class FoodForm(forms.Form):

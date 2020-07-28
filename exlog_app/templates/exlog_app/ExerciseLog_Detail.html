@@ -27,10 +27,12 @@
             <!-- Passed in QuerySet only contains relevant Exercise objects-->
             {% for exercise in exercises%}
             <li class="unordered-list_item">
-                {{ exercise.exercise_name }}:&nbsp;
+                {{ exercise.exercise_name }}:
                 {{ exercise.num_sets }}x
-                {{ exercise.num_reps }}&nbsp;
+                {{ exercise.num_reps }}
                 {{ exercise.exercise_weight }} lbs
+                <a href="{% url 'exlog-update-exercise' exercise.id %}">Edit</a>
+                <a href="{% url 'exlog-delete-exercise' exercise.id %}">Delete</a>
             </li>
             {% endfor %}
         </ul>

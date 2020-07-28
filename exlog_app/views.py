@@ -4,6 +4,7 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
+from django import forms
 from django.http import HttpResponseRedirect
 from .models import ExerciseLog, Exercise
 
@@ -68,6 +69,10 @@ class ExlogDetailView(DetailView):
         context['exercises'] = Exercise.objects.filter(exercise_log=self.object).iterator()
         return context
 
+# This makes the Calendar date selector widget work, idk why
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 # Class based view for Create (Exercise Log)
 class ExlogCreateView(LoginRequiredMixin, CreateView):
     model = ExerciseLog
@@ -76,8 +81,9 @@ class ExlogCreateView(LoginRequiredMixin, CreateView):
     def get_form(self):
         form = super(ExlogCreateView, self).get_form()
         initial_base = self.get_initial() 
-        initial_base['date'] = timezone.now().strftime('%-m/%-d/%Y')
+        initial_base['date'] = timezone.now()
         form.initial = initial_base
+        form.fields['date'].widget = DateInput()
         return form
 
     def form_valid(self, form):
@@ -92,8 +98,9 @@ class ExlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def get_form(self):
         form = super(ExlogUpdateView, self).get_form()
         initial_base = self.get_initial() 
-        initial_base['date'] = timezone.now().strftime('%-m/%-d/%Y')
+        initial_base['date'] = timezone.now()
         form.initial = initial_base
+        form.fields['date'].widget = DateInput()
         return form
 
     def form_valid(self, form):

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
 from django import forms
-from django.http import HttpResponseRedirect
+from django.http import *
 from .models import ExerciseLog, Exercise
 
 # List all Exercise Logs owned by the user
@@ -42,10 +42,6 @@ def add_from_recommender(request, exercise_name):
         # There already is an existing exercise log for the current day
         else:
             today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[exlog_count-1]
-    
-    
-    except IndexError:
-        pass
 
     except Exception as e:
         print('ERROR', e)
@@ -59,8 +55,11 @@ def add_from_recommender(request, exercise_name):
         exercise_weight=0,
     )
 
-    # Redirects to today's workout log after adding the exercise
-    return HttpResponseRedirect("/exlog/log/"+str(today_log.id))
+    # Stays on Exercises list page in case user wants to add more exercises to today's exercise log
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    # Used to return to today's exercise log with the exercise added
+    # return HttpResponseRedirect("/exlog/log/"+str(today_log.id))
 
 # Detail View for Exercise Log objects
 class ExlogDetailView(DetailView):

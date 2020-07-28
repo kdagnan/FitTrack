@@ -19,8 +19,7 @@
             <li class="unordered-list_item">
                 {{ exercise.exercise_name }}:
                 {% if exercise.num_sets != 0 %}
-                    {{ exercise.num_sets }}x
-                    {{ exercise.num_reps }}
+                    {{ exercise.num_sets }}x{{ exercise.num_reps }}
                     {{ exercise.exercise_weight }} lbs
                 {% endif %}
             </li>

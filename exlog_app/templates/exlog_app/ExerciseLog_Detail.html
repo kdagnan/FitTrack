@@ -6,7 +6,7 @@
     <div class="media-body">
 
         <div class="article-metadata">
-
+                
             <div class="row">
                 <div class="col-sm-8 col-12">
                     <h2 class="mt-1 mb-2">{{ exlog.date | date:"F d, Y"}} Workout</h2>
@@ -30,8 +30,7 @@
             <li class="unordered-list_item">
                 {{ exercise.exercise_name }}:
                 {% if exercise.num_sets != 0 %}
-                    {{ exercise.num_sets }}x
-                    {{ exercise.num_reps }}
+                    {{ exercise.num_sets }}x{{ exercise.num_reps }}
                     {{ exercise.exercise_weight }} lbs
                 {% endif %}
                 <a href="{% url 'exlog-update-exercise' exercise.id %}">Edit</a>

@@ -104,6 +104,8 @@
 {% block body %}
     
     <div class="boxes">
+
+        <!--Display muscle groups-->
         <div class="selection-box">
             <h5 style="padding-left: 10px;">Select a muscle from the list below:</h5>
             <div class="muscle-container">
@@ -176,6 +178,8 @@
             </div>
             <img src="{{body_diagram}}" class="body-map">
         </div>
+
+        <!--Display exercise welcome message-->
         {% if active_exercise == 0 %}
             <div class="exercises-box">
                 <div class="header">
@@ -191,8 +195,17 @@
                     </div>
                 </div>
             </div>
+        <!--Display exercise list-->
         {% else %}
             <div class="exercises-box-overflow">
+            <!--Alert message-->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
                 <h5 style="padding-left: 10px;">Recommended exercises: </h5>
                 {% for exercise in exercises %}
                     <div class="exercise">                     

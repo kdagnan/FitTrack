@@ -11,19 +11,20 @@
 
   <div class="row">
 
-    <div class="col-md-8">
+    <div class="col-md-8 exlog-lists">
       {% block content %}{% endblock content%}
     </div>
 
     <!-- Sidebar -->
     <div class="col-md-4">
-      <div class="content-section">
-        <h3>Exercise Log</h3>
+
+      <div class="card content-section">
+        <h2>Exercise Log</h2>
         <p class='text-muted'>Record and view all your workouts</p>
 
           <!-- CreateView to add new ExerciseLog object into db-->
           <a href="/exlog/log/new/">
-            <Button class="btn btn-outline-secondary btn-block">Add New Workout</Button>
+            <Button class="btn btn-outline-secondary btn-block mb-1">Add New Workout</Button>
           </a>
           
           <!-- ListView for all workout logs under the current logged in user-->
@@ -31,7 +32,18 @@
             <Button class="btn btn-outline-secondary btn-block">View All Workouts</Button>
           </a>
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} fade" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+        </div>
+      </div>
     </div>
+    
   </div>
 </main>
 {% endblock body %}

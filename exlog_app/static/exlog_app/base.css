@@ -44,3 +44,21 @@ a.article-title:hover {
   height: 25px;
   vertical-align: middle;
 }
+
+div.exlog-lists {
+  height: 600px;
+  overflow-y: auto;
+}
+
+.fade {
+  animation: fadeinout 1s linear 1 forwards;
+}
+
+@keyframes fadeinout {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+a{
+  text-decoration: none !important
+}

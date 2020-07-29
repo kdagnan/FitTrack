@@ -4,13 +4,14 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
-from django.http import HttpResponseRedirect
+from django import forms
+from django.http import *
 from .models import ExerciseLog, Exercise
 
 # List all Exercise Logs owned by the user
 def home(request):
     context = {
-        'exercise_logs' : ExerciseLog.objects.filter(user=request.user.id),
+        'exercise_logs' : ExerciseLog.objects.filter(user=request.user.id).order_by('-date', '-id'),
         'exercises' : Exercise.objects.all(),
         'title' : 'Exercise Log',
         'user_id' : request.user.id,
@@ -24,21 +25,23 @@ def home(request):
     return render(request, 'exlog_app/home.html', context)
 
 def add_from_recommender(request, exercise_name):
-    print(exercise_name)
 
     today_log = None
     # Incase there has not been a workout log created for the current day
     try:
-        today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[0]
-    
-    # There is no exercise log created for the current day
-    except IndexError:
-
+        
+        exlog_count = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today()).count()
+        
+        if exlog_count == 0:
         # Create a new exercise log for today for the current user
-        today_log = ExerciseLog.objects.create(
-            user=request.user,
-            date=datetime.date.today(),
-        )
+            today_log = ExerciseLog.objects.create(
+                user=request.user,
+                date=datetime.date.today(),
+            )
+        
+        # There already is an existing exercise log for the current day
+        else:
+            today_log = ExerciseLog.objects.filter(user=request.user.id, date=datetime.date.today())[exlog_count-1]
 
     except Exception as e:
         print('ERROR', e)
@@ -52,8 +55,11 @@ def add_from_recommender(request, exercise_name):
         exercise_weight=0,
     )
 
-    # Redirects to today's workout log after adding the exercise
-    return HttpResponseRedirect("/exlog/log/"+str(today_log.id))
+    # Stays on Exercises list page in case user wants to add more exercises to today's exercise log
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    # Used to return to today's exercise log with the exercise added
+    # return HttpResponseRedirect("/exlog/log/"+str(today_log.id))
 
 # Detail View for Exercise Log objects
 class ExlogDetailView(DetailView):
@@ -68,6 +74,10 @@ class ExlogDetailView(DetailView):
         context['exercises'] = Exercise.objects.filter(exercise_log=self.object).iterator()
         return context
 
+# This makes the Calendar date selector widget work, idk why
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 # Class based view for Create (Exercise Log)
 class ExlogCreateView(LoginRequiredMixin, CreateView):
     model = ExerciseLog
@@ -76,8 +86,9 @@ class ExlogCreateView(LoginRequiredMixin, CreateView):
     def get_form(self):
         form = super(ExlogCreateView, self).get_form()
         initial_base = self.get_initial() 
-        initial_base['date'] = timezone.now().strftime('%-m/%-d/%Y')
+        initial_base['date'] = timezone.now()
         form.initial = initial_base
+        form.fields['date'].widget = DateInput()
         return form
 
     def form_valid(self, form):
@@ -92,8 +103,9 @@ class ExlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def get_form(self):
         form = super(ExlogUpdateView, self).get_form()
         initial_base = self.get_initial() 
-        initial_base['date'] = timezone.now().strftime('%-m/%-d/%Y')
+        initial_base['date'] = timezone.now()
         form.initial = initial_base
+        form.fields['date'].widget = DateInput()
         return form
 
     def form_valid(self, form):

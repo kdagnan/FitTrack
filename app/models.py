@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.validators import RegexValidator
 
 
 class Exercise(models.Model):
@@ -28,8 +29,8 @@ class WeightLog(models.Model):
 
 class Food_Entry(models.Model):
     date = models.DateField(default=timezone.now)
-    description = models.CharField(max_length=300)
-    calories = models.IntegerField()
+    description = models.CharField(max_length=40)
+    calories = models.PositiveIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

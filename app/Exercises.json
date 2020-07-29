@@ -1,15 +1,15 @@
 [
   {
     "name": "Running",
-    "group": "Endurance",
+    "group": "Cardio",
     "group_code": 101,
-    "description": "Running can significantly improve physical and mental health. As a form of aerobic exercise, running can reduce stress, improve heart health, and even help alleviate symptoms of depression.",
+    "description": "Running can significantly improve physical and mental health. As a form of aerobic exercise, running can reduce stress, and even help alleviate symptoms of depression. In addition, running is a great way to help improve cardiovascular health",
     "image_link": "exerciseImages101001.jpg",
     "ex_id": 101001
   },
   {
     "name": "Swimming",
-    "group": "Endurance",
+    "group": "Cardio",
     "group_code": 101,
     "description": "Swimming is a great form of all-round exercise. It's ideal if you want to be more active and stay healthy, whatever your age or ability. Regular swimming can reduce the risk of chronic illnesses, such as heart disease, type 2 diabetes and stroke. It can also boost your mood and keep your weight under control.",
     "image_link": "exerciseImages101002.jpg",
@@ -17,7 +17,7 @@
   },
   {
     "name": "Cycling",
-    "group": "Endurance",
+    "group": "Cardio",
     "group_code": 101,
     "description": "Cycling is mainly an aerobic activity, which means that your heart, blood vessels and lungs all get a workout. You will breathe deeper, perspire and experience increased body temperature, which will improve your overall fitness level. The health benefits of regular cycling include: increased cardiovascular fitness.",
     "image_link": "exerciseImages101003.jpg",
@@ -25,7 +25,7 @@
   },
   {
     "name": "Rowing",
-    "group": "Endurance",
+    "group": "Cardio",
     "group_code": 101,
     "description": "Rowing utilizes every major muscle group in your body. Starting with the legs, a rowing stroke also requires a strong back, hips, and arm muscles. It's easy to imagine that more weight might drag the boat down, but it's actually more important to have the bigger muscle mass.",
     "image_link": "exerciseImages101004.jpg",
@@ -33,7 +33,7 @@
   },
   {
     "name": "Jumping Rope",
-    "group": "Endurance",
+    "group": "Cardio",
     "group_code": 101,
     "description": "When you jump repeatedly, your body burns 800 to 1,000 calories an hour — compare that to 200 to 300 calories burned per hour while walking. Even better, jumping rope (especially high-intensity jump roping) makes your body a calorie-burning machine.",
     "image_link": "exerciseImages101005.jpg",

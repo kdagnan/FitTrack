@@ -22,11 +22,6 @@ def home(request):
     if not context['exercise_logs'].count():
         return render(request,'exlog_app/get_started.html')
 
-    messages.success(request, "Workout Log successfully created", extra_tags='success')
-    messages.success(request, "Workout Log successfully created", extra_tags='warning')
-    messages.success(request, "Workout Log successfully created", extra_tags='info')
-    messages.success(request, "Workout Log successfully created", extra_tags='danger')
-
     # Otherwise, load the list view of all Exercise Logs owned by the user
     return render(request, 'exlog_app/home.html', context)
 
@@ -63,6 +58,7 @@ def add_from_recommender(request, exercise_name):
     )
 
     # Stays on Exercises list page in case user wants to add more exercises to today's exercise log
+    messages.success(request, "Exercise successfully added to today's workout log!!", extra_tags='success')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     # Used to return to today's exercise log with the exercise added
@@ -100,6 +96,7 @@ class ExlogCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.success(self.request, "Workout Log successfully added!", extra_tags='success')
         return super().form_valid(form)
 
 # Class based view for Update
@@ -117,6 +114,7 @@ class ExlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.success(self.request, "Workout Log successfully updated!", extra_tags='success')
         return super().form_valid(form)
 
     # Test to see if current logged in user is the creator of the workout log
@@ -131,11 +129,15 @@ class ExlogDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = ExerciseLog
     context_object_name = "exlog"
     success_url = '/exlog/'   
-    
+
     # Test to see if current logged in user is the creator of the workout log
     def test_func(self):
         exlog = self.get_object()
         if self.request.user == exlog.user:
+
+            # Epic bodge moment
+            if self.request.method == 'POST':
+                messages.success(self.request, "Workout Log successfully removed!", extra_tags='success')
             return True
         return False
 
@@ -146,6 +148,7 @@ class ExerciseCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.exercise_log = ExerciseLog.objects.get(id=self.kwargs['pk'])
+        messages.success(self.request, "Exercise successfully added!", extra_tags='success')
         return super().form_valid(form)
 
 # Class based view for Update (Exercise)
@@ -155,6 +158,7 @@ class ExerciseUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.success(self.request, "Exercise successfully updated!", extra_tags='success')
         return super().form_valid(form)
 
     # Test to see if current logged in user is the creator of the workout log
@@ -173,5 +177,8 @@ class ExerciseDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         exlog = self.get_object()
         if self.request.user == exlog.exercise_log.user:
+            # Epic bodge moment
+            if self.request.method == 'POST':
+                messages.success(self.request, "Exercise successfully removed!", extra_tags='success')
             return True
         return False

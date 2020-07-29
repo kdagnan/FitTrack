@@ -1,9 +1,11 @@
 {%  extends "app/base.html" %}
 {% load static %}
-
 {% block style %}
     .boxes{
-        <!--padding: 2% 5% 5% 5%;-->
+        width: 95%; 
+        height: 650px; 
+        overflow-x: hidden; 
+        overflow-y: auto; 
     }
     .selection-box{
         padding: 10px 0 10px 30px;
@@ -15,7 +17,7 @@
         border: 1px;
         float: left;
         width: 65%;
-        height: 625px;
+        height: 630px;
         overflow-y: scroll;
     }
     .exercises-box{
@@ -23,7 +25,7 @@
         border: 1px;
         float: left;
         width: 65%;
-        height: 625px;
+        height: 500px;
     }
     .header{
         position: relative;
@@ -34,7 +36,7 @@
     .exercises-box-img{
         filter: brightness(50%);
         max-width: 100%;
-        height: auto;
+        height: 500px;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -76,15 +78,6 @@
         float: right;
         width: 33%;
     }
-    <!--.btn-light{
-        float: left;
-        margin: 0.2vw;
-        width: 95%;
-        padding: .25rem .4rem;
-        font-size: .870rem;
-        line-height: 1.1;
-        border-color: grey;-->
-    }
     .btn-default{
         float: center;
         color: white;
@@ -100,9 +93,7 @@
         height: auto;
     }
 {% endblock style %}
-
 {% block body %}
-    
     <div class="boxes">
 
         <!--Display muscle groups-->

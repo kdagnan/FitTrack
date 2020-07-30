@@ -46,25 +46,26 @@
         <div class="logo-div">
             <img src="{% static 'logo.png' %}" class="logo-header">
         </div>
+        {% with request.resolver_match.url_name as url_name %}
         {% if user.is_authenticated %}
             <p class="nav-btn pt-2">{{ user.username }}</p>
             <a href={% url 'app:logout' %}>
                 <Button class="btn btn-outline-danger nav-btn">Logout</Button>
             </a>
             <a href={% url 'app:results' %}>
-                <Button class="btn btn-outline-secondary nav-btn">Results</Button>
+                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'results' %} active {% endif %}" >Results</Button>
             </a>
             <a href={% url 'app:foodtracker' %}>
-                <Button class="btn btn-outline-secondary nav-btn">Food Tracker</Button>
+                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'foodtracker' %} active {% endif %}">Food Tracker</Button>
             </a>
             <a href={% url 'app:weightlog' %}>
-                <Button class="btn btn-outline-secondary nav-btn">Weight Log</Button>
+                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'weightlog' %} active {% endif %}">Weight Log</Button>
             </a>
             <a href={% url 'exlog_home' %}>
-                <Button class="btn btn-outline-secondary nav-btn">Exercise Log</Button>
+                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'exlog_home' %} active {% endif %}">Exercise Log</Button>
             </a>
             <a href={% url 'app:exercises' %}>
-                <Button class="btn btn-outline-secondary nav-btn">Exercises</Button>
+                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'exercises' %} active {% endif %}">Exercises</Button>
             </a>
         {% else %}
             <a href={% url 'app:signup' %}>
@@ -74,8 +75,9 @@
                 <Button class="btn btn-outline-secondary nav-btn">Log In</Button>
             </a>
         {% endif %}
+        {% endwith %}
         <a href={% url 'app:home' %}>
-            <Button class="btn btn-outline-secondary nav-btn">Home</Button>
+            <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'home' %} active {% endif %}">Home</Button>
         </a>
     </div>
     <div class="container">

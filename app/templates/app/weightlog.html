@@ -3,28 +3,43 @@
     {# insert css stylings specific to page here #}
 {% endblock style %}
 {% block body %}
+        {% if savedWeight %}
+            <div class="alert alert-success fade">Logged Weight. Great job!</div>
+        {% endif %}
+        <div class="row">
+            <div class="col-8 offset-2">
+                <h1>Weight Log</h1>
+                <hr>
+                <br>
+                <form class="form-inline pb-3" action="" method="post">
+                    {% csrf_token %}
+                    {{ form }}
 
-        <h1>Weight Log</h1>
-        <form class="form-inline pb-3" action="" method="post">
-            {% csrf_token %}
-            {{ form }}
-          
-            <button type="submit" class="btn btn-primary btn-sm ml-2">Log</button>
-        </form>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Weight</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for weight in weight_logs %}
-                    <tr>
-                        <th scope="row">{{weight.timestamp}}</th>
-                        <td>{{weight.weight}} lbs</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    <button type="submit" class="btn btn-primary btn-sm ml-2">Log</button>
+                </form>
+                <div class="card" style="height: 500px; overflow-y: auto;">
+                    <div class="card-body">
+                        <div class="card-detail">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Weight</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for weight in weight_logs %}
+                                        <tr>
+                                            <th scope="row">{{weight.timestamp}}</th>
+                                            <td>{{weight.weight}} lbs</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 {% endblock body %}

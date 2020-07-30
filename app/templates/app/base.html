@@ -74,7 +74,10 @@
                 <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'weightlog' %} active {% endif %}">Weight Log</Button>
             </a>
             <a href={% url 'exlog_home' %}>
-                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'exlog_home' %} active {% endif %}">Exercise Log</Button>
+                <Button class="btn btn-outline-secondary nav-btn 
+                {%  if url_name == 'exlog_home' or url_name == 'exlog-detail' or url_name == 'exlog-create' or url_name == 'exlog-update' or url_name == 'exlog-delete' or url_name == 'exlog-add-exercise' or url_name == 'exlog-update-exercise'  or url_name == 'exlog-delete-exercise'%} 
+                    active 
+                {% endif %}">Exercise Log</Button>
             </a>
             <a href={% url 'app:exercises' %}>
                 <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'exercises' %} active {% endif %}">Exercises</Button>

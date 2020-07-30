@@ -1,6 +1,12 @@
 {% extends "app/base.html" %}
 {% block style %}
     {# insert css stylings specific to page here #}
+    .boxes{
+        width: 95%; 
+        height: 700px; 
+        overflow-x: hidden; 
+        overflow-y: auto; 
+    }
 {% endblock style %}
 {% block body %}
         {% if savedWeight %}

@@ -170,8 +170,8 @@ class ExerciseUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 # Class based view for Delete
 class ExerciseDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    
     model = Exercise
-    success_url = '/exlog/'   
     
     # Test to see if current logged in user is the creator of the workout log
     def test_func(self):
@@ -179,6 +179,10 @@ class ExerciseDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == exlog.exercise_log.user:
             # Epic bodge moment
             if self.request.method == 'POST':
+                success_url = "/app/"
                 messages.success(self.request, "Exercise successfully removed!", extra_tags='success')
             return True
         return False
+    
+    def get_success_url(self):
+        return '/exlog/log/' + str(self.get_object().exercise_log.id)

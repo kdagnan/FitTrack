@@ -1,15 +1,8 @@
 {% extends "app/base.html" %}
 {% block style %}
     {# insert css stylings specific to page here #}
-    .boxes{
-        width: 95%; 
-        height: 700px; 
-        overflow-x: hidden; 
-        overflow-y: auto; 
-    }
 {% endblock style %}
 {% block body %}
-<div class="boxes">
     <h1>Results</h1>
     <p class="text-muted">Last 90 days</p>
     <div class="row">
@@ -111,5 +104,4 @@
             </div>
         </div>
     </div>
-</div>
 {% endblock body %}

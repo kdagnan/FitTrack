@@ -35,7 +35,7 @@ class DateInput(forms.DateInput):
 
 class FoodForm(forms.Form):
     date = forms.DateField(widget=DateInput, initial=timezone.now) #^[a-zA-Z0-9]([\w .]*[a-zA-Z0-9])+$
-    description = forms.CharField(label="Description", max_length=40, validators=[RegexValidator('^[\w .,()+-]+$', message='Description must be alphanumeric', code='invalid_desc')])
+    description = forms.CharField(label="Description", max_length=31, validators=[RegexValidator('^[\w .,()+-]+$', message='Description must be alphanumeric', code='invalid_desc')])
     calories = forms.IntegerField(label="Calories")
 
 class FoodFormTheSecond(forms.Form):

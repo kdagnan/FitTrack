@@ -29,7 +29,7 @@ class WeightLog(models.Model):
 
 class Food_Entry(models.Model):
     date = models.DateField(default=timezone.now)
-    description = models.CharField(max_length=40)
+    description = models.CharField(max_length=31)
     calories = models.PositiveIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

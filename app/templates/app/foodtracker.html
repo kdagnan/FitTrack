@@ -2,37 +2,18 @@
 {% load static %}
 
 {% block style %}
-    .nav{
-        display: inline-block;
-        width: 100%;
-        padding: 1%;
+    .header {
+        margin-bottom: 3%;
     }
-    .btn-outline-secondary{
-        float: right;
-        margin: 0.5vw;
-    }
-    .btn-outline-primary {
-        float: right;
-        margin: 0.5vw;
-    }
-    .logo{
-        display: block;
-        height: 56px;
-        width: auto;
-        float: left;
-    }
-    .boxes{
-        <!-- margin-left: 5%; -->
-        <!-- margin-right: 5%; -->
-        <!-- margin-top: 2%; -->
-        width: 95%; 
+    .boxes {
+        width: 100%; 
         height: 700px; 
         overflow-x: hidden; 
         overflow-y: auto; 
-        <!-- border: 1px solid black; -->
     }
     .add {
-        margin-left: 10px;
+        margin-top: 2%;
+        width: 100%;
     }
     .date {
         float: left;
@@ -46,56 +27,23 @@
         margin-top: 5%;
         margin-bottom: 5%;
     }
-    .fade {
-        animation: fadeinout 4s linear 1 forwards;
-    }
     .content-section {
         background: #f5f3f3;
         padding: 15px 20px;
         border: 1px solid #dddddd;
         border-radius: 3px;
         margin-bottom: 20px;
+        width: 100%;
     }
     .delete-btn {
         display: block;
         margin: auto;
     }
-    @keyframes fadeinout {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-    }
-    @media screen and (max-width: 630px){
-        .btn-outline-secondary{
-            width: 100%;
-        }
-        .btn-outline-primary {
-            width: 100%;
-        }
-        .logo-div {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0.5vw;
-        }
-        .box1-img{
-            float: none;
-            margin-right: 0;
-            justify-content: center;
-            margin-top: 5%;
-            margin-bottom: 5%;
-        }
-        .box2-img{
-            float: none;
-            margin-left: 0;
-            justify-content: center;
-            margin-top: 5%;
-            margin-bottom: 5%;
-        }
-    }
 {% endblock style %}
 
 {% block body %}
+
     <div class="container">
-        <h1>Food Tracker</h1>
 
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }} fade" role="alert">
@@ -103,95 +51,112 @@
             </div>
         {% endfor %}
 
-        <div class="add-form">
-            <div class="row">
-                <div class="col content-section">
-                    <div class="centered-div">
-                        <h4>Add a New Food</h4>
-                    </div>
-                    <div class="centered-div">
-                        <form class="form-inline" action="" method="post">
-                            {% csrf_token %}
-                            <table>
-                                {{ form }}
-                            </table>
-                            <div class="add">
-                                <button type="submit" name="sub_btn_1" class="add btn btn-primary mb-2">Add</button>
-                            </div>
-                        </form>
-                    </div>
+        <h1 class="header">Food Tracker</h1>
+
+        <div class="row">
+
+            <div class="col-8">
+                <div class="boxes">
+                    {% if not data %}
+                        <div class="centered-div">
+                            <i><b>No data to view.  Try adding an entry!</b></i>
+                        </div>
+                    {% endif %}
+        
+                    {% for date, foods in data.items %}
+                        <div class="date">
+                            {% if date == today_date %}
+                                <h2>Today</h2>
+                            {% elif date == yesterday_date %}
+                                <h2>Yesterday</h2>
+                            {% else %}
+                                <h2> {{ date }}</h2>
+                            {% endif %}
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <th style="text-align: center" scope="col">Description</th>
+                                <th style="text-align: center" scope="col">Calories</th>
+                            </thead>
+                            <tbody>
+                                {% for f in foods %}
+                                    <tr>
+                                        <td width="75%"style="text-align: center">{{ f.description }}</td>
+                                        <td style="text-align: center">{{ f.calories }}</td>
+                                        <td>
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                <input type ="hidden" value="{{ f.pk }}" name="pk">
+                                                <input type="submit" class="btn btn-danger btn-sm delete-btn" value="Delete">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            {% for d, cal in total_calories.items %}
+                                {% if d == date %}
+                                    <tfoot>
+                                        <th style="text-align: center" scope="col"> Total Calories </th>
+                                        <th style="text-align: center" scope="col">{{ cal }}</th>
+                                    </tfoot>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    {% endfor %}
                 </div>
-                <div class="col-1"></div>
-                <div class="col content-section">
-                    <div class="centered-div">
-                        <h4>Add an Existing Food</h4>
+            </div>
+
+            <div class="col-4">
+                <div class="row">
+                    <div class="content-section">
+                        <div class="centered-div">
+                            <h4>Add a New Food</h4>
+                        </div>
+                        <div class="centered-div">
+                            <form class="form-inline" action="" method="post">
+                                {% csrf_token %}
+                                <div class="col">
+                                    <div class="row">
+                                        <table>
+                                            {{ form }}
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="add">
+                                            <button type="submit" name="sub_btn_1" class="add btn btn-block btn-primary mb-2">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="centered-div">
-                        <form class="form-inline" action="" method="post">
-                            {% csrf_token %}
-                            <table>
-                                {{ form_2 }}
-                            </table>
-                            <div class="add">
-                                <button type="submit" name="sub_btn_2" class="add btn btn-primary mb-2">Add</button>
-                            </div>
-                        </form>
+                    <div class="content-section">
+                        <div class="centered-div">
+                            <h4>Add an Existing Food</h4>
+                        </div>
+                        <div class="centered-div">
+                            <form class="form-inline" action="" method="post">
+                                {% csrf_token %}
+                                <div class="col">
+                                    <div class="row">
+                                        <table>
+                                            {{ form_2 }}
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="add">
+                                            <button type="submit" name="sub_btn_2" class="add btn btn-block btn-primary mb-2">Add</button>
+                                        </div>
+                                    </div>
+                                </div>            
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="boxes">
-            {% if not data %}
-                <div class="centered-div">
-                    <i><b>No data to view.  Try adding an entry!</b></i>
-                </div>
-            {% endif %}
-
-            {% for date, foods in data.items %}
-                <div class="date">
-                    {% if date == today_date %}
-                        <h2>Today</h2>
-                    {% elif date == yesterday_date %}
-                        <h2>Yesterday</h2>
-                    {% else %}
-                        <h2> {{ date }}</h2>
-                    {% endif %}
-                </div>
-                <table class="table table-bordered">
-                    <thead>
-                        <!-- <th style="text-align: center" scope="col">Time</th> -->
-                        <th style="text-align: center" scope="col">Description</th>
-                        <th style="text-align: center" scope="col">Calories</th>
-                    </thead>
-                    <tbody>
-                        {% for f in foods %}
-                            <tr>
-                                <!-- <td style="text-align: center">{{ f.time }}</td> -->
-                                <td width="75%"style="text-align: center">{{ f.description }}</td>
-                                <td style="text-align: center">{{ f.calories }}</td>
-                                <td>
-                                    <form action="" method="post">
-                                        {% csrf_token %}
-                                        <input type ="hidden" value="{{ f.pk }}" name="pk">
-                                        <input type="submit" class="btn btn-danger btn-sm delete-btn" value="Delete">
-                                    </form>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                    {% for d, cal in total_calories.items %}
-                        {% if d == date %}
-                            <tfoot>
-                                <th style="text-align: center" scope="col"> Total Calories </th>
-                                <th style="text-align: center" scope="col">{{ cal }}</th>
-                            </tfoot>
-                        {% endif %}
-                    {% endfor %}
-                </table>
-            {% endfor %}
         </div>
+        
     </div>
 
-    
 {% endblock body %}

@@ -3,16 +3,32 @@
 {% block content %}
 <div class="content-section">
 
+    {% with request.resolver_match.url_name as url_name %}
     <form method="POST">
         {% csrf_token %}
+
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">New Exercise Log</legend>
+            <legend class="border-bottom mb-4">
+                {% if url_name == 'exlog-create'%}
+                    New Exercise Log
+                {% else %}
+                    Update Exercise Log
+                {% endif %}
+            </legend>
             {{ form.as_p }}
         </fieldset>
+
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Add New Workout</button>
+            <button class="btn btn-outline-info" type="submit">
+                {% if url_name == 'exlog-create'%}
+                    Add New Workout
+                {% else %}
+                    Update Workout
+                {% endif %}
+            </button>
         </div>
     </form>
+    {% endwith %}
 
 </div>
 {% endblock content %}

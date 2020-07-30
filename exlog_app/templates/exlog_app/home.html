@@ -8,20 +8,20 @@
 {% block content%}
 
 {% for exlog in exercise_logs %}
-<article class="media content-section">
+<article class="card media content-section">
     <div class="media-body">
         <div class="article-metadata">
             <h2><a class="mr-2" href="{% url 'exlog-detail' exlog.id %}">{{ exlog.date | date:"F d, Y"}} Workout</a></h2>
         </div>
         <ul>
-            <!-- Terribly unoptimized but it works for now -->
             {% for exercise in exercises%}
             {% if exercise.exercise_log == exlog %}
             <li class="unordered-list_item">
-                {{ exercise.exercise_name }}:&nbsp;
-                {{ exercise.num_sets }}x
-                {{ exercise.num_reps }}&nbsp;
-                {{ exercise.exercise_weight }} lbs
+                {{ exercise.exercise_name }}:
+                {% if exercise.num_sets != 0 %}
+                    {{ exercise.num_sets }}x{{ exercise.num_reps }}
+                    {{ exercise.exercise_weight }} lbs
+                {% endif %}
             </li>
             {% endif %}
             {% endfor %}

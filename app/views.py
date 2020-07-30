@@ -1,12 +1,15 @@
 from django.shortcuts import redirect, render
+from django.contrib import messages
 from django.http import HttpResponse
 from datetime import date, datetime, timedelta
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.utils import timezone
 from .models import Food_Entry
 from exlog_app.models import ExerciseLog, Exercise as Exercise_App
 from .forms import FoodForm
 from django.db.models import Avg, Count
+from .forms import FoodFormTheSecond
 from .models import Exercise
 from .models import WeightLog
 from .forms import WeightLogForm
@@ -22,9 +25,9 @@ import matplotlib
 
 def button_class(active_exercise, button):
     if active_exercise == button:
-        return 'btn btn-outline-primary btn-sm active'
+        return 'btn btn-outline-secondary btn-sm active'
     else:
-        return 'btn btn-outline-primary btn-sm'
+        return 'btn btn-outline-secondary btn-sm'
 
 
 # Create your views here.
@@ -37,36 +40,44 @@ def home(request):
 
 def exercises(request, active_exercises=0):
     classes = {
-        'button1_class': button_class(active_exercises, 1),
-        'button2_class': button_class(active_exercises, 2),
-        'button3_class': button_class(active_exercises, 3),
-        'button4_class': button_class(active_exercises, 4),
-        'button5_class': button_class(active_exercises, 5),
-        'button6_class': button_class(active_exercises, 6),
-        'button7_class': button_class(active_exercises, 7),
-        'button8_class': button_class(active_exercises, 8),
-        'button9_class': button_class(active_exercises, 9),
-        'button10_class': button_class(active_exercises, 10),
-        'button11_class': button_class(active_exercises, 11),
-        'button12_class': button_class(active_exercises, 12),
+        'button1_class': button_class(active_exercises, 102),
+        'button2_class': button_class(active_exercises, 106),
+        'button3_class': button_class(active_exercises, 103),
+        'button4_class': button_class(active_exercises, 110),
+        'button5_class': button_class(active_exercises, 111),
+        'button6_class': button_class(active_exercises, 112),
+        'button7_class': button_class(active_exercises, 113),
+        'button8_class': button_class(active_exercises, 114),
+        'button9_class': button_class(active_exercises, 117),
+        'button10_class': button_class(active_exercises, 118),
+        'button11_class': button_class(active_exercises, 120),
+        'button12_class': button_class(active_exercises, 121),
+        'button13_class': button_class(active_exercises, 119),
+        'button14_class': button_class(active_exercises, 101),
+        'button15_class': button_class(active_exercises, 104),
     }
 
     body_diagram = "/static/bodyDiagram/bodyDiagram" + str(active_exercises) + ".png"
-    #exercise_list = Exercise.objects.filter(group_code=active_exercises)
+    
 
     exercise_list = []
 
     with open(os.path.dirname(os.path.realpath(__file__)) + '/Exercises.json') as f:
         data = json.load(f)
 
-    for item in data:
-        if item["group_code"] == active_exercises:
-            exercise_list.append(item)
+    if (active_exercises == 100):
+        #exercise_list = Exercise.objects.all()
+        exercise_list = data
+    else:
+        #exercise_list = Exercise.objects.filter(group_code=active_exercises)
+        for item in data:
+            if item["group_code"] == active_exercises:
+                exercise_list.append(item)
 
     context = {
         'exercises': exercise_list,
         'title': 'Exercises',
-        'active_exercise': active_exercises,#exercise_list[0].group,
+        'active_exercise': active_exercises, #exercise_list[0].group,
         'classes': classes,
         'body_diagram': body_diagram,
     }
@@ -83,12 +94,47 @@ def exerciselog(request):
 
 @login_required
 def foodtracker(request):
-    if request.method == 'POST':
+    # Handling form submissions
+    if request.method == 'POST' and 'sub_btn_1' in request.POST:
         form_sub = FoodForm(request.POST)
         if form_sub.is_valid():
-            f = Food_Entry(date=form_sub.cleaned_data['date'], description=form_sub.cleaned_data['description'], calories=form_sub.cleaned_data['calories'], user=request.user)
+            # Ensuring calories match description if already in database
+            val = True
+            if Food_Entry.objects.filter(user=request.user, description=form_sub.cleaned_data['description']).exists():
+                old_entry = Food_Entry.objects.filter(user=request.user, description=form_sub.cleaned_data['description']).first()
+                if old_entry.calories != form_sub.cleaned_data['calories']:
+                    messages.error(request, "ERROR: Reused descriptions must match calories!", extra_tags='danger')
+                    val = False
+                else:
+                    f = Food_Entry(date=form_sub.cleaned_data['date'], description=form_sub.cleaned_data['description'], calories=form_sub.cleaned_data['calories'], user=request.user)
+                    f.save()
+            # Ensuring calories are 0 or greater
+            if form_sub.cleaned_data['calories'] < 0:
+                messages.error(request, "ERROR: Calories must be greater or equal to 0!", extra_tags='danger')
+                val = False
+            if val == True:
+                f = Food_Entry(date=form_sub.cleaned_data['date'], description=form_sub.cleaned_data['description'], calories=form_sub.cleaned_data['calories'], user=request.user)
+                f.save()
+                messages.success(request, "Successfully added " + form_sub.cleaned_data['description'] + ".", extra_tags='success')
+        else:
+            messages.error(request, "ERROR: Description may only contain alphanumerics, end stops, commas, and parentheses!", extra_tags='danger')
+    elif request.method == 'POST' and 'sub_btn_2' in request.POST:
+        form_sub = FoodFormTheSecond(request.POST, request=request)
+        if form_sub.is_valid():
+            f = Food_Entry.objects.filter(user=request.user, description=form_sub.cleaned_data['description']).first()
+            f.pk = None
+            f.date = form_sub.cleaned_data["date"]
             f.save()
+            messages.success(request, "Successfully added " + form_sub.cleaned_data['description'] + ".", extra_tags='success')
+    elif request.method == 'POST':
+        f = Food_Entry.objects.filter(user=request.user, pk=request.POST['pk']).first()
+        Food_Entry.objects.filter(user=request.user, pk=request.POST['pk']).delete()
+        messages.success(request, "Successfully deleted " + f.description + ".", extra_tags='success')
+    # Creating forms
     form = FoodForm()
+    form_2 = FoodFormTheSecond(request=request)
+
+    # Getting data
     entries = Food_Entry.objects.filter(user=request.user).order_by('-date')
     data = {}
     for e in entries:
@@ -102,10 +148,13 @@ def foodtracker(request):
         for foods in data[date]:
             sum = sum + foods.calories
         total_calories[date] = sum
+
+    # Passing info
     context = {
         'title': 'Food Tracker',
         'data': data,
         'form': form,
+        'form_2': form_2,
         'total_calories': total_calories,
         'today_date': timezone.now().date(),
         'yesterday_date': timezone.now().date() - timedelta(days=1)

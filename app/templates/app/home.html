@@ -41,7 +41,7 @@
     .box1 {
         display: inline-block;
         background-color: #e7e7e9;
-        padding: 2%;
+        padding: 1%;
         margin-bottom: 1%;
         height: auto;
         width: 100%;
@@ -60,7 +60,7 @@
     .box2{
         background-color: #9cf3fd;
         display: inline-block;
-        padding: 2%;
+        padding: 1%;
         margin-bottom: 1%;
         height: auto;
         width: 100%;
@@ -69,7 +69,7 @@
     .box3{
         display: inline-block;
         background-color: #e7e7e9;
-        padding: 2%;
+        padding: 1%;
         margin-bottom: 1%;
         height: auto;
         width: 100%;
@@ -78,15 +78,37 @@
     .box4{
         background-color: #9cf3fd;
         display: inline-block;
-        padding: 2%;
+        padding: 1%;
         margin-bottom: 1%;
         height: auto;
         width: 100%;
         max-width: 100%;
     }
     .box-img{
-        height: 184px;
-        width: 274px;
+        height: 325px;
+        width: 440px;
+    }
+    .btn-default{
+        float: center;
+        color: white;
+        border-color: white;
+        margin-top: 50px;
+    }
+    .btn-default:hover{
+        color: black;
+        border-color: black;
+        background: white;
+    }
+    .footer{
+        width: 100%; 
+        height: 150px; 
+        background-color: #61605c;
+        text-align: center;
+    }
+    .logo-footer{
+        padding: 30px 0 15px 0;
+        height: 100px;
+        width: auto;
     }
     @media screen and (max-width: 780px){
         .box1-img{
@@ -111,44 +133,78 @@
         <div class="header-text">
             <h1 class="title">Welcome to FitTrack!</h1>
             <h3 class="subtitle">FitTrack helps you stay motivated and stick with your workout routine and diet plan.</h3>
+            {% if user.is_authenticated %}
+                <a href={% url 'app:exercises' %}>
+                    <Button class="btn btn-default btn-lg">Get Started</Button>
+                </a>
+            {% else %}
+                <a href={% url 'app:login' %}>
+                    <Button class="btn btn-default btn-lg">Get Started</Button>
+                </a>
+            {% endif %}
         </div>
+        
     </div>
     <div class="boxes">
         <div class="box1">
             <div class="box1-img">
                 <img src="{%  static 'box1img.png' %}" class="box-img">
             </div>
-            <h2>Find Exercises</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <h2 style="margin-top: 50px;">Find Exercises</h2>
+            <p style="margin-right: 8%;">
+                Find the best exercises to fit your needs with our exercise search 
+                tool and build your perfect workout routine. Search through our exercise
+                library or discover the ideal exercise by muscle group.
             </p>
         </div>
         <div class="box2">
-            <p>
-                <div class="box2-img">
-                    <img src="{%  static 'box2img.png' %}" class="box-img">
-                </div>
-                <h2>Track Workout Routines</h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <div class="box2-img">
+                <img src="{%  static 'box2img.png' %}" class="box-img">
+            </div>
+            <h2 style="margin-top: 50px; margin-left: 8%;">Track Workout Routines</h2>
+            <p style="margin-left: 8%;">
+                Record your workout routines in our exercise log. You can keep track
+                of the number of sets that you are doing, the number of repetitions, 
+                and weight.                 
             </p>
         </div>
         <div class="box3">
             <div class="box1-img">
                 <img src="{%  static 'box3img.png' %}" class="box-img">
             </div>
-            <h2>Track Caloric Intake</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <h2 style="margin-top: 50px;">Log Weight History</h2>
+            <p style="margin-right: 10%;">
+                With our weight tracker, you will be able to reach your weight goal and 
+                maintain it. You will be able to look back at your weight history and 
+                enjoy your improvement over time.  
             </p>
         </div>
         <div class="box4">
-            <p>
-                <div class="box2-img">
-                    <img src="{%  static 'box4img.png' %}" class="box-img">
-                </div>
-                <h2>See Results</h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <div class="box2-img">
+                <img src="{%  static 'box4img.png' %}" class="box-img">
+            </div>
+            <h2 style="margin-top: 50px; margin-left: 8%;">Track Caloric Intake</h2>
+            <p style="margin-left: 8%;">
+                Our food diary lets you record how many calories you consume during the
+                day. It allows you to keep track of the food that you are eating, a 
+                brief description of it, and the number of calories that it contains.
             </p>
         </div>
+        <div class="box3">
+            <div class="box1-img">
+                <img src="{%  static 'box5img.png' %}" class="box-img">
+            </div>
+            <h2 style="margin-top: 50px;">See Results</h2>
+            <p style="margin-right: 10%;">
+                Our results page makes it easy for you to visualize your progress over 
+                time, helping you to stay motivated and focus on your fitness goals.             </p>
+        </div>
     </div>
+    <footer class="footer">
+        <a href={% url 'app:home' %}>
+            <img src="{% static 'logo2.png' %}" class="logo-footer">
+        </a>
+        <p style="color: white;"><i> 2020 All Rights Reserved by Fit Legion</i></p>
+    </footer>
+
 {% endblock body %}

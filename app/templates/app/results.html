@@ -11,15 +11,75 @@
 {% block body %}
 <div class="boxes">
     <h1>Results</h1>
+    <p class="text-muted">Last 90 days</p>
     <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        {{ change }} <span class="small">lbs</span>
+                    </h1>
+                    <p class="card-text">
+                        Weight Change
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        {{ str_change }} <span class="small">%</span>
+                    </h1>
+                    <p class="card-text">
+                        Strength Change {% if not request.GET.ex %} <br><span class="small text-danger">No Exercise Selected</span> {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                       {{ avg_cals }} <span class="small">cals</span>
+                    </h1>
+                    <p class="card-text">
+                        Avg Daily Consumption
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        {{ average }} <span class="small">lbs</span>
+                    </h1>
+                    <p class="card-text">
+                        Average Weight
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        Weight History
+                        Strength Increase ({{ request.GET.ex }})
                     </h4>
+                    <form action="/results/" class="form-inline">
+                        <select name="ex" id="ex" class="form-control">
+                            <option selected disabled>Select Exercise</option>
+                            {% for name in ex_names %}
+                                <option value="{{ name }}" {% if name == request.GET.ex %} selected {% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                        <Button class="btn btn-outline-secondary form-control" type="submit">Submit</Button>
+                    </form>
                     <p class="card-text">
-                        Testing 1234567890
+                        <img style="padding-top:2%"src="data:image/png;base64,{{ img3 }}" width="100%">
                     </p>
                 </div>
             </div>
@@ -28,10 +88,24 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        Calorie Consumption
+                        Daily Calorie Consumption
                     </h4>
                     <p class="card-text">
-                        Testing 1234567890
+                        <img src="data:image/png;base64,{{ img2 }}" width="100%">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+                <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        Weight History
+                    </h4>
+                    <p class="card-text">
+                        <img src="data:image/png;base64,{{ img1 }}" width="100%">
                     </p>
                 </div>
             </div>

@@ -11,7 +11,6 @@ def main():
 
     execute_from_command_line(["manage.py", "makemigrations"])
     execute_from_command_line(["manage.py", "migrate"])
-    execute_from_command_line(["pip", "install", "matplotlib"])
 
 
 if __name__ == '__main__':

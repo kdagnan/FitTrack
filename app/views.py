@@ -193,7 +193,7 @@ def results(request):
         # Weight Plot
         matplotlib.use('Agg')
         plt.close()
-        plt.plot([i.timestamp.date().__format__('%-0m-%-d') for i in WeightLog.objects.filter(user=request.user).order_by('timestamp')], [int(i.weight) for i in WeightLog.objects.filter(user=request.user).order_by('timestamp')], marker='o', markersize=5, color='blue')
+        plt.plot([i.timestamp.date().__format__('%-m-%-d') for i in WeightLog.objects.filter(user=request.user).order_by('timestamp')], [int(i.weight) for i in WeightLog.objects.filter(user=request.user).order_by('timestamp')], marker='o', markersize=5, color='blue')
         plt.xlabel('Date')
         plt.ylabel('Weight (lbs)')
 
@@ -265,7 +265,7 @@ def results(request):
                     rep_max.append(int(j.exercise_weight * (1 + j.num_reps / 30)))
 
         # Strength Plot
-        plt.plot([i.__format__('%-0m-%-d') for i in dates], [i for i in rep_max], marker='o', markersize=5, color='blue')
+        plt.plot([i.__format__('%-m-%-d') for i in dates], [i for i in rep_max], marker='o', markersize=5, color='blue')
         plt.title(request.GET.get('ex', 'Select an exercise'))
         plt.xlabel('Date')
         plt.ylabel(request.GET.get('ex', '') + ' (1 Repetition Maximum)')
@@ -274,7 +274,7 @@ def results(request):
             plt.ylim(min(rep_max) - 10, max(rep_max) + 10)
 
         for i in range(0, len(dates)):
-            plt.annotate(int(rep_max[i]), (dates[i].__format__('%-0m-%-d'), rep_max[i]+2), ha="center")
+            plt.annotate(int(rep_max[i]), (dates[i].__format__('%-m-%-d'), rep_max[i]+2), ha="center")
 
         fig3 = plt.gcf()
         buf3 = io.BytesIO()

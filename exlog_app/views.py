@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
@@ -11,19 +11,22 @@ from .models import ExerciseLog, Exercise
 
 # List all Exercise Logs owned by the user
 def home(request):
-    context = {
-        'exercise_logs' : ExerciseLog.objects.filter(user=request.user.id).order_by('-date', '-id'),
-        'exercises' : Exercise.objects.all(),
-        'title' : 'Exercise Log',
-        'user_id' : request.user.id,
-    }
+    if not request.user.is_authenticated:
+        return redirect('app:login')
+    else:
+        context = {
+            'exercise_logs' : ExerciseLog.objects.filter(user=request.user.id).order_by('-date', '-id'),
+            'exercises' : Exercise.objects.all(),
+            'title' : 'Exercise Log',
+            'user_id' : request.user.id,
+        }
 
-    # If the user does not have any Workout Logs
-    if not context['exercise_logs'].count():
-        return render(request,'exlog_app/get_started.html')
+        # If the user does not have any Workout Logs
+        if not context['exercise_logs'].count():
+            return render(request,'exlog_app/get_started.html')
 
-    # Otherwise, load the list view of all Exercise Logs owned by the user
-    return render(request, 'exlog_app/home.html', context)
+        # Otherwise, load the list view of all Exercise Logs owned by the user
+        return render(request, 'exlog_app/home.html', context)
 
 # Add Exercise to database, creating a ExerciseLog if necessary, stays on Exercise recommender page
 def add_from_recommender(request, exercise_name):

@@ -21,8 +21,6 @@ import matplotlib.pyplot as plt
 import json, os, matplotlib
 import numpy as np
 
-import matplotlib
-
 def button_class(active_exercise, button):
     if active_exercise == button:
         return 'btn btn-outline-secondary btn-sm active'
@@ -304,24 +302,20 @@ def results(request):
         return render(request, 'app/results.html', context)
 
 
-def login_view(request):
-    context = {
-        'title': 'Login'
-    }
-    return render(request, 'app/login.html', context)
-
-
 def signup(request):
-    if request.method == "POST":
-        form = forms.UserRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('app:login')
+    if request.user.is_authenticated:
+        return redirect('app:home')
     else:
-        form = forms.UserRegistrationForm()
+        if request.method == "POST":
+            form = forms.UserRegistrationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('app:login')
+        else:
+            form = forms.UserRegistrationForm()
 
-    context = {
-        'title': 'Sign Up',
-        'form': form
-    }
-    return render(request, 'app/signup.html', context)
+        context = {
+            'title': 'Sign Up',
+            'form': form
+        }
+        return render(request, 'app/signup.html', context)

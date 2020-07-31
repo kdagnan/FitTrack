@@ -187,9 +187,14 @@ def results(request):
         # Weight Plot
         matplotlib.use('Agg')
         plt.close()
-        plt.plot([i.timestamp.date().__format__('%-m/%-d') for i in WeightLog.objects.filter(user=request.user).order_by('timestamp')], [int(i.weight) for i in WeightLog.objects.filter(user=request.user).order_by('timestamp')], marker='o', markersize=5, color='blue')
+        plt.plot([i.timestamp.date().__format__('%-0m-%-d') for i in WeightLog.objects.filter(user=request.user).order_by('timestamp')], [int(i.weight) for i in WeightLog.objects.filter(user=request.user).order_by('timestamp')], marker='o', markersize=5, color='blue')
         plt.xlabel('Date')
         plt.ylabel('Weight (lbs)')
+
+        for i in range(0, len(WeightLog.objects.filter(user=request.user))):
+            plt.annotate(int(WeightLog.objects.filter(user=request.user)[i].weight), (WeightLog.objects.filter(user=request.user)[i].timestamp.date().__format__('%-0m-%-d'), int(WeightLog.objects.filter(user=request.user)[i].weight)+2), ha="center")
+
+
         fig1 = plt.gcf()
         buf1 = io.BytesIO()
         fig1.savefig(buf1, format='png')
@@ -223,6 +228,10 @@ def results(request):
         plt.xlabel('Date')
         plt.ylabel('Calories Consumed')
         fig2 = plt.gcf()
+
+        for i in range(0, len(dates)):
+            plt.annotate(int(cals[i] * counts[i]), (dates[i], cals[i] * counts[i] +2), ha="center")
+
         buf2 = io.BytesIO()
         fig2.savefig(buf2, format='png')
         buf2.seek(0)
@@ -250,7 +259,7 @@ def results(request):
                     rep_max.append(int(j.exercise_weight * (1 + j.num_reps / 30)))
 
         # Strength Plot
-        plt.plot([i.__format__('%-m/%-d') for i in dates], [i for i in rep_max], marker='o', markersize=5, color='blue')
+        plt.plot([i.__format__('%-0m-%-d') for i in dates], [i for i in rep_max], marker='o', markersize=5, color='blue')
         plt.title(request.GET.get('ex', 'Select an exercise'))
         plt.xlabel('Date')
         plt.ylabel(request.GET.get('ex', '') + ' (1 Repetition Maximum)')
@@ -259,7 +268,7 @@ def results(request):
             plt.ylim(min(rep_max) - 10, max(rep_max) + 10)
 
         for i in range(0, len(dates)):
-            plt.annotate(int(rep_max[i]), (dates[i].__format__('%-m/%-d'), rep_max[i]+2), ha="center")
+            plt.annotate(int(rep_max[i]), (dates[i].__format__('%-0m-%-d'), rep_max[i]+2), ha="center")
 
         fig3 = plt.gcf()
         buf3 = io.BytesIO()

@@ -238,7 +238,7 @@ def results(request):
 
     ex_names = []
     for i in ExerciseLog.objects.filter(user=request.user):
-        for j in Exercise_App.objects.filter(exercise_log=i):
+        for j in Exercise_App.objects.filter(exercise_log=i).filter(num_reps__gt=0):
             ex_names.append(j.exercise_name)
 
     weights = []
@@ -287,7 +287,7 @@ def results(request):
         average = '--'
         change = '--'
 
-    if len(rep_max) > 0:
+    if len(rep_max) > 0 and rep_max[0] > 0:
         str_change = ((rep_max[len(rep_max) - 1] - rep_max[0]) / rep_max[0]) * 100
         str_change = '%.2f' % str_change
     else:

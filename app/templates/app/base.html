@@ -33,6 +33,7 @@
         @keyframes fadeinout {
             0% { opacity: 0; }
             100% { opacity: 1; }
+         }
         .footer{
         width: 100%; 
         background-color: #61605c;
@@ -58,6 +59,7 @@
         {% block style %}{% endblock %}
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=maximum-scale, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body class="body">
     <div class="nav">
@@ -101,7 +103,7 @@
             <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'home' %} active {% endif %}">Home</Button>
         </a>
     </div>
-    <div class="container">
+    <div class="container" style="min-height:600px;">
         {% block body %}{% endblock %}
     </div>
     <footer class="footer">

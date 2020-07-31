@@ -9,12 +9,14 @@
     }
 {% endblock style %}
 {% block body %}
-        {% if savedWeight %}
-            <div class="alert alert-success fade">Logged Weight. Great job!</div>
-        {% endif %}
+
         <div class="row">
-            <div class="col-8 offset-2">
-                <h1>Weight Log</h1>
+            <div class="col-10 offset-1">
+                {% if savedWeight %}
+                    <div class="alert alert-success fade">Logged Weight. Great job!</div>
+                {% endif %}
+                <h1 class="mb-0">Weight Log</h1>
+                <p class="text-muted">Track your weight over time so that you can view your progress.</p>
                 <hr>
                 <br>
                 <form class="form-inline pb-3" action="" method="post">
@@ -34,12 +36,16 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    {% for weight in weight_logs %}
-                                        <tr>
-                                            <th scope="row">{{weight.timestamp}}</th>
-                                            <td>{{weight.weight}} lbs</td>
-                                        </tr>
-                                    {% endfor %}
+                                    {% if weight_logs|length < 1 %}
+                                        <tr><td class="text-center" colspan="2">What are you waiting for? Log your weight above!</td></tr>
+                                    {% else %}
+                                        {% for weight in weight_logs %}
+                                            <tr>
+                                                <th scope="row">{{weight.timestamp}}</th>
+                                                <td>{{weight.weight}} lbs</td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
                                 </tbody>
                             </table>
                         </div>

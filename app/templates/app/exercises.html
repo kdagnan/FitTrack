@@ -94,6 +94,9 @@
     }
 {% endblock style %}
 {% block body %}
+    <h1 class="header pb-0 mb-0 pl-0" style="text-align: left;">Exercise Catalog</h1>
+    <p class="text-muted">Get inspired and build your next workout from our extensive library of workouts.</p>
+    <hr>
     <div class="boxes">
 
         <!--Display muscle groups-->
@@ -204,7 +207,7 @@
                         <p class="exercise-text" style="margin-bottom: 5px;">
                             <!--Pending: populate exercise log with selected exercise-->
                             <a id={{exercise.ex_id}} href="{% url 'exlog-add-from-recommender' exercise.name %}">
-                                <Button class="btn btn-outline-secondary btn-sm" style="float: right; line-height: 1.2;">Add to Exercise Log</Button> 
+                                <Button class="btn btn-outline-secondary btn-sm" style="float: right; line-height: 1.2;">Add to Today's Workout</Button>
                             </a>
                             <strong>{{exercise.name}}</strong></br>
                             <em style="font-size: 80%;">Category: {{exercise.group}}</em></br>

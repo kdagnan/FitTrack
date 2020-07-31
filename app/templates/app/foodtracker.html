@@ -51,68 +51,71 @@
             </div>
         {% endfor %}
 
-        <h1 class="header">Food Tracker</h1>
+        <h1 class="header pb-0 mb-0">Food Tracker</h1>
+        <p class="text-muted">Log your calorie intake & view your previous meals.</p>
+        <hr>
 
-        <div class="row">
+        <div class="row pt-3">
 
-            <div class="col-8">
-                <div class="boxes">
-                    {% if not data %}
-                        <div class="centered-div">
-                            <i><b>No data to view.  Try adding an entry!</b></i>
-                        </div>
-                    {% endif %}
-        
-                    {% for date, foods in data.items %}
-                        <div class="date">
-                            {% if date == today_date %}
-                                <h2>Today</h2>
-                            {% elif date == yesterday_date %}
-                                <h2>Yesterday</h2>
-                            {% else %}
-                                <h2> {{ date }}</h2>
-                            {% endif %}
-                        </div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <th style="text-align: center" scope="col">Description</th>
-                                <th style="text-align: center" scope="col">Calories</th>
-                            </thead>
-                            <tbody>
-                                {% for f in foods %}
-                                    <tr>
-                                        <td width="75%"style="text-align: center">{{ f.description }}</td>
-                                        <td style="text-align: center">{{ f.calories }}</td>
-                                        <td>
-                                            <form action="" method="post">
-                                                {% csrf_token %}
-                                                <input type ="hidden" value="{{ f.pk }}" name="pk">
-                                                <input type="submit" class="btn btn-danger btn-sm delete-btn" value="Delete">
-                                            </form>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                            {% for d, cal in total_calories.items %}
-                                {% if d == date %}
-                                    <tfoot>
-                                        <th style="text-align: center" scope="col"> Total Calories </th>
-                                        <th style="text-align: center" scope="col">{{ cal }}</th>
-                                    </tfoot>
+            <div class="col-7">
+                <div class="card" style="max-height:1000px;overflow-y:auto;">
+                    <div class="card-body">
+                        {% if not data %}
+                            <div class="centered-div">
+                                <i><b>No data to view.  Try adding an entry!</b></i>
+                            </div>
+                        {% endif %}
+
+                        {% for date, foods in data.items %}
+                            <div class="date">
+                                {% if date == today_date %}
+                                    <h4>Today</h4>
+                                {% elif date == yesterday_date %}
+                                    <h4>Yesterday</h4>
+                                {% else %}
+                                    <h4> {{ date }}</h4>
                                 {% endif %}
-                            {% endfor %}
-                        </table>
-                    {% endfor %}
+                            </div>
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <th style="text-align: center" scope="col">Description</th>
+                                    <th style="text-align: center" scope="col">Calories</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    {% for f in foods %}
+                                        <tr>
+                                            <td width="75%"style="text-align: center">{{ f.description }}</td>
+                                            <td style="text-align: center">{{ f.calories }}</td>
+                                            <td>
+                                                <form action="" method="post">
+                                                    {% csrf_token %}
+                                                    <input type ="hidden" value="{{ f.pk }}" name="pk">
+                                                    <button type="submit" style="border:none;background-color:transparent;" value="Delete" class="p-0 m-0 text-danger pl-3 pr-1"><i class="fa fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                {% for d, cal in total_calories.items %}
+                                    {% if d == date %}
+                                        <tfoot>
+                                            <th style="text-align: center" scope="col"> Total Calories </th>
+                                            <th style="text-align: center" scope="col">{{ cal }}</th>
+                                            <th></th>
+                                        </tfoot>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
-
-            <div class="col-4">
-                <div class="row">
-                    <div class="content-section">
-                        <div class="centered-div">
-                            <h4>Add a New Food</h4>
-                        </div>
-                        <div class="centered-div">
+            <div class="col-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Add a New Food</h4>
+                        <div class="card-text">
                             <form class="form-inline" action="" method="post">
                                 {% csrf_token %}
                                 <div class="col">
@@ -130,11 +133,11 @@
                             </form>
                         </div>
                     </div>
-                    <div class="content-section">
-                        <div class="centered-div">
-                            <h4>Add an Existing Food</h4>
-                        </div>
-                        <div class="centered-div">
+                </div>
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h4 class="card-title">Add an Existing Food</h4>
+                        <div class="card-text">
                             <form class="form-inline" action="" method="post">
                                 {% csrf_token %}
                                 <div class="col">
@@ -148,7 +151,7 @@
                                             <button type="submit" name="sub_btn_2" class="add btn btn-block btn-primary mb-2">Add</button>
                                         </div>
                                     </div>
-                                </div>            
+                                </div>
                             </form>
                         </div>
                     </div>

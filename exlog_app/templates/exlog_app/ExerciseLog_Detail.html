@@ -2,49 +2,69 @@
 {% load static %}
 
 {% block content%}
-<article class="media content-section">
-    <div class="media-body">
+<article class="card">
+    <div class="card-body">
 
-        <div class="article-metadata">
-                
-            <div class="row">
-                <div class="col-sm-8 col-12">
-                    <h2 class="mt-1 mb-2">{{ exlog.date | date:"F d, Y"}} Workout</h2>
-                </div>
-
+        <div class="card-title">
                 {% if exlog.user == user %}
-                <div class="col-sm-2 col-12">
-                    <a class="btn btn-secondary btn-nm mt-1 mb-2" href="{% url 'exlog-update' exlog.id %}">Update</a>
-                </div>
-                <div class="col-sm-2 col-12">
-                    <a class="btn btn-danger btn-nm mt-1 mb-2" href="{% url 'exlog-delete' exlog.id %}">Delete</a>
-                </div>
+                    <a class="btn btn-secondary btn-nm mb-2 pull-right ml-1" href="{% url 'exlog-update' exlog.id %}"><i class="fa fa-edit"></i> Update</a>
+                    <a class="btn btn-danger btn-nm mb-2 pull-right mr-1" href="{% url 'exlog-delete' exlog.id %}"><i class="fa fa-trash"></i> Delete</a>
                 {% endif %}
-            </div>
+                <h2 class="mt-1 mb-2">{{ exlog.date | date:"F d, Y"}} Workout</h2>
         </div>
         
-        <ul>
-            <!-- Passed in QuerySet only contains relevant Exercise objects-->
-            {% for exercise in exercises%}
-            {% if exercise.exercise_log == exlog %}
-            <li class="unordered-list_item">
-                {{ exercise.exercise_name }}:
-                {% if exercise.num_sets != 0 %}
-                    {{ exercise.num_sets }}x{{ exercise.num_reps }}
-                    {{ exercise.exercise_weight }} lbs
-                {% endif %}
-                <a href="{% url 'exlog-update-exercise' exercise.id %}">Edit</a>
-                <a href="{% url 'exlog-delete-exercise' exercise.id %}">Delete</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-        </ul>
+        <table class="table table-sm table-bordered card-text">
+                <thead>
+                    <tr>
+                        <th>Exercise</th>
+                        <th>Weight</th>
+                        <th>Sets</th>
+                        <th>Reps</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exercise in exercises%}
+                        {% if exercise.exercise_log == exlog %}
+                        <tr>
+                            <td>{{ exercise.exercise_name }}</td>
+                            <td>
+                                {% if exercise.exercise_weight != 0 %}
+                                    {{ exercise.exercise_weight }} lbs
+                                {% else %}
+                                    --
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if exercise.num_sets != 0 %}
+                                    {{ exercise.num_sets }}
+                                {% else %}
+                                    --
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if exercise.num_reps != 0 %}
+                                    {{ exercise.num_reps }}
+                                {% else %}
+                                    --
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/results?ex={{exercise.exercise_name}}" class="text-primary pr-1"><i class="fa fa-line-chart"></i></a>
+                                <a href="{% url 'exlog-update-exercise' exercise.id %}" class="text-success pr-1"><i class="fa fa-edit"></i></a>
+                                <a href="{% url 'exlog-delete-exercise' exercise.id %}" class="text-danger"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
 
         <!-- If the current user is the owener of the Exercise Log, allow them to add Exercises-->
         {% if exlog.user == user %}
         <div class="row">
             <div class="col-sm-4 col-12">
-                <a class="btn btn-success btn-ms mb-1" href="{% url 'exlog-add-exercise' exlog.id %}">Add Exercise</a>
+                <a class="btn btn-success btn-ms mb-1" href="{% url 'exlog-add-exercise' exlog.id %}"><i class="fa fa-plus"></i> Add Exercise</a>
             </div>
         </div>
         {% endif %}

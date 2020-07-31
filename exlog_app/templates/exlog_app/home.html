@@ -6,28 +6,60 @@
 {% endblock stylesheet%}
 
 {% block content%}
-
+<div style="max-height:600px;overflow-y:auto;">
 {% for exlog in exercise_logs %}
-<article class="card media content-section">
-    <div class="media-body">
-        <div class="article-metadata">
-            <h2><a class="mr-2" href="{% url 'exlog-detail' exlog.id %}">{{ exlog.date | date:"F d, Y"}} Workout</a></h2>
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="card-title h3">
+             <a class="btn btn-primary btn-sm pull-right" href="{% url 'exlog-detail' exlog.id %}">Details</a>
+            {{ exlog.date | date:"F d, Y"}} Workout
         </div>
-        <ul>
-            {% for exercise in exercises%}
-            {% if exercise.exercise_log == exlog %}
-            <li class="unordered-list_item">
-                {{ exercise.exercise_name }}:
-                {% if exercise.num_sets != 0 %}
-                    {{ exercise.num_sets }}x{{ exercise.num_reps }}
-                    {{ exercise.exercise_weight }} lbs
-                {% endif %}
-            </li>
-            {% endif %}
-            {% endfor %}
-        </ul>
+        <div class="card-text">
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th>Exercise</th>
+                        <th>Weight</th>
+                        <th>Sets</th>
+                        <th>Reps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exercise in exercises%}
+                        {% if exercise.exercise_log == exlog %}
+                        <tr>
+                            <td>{{ exercise.exercise_name }}</td>
+                            <td>
+                                {% if exercise.exercise_weight != 0 %}
+                                    {{ exercise.exercise_weight }} lbs
+                                {% else %}
+                                    --
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if exercise.num_sets != 0 %}
+                                    {{ exercise.num_sets }}
+                                {% else %}
+                                    --
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if exercise.num_reps != 0 %}
+                                    {{ exercise.num_reps }}
+                                {% else %}
+                                    --
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
 
     </div>
-</article>
+</div>
 {% endfor %}
+</div>
 {% endblock content %}

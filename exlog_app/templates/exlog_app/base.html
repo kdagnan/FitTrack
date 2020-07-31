@@ -8,7 +8,9 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 <main role="main" class="container">
-
+  <h1 class="header pb-0 mb-0">Exercise Log</h1>
+  <p class="text-muted">Log and review your workouts.</p>
+  <hr>
   <div class="row">
 
     <div class="col-md-8 exlog-lists">
@@ -27,22 +29,21 @@
         </div>
       </div>
       <div class="card content-section">
-        <h2>Exercise Log</h2>
-        <p class='text-muted'>Record and view all your workouts</p>
-
-          <!-- CreateView to add new ExerciseLog object into db-->
-          <a href="/exlog/log/new/">
-            <Button class="btn btn-outline-secondary btn-block mb-1">Add New Workout</Button>
-          </a>
-
-         <a href="/exercises/">
-            <Button class="btn btn-outline-secondary btn-block mb-1">Build Workout</Button>
-          </a>
-          
           <!-- ListView for all workout logs under the current logged in user-->
-          <a href="/exlog/">
-            <Button class="btn btn-outline-secondary btn-block">View All Workouts</Button>
-          </a>
+          {% with request.resolver_match.url_name as url_name %}
+              <a href="/exlog/">
+                <Button class="btn {% if url_name == 'exlog_home' %} btn-primary {% else %} btn-outline-primary {% endif %} btn-block mb-1"><i class="fa fa-list"></i> View All Workouts</Button>
+              </a>
+              <!-- CreateView to add new ExerciseLog object into db-->
+              <a href="/exlog/log/new/">
+                <Button class="btn {% if url_name == 'exlog-create' %} btn-success {% else %} btn-outline-success {% endif %} btn-block mb-1"><i class="fa fa-plus"></i> Add New Workout</Button>
+              </a>
+
+             <a href="/exercises/">
+                <Button class="btn btn-outline-secondary btn-block mb-1"><i class="fa fa-cogs"></i> Build Workout</Button>
+              </a>
+         {% endwith %}
+
       </div>
     </div>
     

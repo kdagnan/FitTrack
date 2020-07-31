@@ -35,17 +35,23 @@
             100% { opacity: 1; }
         }
         .footer{
-        width: 100%; 
-        background-color: #61605c;
-        text-align: center;
-        height: 140px;
-        margin-top: 225px;
+            width: 100%;
+            background-color: #61605c;
+            text-align: center;
+            height: 140px;
+            margin-top: 225px;
+            position: relative;
+            bottom: 0;
         }
         .logo-footer{
             padding: 30px 0 15px 0;
             height: 100px;
             width: auto;
         }
+        .main {
+            min-height: 100vh;
+        }
+
         @media screen and (max-width: 910px){
             .nav-btn{
                 width: 100%;
@@ -61,49 +67,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=maximum-scale, shrink-to-fit=no">
 </head>
 <body class="body">
-    <div class="nav">
-        <div class="logo-div">
-            <img src="{% static 'logo.png' %}" class="logo-header">
+    <div class="main">
+        <div class="nav">
+            <div class="logo-div">
+                <img src="{% static 'logo.png' %}" class="logo-header">
+            </div>
+            {% with request.resolver_match.url_name as url_name %}
+            {% if user.is_authenticated %}
+                <p class="nav-btn pt-2">{{ user.username }}</p>
+                <a href={% url 'app:logout' %}>
+                    <Button class="btn btn-outline-danger nav-btn">Logout</Button>
+                </a>
+                <a href={% url 'app:results' %}>
+                    <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'results' %} active {% endif %}" >Results</Button>
+                </a>
+                <a href={% url 'app:foodtracker' %}>
+                    <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'foodtracker' %} active {% endif %}">Food Tracker</Button>
+                </a>
+                <a href={% url 'app:weightlog' %}>
+                    <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'weightlog' %} active {% endif %}">Weight Log</Button>
+                </a>
+                <a href={% url 'exlog_home' %}>
+                    <Button class="btn btn-outline-secondary nav-btn
+                    {%  if url_name == 'exlog_home' or url_name == 'exlog-detail' or url_name == 'exlog-create' or url_name == 'exlog-update' or url_name == 'exlog-delete' or url_name == 'exlog-add-exercise' or url_name == 'exlog-update-exercise'  or url_name == 'exlog-delete-exercise'%}
+                        active
+                    {% endif %}">Exercise Log</Button>
+                </a>
+                <a href={% url 'app:exercises' %}>
+                    <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'exercises' %} active {% endif %}">Exercises</Button>
+                </a>
+            {% else %}
+                <a href={% url 'app:signup' %}>
+                    <Button class="btn btn-outline-secondary nav-btn">Sign Up</Button>
+                </a>
+                <a href={% url 'app:login' %}>
+                    <Button class="btn btn-outline-secondary nav-btn">Log In</Button>
+                </a>
+            {% endif %}
+            {% endwith %}
+            <a href={% url 'app:home' %}>
+                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'home' %} active {% endif %}">Home</Button>
+            </a>
         </div>
-        {% with request.resolver_match.url_name as url_name %}
-        {% if user.is_authenticated %}
-            <p class="nav-btn pt-2">{{ user.username }}</p>
-            <a href={% url 'app:logout' %}>
-                <Button class="btn btn-outline-danger nav-btn">Logout</Button>
-            </a>
-            <a href={% url 'app:results' %}>
-                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'results' %} active {% endif %}" >Results</Button>
-            </a>
-            <a href={% url 'app:foodtracker' %}>
-                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'foodtracker' %} active {% endif %}">Food Tracker</Button>
-            </a>
-            <a href={% url 'app:weightlog' %}>
-                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'weightlog' %} active {% endif %}">Weight Log</Button>
-            </a>
-            <a href={% url 'exlog_home' %}>
-                <Button class="btn btn-outline-secondary nav-btn 
-                {%  if url_name == 'exlog_home' or url_name == 'exlog-detail' or url_name == 'exlog-create' or url_name == 'exlog-update' or url_name == 'exlog-delete' or url_name == 'exlog-add-exercise' or url_name == 'exlog-update-exercise'  or url_name == 'exlog-delete-exercise'%} 
-                    active 
-                {% endif %}">Exercise Log</Button>
-            </a>
-            <a href={% url 'app:exercises' %}>
-                <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'exercises' %} active {% endif %}">Exercises</Button>
-            </a>
-        {% else %}
-            <a href={% url 'app:signup' %}>
-                <Button class="btn btn-outline-secondary nav-btn">Sign Up</Button>
-            </a>
-            <a href={% url 'app:login' %}>
-                <Button class="btn btn-outline-secondary nav-btn">Log In</Button>
-            </a>
-        {% endif %}
-        {% endwith %}
-        <a href={% url 'app:home' %}>
-            <Button class="btn btn-outline-secondary nav-btn {% if url_name == 'home' %} active {% endif %}">Home</Button>
-        </a>
-    </div>
-    <div class="container">
-        {% block body %}{% endblock %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
     </div>
     <footer class="footer">
         <a href={% url 'app:home' %}>

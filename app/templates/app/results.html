@@ -14,7 +14,9 @@
                         {{ change }} <span class="small">lbs</span>
                     </h1>
                     <p class="card-text">
-                        Weight Change
+                        <i class="fa fa-line-chart"></i> Weight Change
+                        <br>
+                        <span>&shy;</span>
                     </p>
                 </div>
             </div>
@@ -26,7 +28,7 @@
                         {{ str_change }} <span class="small">%</span>
                     </h1>
                     <p class="card-text">
-                        Strength Change {% if not request.GET.ex %} <br><span class="small text-danger">No Exercise Selected</span> {% endif %}
+                        <i class="fa fa-bolt"></i>  Strength Change {% if not request.GET.ex %} <br><span class="small text-danger">No Exercise Selected</span> {% else %} <br><span>&shy;</span>{% endif %}
                     </p>
                 </div>
             </div>
@@ -38,7 +40,9 @@
                        {{ avg_cals }} <span class="small">cals</span>
                     </h1>
                     <p class="card-text">
-                        Avg Daily Consumption
+                        <i class="fa fa-cutlery"></i>  Avg Daily Consumption
+                        <br>
+                        <span>&shy;</span>
                     </p>
                 </div>
             </div>
@@ -50,7 +54,9 @@
                         {{ average }} <span class="small">lbs</span>
                     </h1>
                     <p class="card-text">
-                        Average Weight
+                        <i class="fa fa-balance-scale"></i>  Average Weight
+                        <br>
+                        <span>&shy;</span>
                     </p>
                 </div>
             </div>

@@ -130,6 +130,9 @@
 {% endblock style %}
 {% block body %}
     <div class="header">
+        {% for message in messages %}
+            <div class="alert alert-success fade">{{ message }}</div>
+        {% endfor %}
         <img src="{% static 'fitness.jpg' %}" class="header-img">
         <div class="header-text">
             <h1 class="title">Welcome to FitTrack!</h1>

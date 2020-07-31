@@ -3,27 +3,32 @@
 {% block content %}
 <div class="content-section">
 
+    {% with request.resolver_match.url_name as url_name %}
     <form method="POST">
         {% csrf_token %}
+
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">New Exercise</legend>
+            <legend class="border-bottom mb-4">
+                {% if url_name == 'exlog-add-exercise'%}
+                    New Exercise
+                {% else %}
+                    Update Exercise
+                {% endif %}
+            </legend>
             {{ form.as_p }}
         </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Add Exercise</button>
+
+        <div class="form-group"> 
+            <button class="btn btn-outline-info" type="submit">
+                {% if url_name == 'exlog-add-exercise'%}
+                    Add Exercise
+                {% else %}
+                    Update Exercise
+                {% endif %}
+            </button>
         </div>
     </form>
+    {% endwith %}
 
 </div>
 {% endblock content %}
-
-<!--- 
-    ICAgIFNpbmNlIG5vYm9keSB3aWxsIHByb2JhYmx5IGV2ZXIgZmluZCB0aGlzLCB0aGUgbGlua2VkIHZpZGVvIGl
-    zIGFuIGFjY3VyYXRlIHJlcHJlc2VudGF0aW9uIFwKICAgIG9mIG1lIGRlYWxpbmcgd2l0aCB0aGUgb25lLXRvLW
-    1hbnkgcmVsYXRpb25zaGlwIGJldHdlZW4gRXhlcmNpc2VMb2cgYW5kIEV4ZXJjaXNlIGFuZCBob3cKICAgIHRvIG
-    1ha2UgYSBkZWNlbnQgZm9ybS93YXkgdG8gYWRkIEV4ZXJjaXNlcyB0byBhbiBFeGVyY2lzZUxvZywgdGhpcyBjb2
-    1taXQgbGl0ZXJhbGx5IHRvb2sgbWUgaG91cnMgdG8KICAgIGZpZ3VyZSBvdXQgYSBoYWxmLWRlY2VudCBzb2x1dGl
-    vbiBhbmQgSSBkb24ndCBrbm93IGhvdyB0byBtYWtlIGl0IGJldHRlcg==
-    
-    ICAgIGh0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9blkzY3hYUnczWDQ=
---->

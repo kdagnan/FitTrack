@@ -13,6 +13,6 @@ urlpatterns = [
     path('results/', views.results, name='results'),
     path('login/', django_views.LoginView.as_view(template_name='app/login.html',
                                                   authentication_form=forms.UserAuthenticationForm), name='login'),
-    path('logout/', django_views.LogoutView.as_view(template_name='app/logout.html'), name='logout'),
+    path('logout/', views.logout_user, name='logout'),
     path('signup/', views.signup, name='signup')
 ]

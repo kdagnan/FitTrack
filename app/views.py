@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.http import HttpResponse
 from datetime import date, datetime, timedelta
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.contrib import messages
 from django.utils import timezone
 from .models import Food_Entry
@@ -282,8 +282,11 @@ def results(request):
             change = '--'
 
         if len(rep_max) > 0:
-            str_change = ((rep_max[len(rep_max) - 1] - rep_max[0]) / rep_max[0]) * 100
-            str_change = '%.2f' % str_change
+            if (rep_max[0] != 0):
+                str_change = ((rep_max[len(rep_max) - 1] - rep_max[0]) / rep_max[0]) * 100
+                str_change = '%.2f' % str_change
+            else:
+                str_change = "Inf"
         else:
             str_change = '--'
 
@@ -319,3 +322,9 @@ def signup(request):
             'form': form
         }
         return render(request, 'app/signup.html', context)
+
+
+def logout_user(request):
+    logout(request)
+    messages.info(request, "You have been logged out.")
+    return redirect('app:home')
